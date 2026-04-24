@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>관리자 — 신한하우징</title>
+<meta name="robots" content="noindex, nofollow" />
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      fontFamily: {
+        sans: ['"Pretendard Variable"', 'Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        display: ['"Cabinet Grotesk"', '"Pretendard Variable"', 'sans-serif'],
+      },
+      colors: {
+        ink: { 950: '#0a0a0a', 900: '#111111', 800: '#1a1a1a', 700: '#242424' },
+        bronze: { 400: '#D4A056', 450: '#C8913D', 500: '#B17A2A', 600: '#8E611F' },
+      },
+    } },
+  };
+</script>
+
+<style>
+  body { font-family: 'Pretendard Variable', Pretendard, sans-serif; background: #0a0a0a; color: #e4e4e7; word-break: keep-all; }
+  .kr { word-break: keep-all; }
+  .bezel { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 6px; border-radius: 18px; }
+  .bezel > .bezel-core { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; }
+
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; border-radius: 10px; font-size: 13px; font-weight: 500; transition: all 200ms; cursor: pointer; border: 1px solid transparent; }
+  .btn-primary { background: #D4A056; color: #0a0a0a; border-color: #D4A056; }
+  .btn-primary:hover { background: #F5D38A; }
+  .btn-ghost { background: transparent; color: #e4e4e7; border-color: rgba(255,255,255,0.15); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.3); }
+  .btn-danger { background: transparent; color: #f87171; border-color: rgba(248,113,113,0.3); }
+  .btn-danger:hover { background: rgba(248,113,113,0.1); }
+  .btn-sm { padding: 5px 10px; font-size: 11px; border-radius: 7px; }
+
+  .input, .select, .textarea { width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 14px; font-size: 13px; color: #e4e4e7; transition: all 200ms; }
+  .input:focus, .select:focus, .textarea:focus { outline: none; border-color: rgba(212,160,86,0.6); background: rgba(255,255,255,0.05); box-shadow: 0 0 0 3px rgba(212,160,86,0.15); }
+  .textarea { resize: vertical; min-height: 80px; }
+  .label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #71717a; margin-bottom: 6px; display: block; }
+
+  .tab { padding: 10px 18px; font-size: 13px; color: #a1a1aa; border-bottom: 2px solid transparent; cursor: pointer; transition: all 200ms; }
+  .tab:hover { color: #e4e4e7; }
+  .tab.active { color: #F5D38A; border-bottom-color: #D4A056; }
+
+  .badge { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 999px; font-size: 10px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+  .badge-new { background: rgba(212,160,86,0.15); color: #F5D38A; border: 1px solid rgba(212,160,86,0.3); }
+  .badge-contacted { background: rgba(96,165,250,0.12); color: #93c5fd; border: 1px solid rgba(96,165,250,0.25); }
+  .badge-completed { background: rgba(74,222,128,0.12); color: #86efac; border: 1px solid rgba(74,222,128,0.25); }
+  .badge-rejected { background: rgba(248,113,113,0.1); color: #fca5a5; border: 1px solid rgba(248,113,113,0.25); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th { text-align: left; padding: 10px 12px; font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #71717a; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  tbody td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top; }
+  tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+  .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 100; display: none; align-items: center; justify-content: center; padding: 20px; }
+  .modal.open { display: flex; }
+  .modal-box { background: #111; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; }
+
+  .dropzone { border: 2px dashed rgba(255,255,255,0.15); border-radius: 14px; padding: 30px; text-align: center; transition: all 200ms; cursor: pointer; }
+  .dropzone:hover, .dropzone.dragover { border-color: rgba(212,160,86,0.5); background: rgba(212,160,86,0.05); }
+
+  .image-card { position: relative; aspect-ratio: 1 / 1; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
+  .image-card img { width: 100%; height: 100%; object-fit: cover; }
+  .image-card .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); opacity: 0; transition: opacity 200ms; display: flex; align-items: flex-end; justify-content: center; padding: 8px; gap: 4px; }
+  .image-card:hover .overlay { opacity: 1; }
+
+  .skeleton { background: linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.08), rgba(255,255,255,0.04)); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  iconify-icon { display: inline-block; vertical-align: -0.125em; }
+  ::selection { background: #D4A056; color: #0a0a0a; }
+</style>
+</head>
+<body>
+
+<!-- ================= LOGIN SCREEN ================= -->
+<div id="loginScreen" class="min-h-screen flex items-center justify-center px-4">
+  <div class="bezel w-full max-w-md">
+    <div class="bezel-core p-8">
+      <div class="flex items-center gap-2.5 mb-8">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-bronze-400/15 ring-1 ring-bronze-400/30">
+          <iconify-icon icon="solar:shield-keyhole-bold" width="20" class="text-bronze-400"></iconify-icon>
+        </span>
+        <div>
+          <div class="text-[15px] font-semibold text-zinc-50">신한하우징 관리자</div>
+          <div class="text-[11px] tracking-wider text-zinc-500">ADMIN PANEL</div>
+        </div>
+      </div>
+
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label class="label">이메일</label>
+          <input id="loginEmail" type="email" class="input" required autocomplete="username" placeholder="admin@shinhanhousing.co.kr" />
+        </div>
+        <div>
+          <label class="label">비밀번호</label>
+          <input id="loginPassword" type="password" class="input" required autocomplete="current-password" />
+        </div>
+        <div id="loginError" class="hidden text-xs text-red-400 kr"></div>
+        <button type="submit" class="btn btn-primary w-full justify-center py-3">
+          <iconify-icon icon="solar:login-3-bold" width="16"></iconify-icon>
+          로그인
+        </button>
+      </form>
+
+      <p class="mt-6 text-[11px] text-zinc-600 text-center kr">
+        관리자 계정이 없는 경우 시스템 관리자에게 문의하세요.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ================= DASHBOARD ================= -->
+<div id="dashboard" class="hidden min-h-screen">
+  <!-- Header -->
+  <header class="border-b border-white/5 sticky top-0 z-30 bg-ink-950/90 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-bronze-400/15 ring-1 ring-bronze-400/30">
+          <iconify-icon icon="solar:home-angle-2-bold" width="18" class="text-bronze-400"></iconify-icon>
+        </span>
+        <div>
+          <div class="text-[14px] font-semibold text-zinc-50">신한하우징 <span class="text-bronze-400">관리자</span></div>
+          <div class="text-[10px] tracking-wider text-zinc-500">ADMIN PANEL</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="index.html" target="_blank" class="btn btn-ghost btn-sm">
+          <iconify-icon icon="solar:square-top-down-linear" width="14"></iconify-icon>
+          사이트 보기
+        </a>
+        <button id="logoutBtn" class="btn btn-ghost btn-sm">
+          <iconify-icon icon="solar:logout-3-linear" width="14"></iconify-icon>
+          로그아웃
+        </button>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex gap-2 border-t border-white/5">
+      <button data-tab="inquiries" class="tab active">
+        <iconify-icon icon="solar:chat-square-2-bold" width="14" class="mr-1"></iconify-icon>
+        문의 관리
+        <span id="inquiryCountBadge" class="ml-2 inline-flex items-center justify-center h-5 min-w-[20px] px-1.5 rounded-full bg-bronze-400/20 text-bronze-400 text-[10px] font-semibold hidden"></span>
+      </button>
+      <button data-tab="products" class="tab">
+        <iconify-icon icon="solar:box-bold" width="14" class="mr-1"></iconify-icon>
+        제품 관리
+      </button>
+      <button data-tab="categories" class="tab">
+        <iconify-icon icon="solar:folder-bold" width="14" class="mr-1"></iconify-icon>
+        카테고리
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+
+    <!-- Tab: Inquiries -->
+    <section id="tabInquiries" class="tab-panel">
+      <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
+        <h2 class="font-display text-2xl font-semibold text-zinc-50">문의 내역</h2>
+        <div class="flex gap-2">
+          <select id="inquiryStatusFilter" class="select" style="width: auto; padding-right: 30px;">
+            <option value="">전체 상태</option>
+            <option value="new">신규</option>
+            <option value="contacted">응대중</option>
+            <option value="completed">완료</option>
+            <option value="rejected">거절</option>
+          </select>
+          <button id="refreshInquiriesBtn" class="btn btn-ghost">
+            <iconify-icon icon="solar:refresh-linear" width="14"></iconify-icon>
+            새로고침
+          </button>
+        </div>
+      </div>
+
+      <div class="bezel">
+        <div class="bezel-core overflow-x-auto">
+          <table>
+            <thead>
+              <tr>
+                <th>상태</th>
+                <th>접수일시</th>
+                <th>이름·연락처</th>
+                <th>문의 제품</th>
+                <th>내용</th>
+                <th class="text-right">작업</th>
+              </tr>
+            </thead>
+            <tbody id="inquiryTable">
+              <tr><td colspan="6" class="text-center text-zinc-500 py-8">로딩 중…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab: Products -->
+    <section id="tabProducts" class="tab-panel hidden">
+      <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
+        <h2 class="font-display text-2xl font-semibold text-zinc-50">제품 목록</h2>
+        <div class="flex gap-2 flex-wrap">
+          <input id="productSearchInput" type="text" placeholder="제품 코드 검색…" class="input" style="width: 220px;" />
+          <select id="productTypeFilter" class="select" style="width: auto; padding-right: 30px;">
+            <option value="">전체 재질</option>
+            <option value="forged">단조</option>
+            <option value="aluminum">알루미늄</option>
+          </select>
+          <button id="addProductBtn" class="btn btn-primary">
+            <iconify-icon icon="solar:add-circle-bold" width="14"></iconify-icon>
+            새 제품
+          </button>
+        </div>
+      </div>
+
+      <div class="bezel">
+        <div class="bezel-core overflow-x-auto">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 60px;">이미지</th>
+                <th>코드</th>
+                <th>카테고리</th>
+                <th>재질</th>
+                <th>상태</th>
+                <th class="text-right">작업</th>
+              </tr>
+            </thead>
+            <tbody id="productTable">
+              <tr><td colspan="6" class="text-center text-zinc-500 py-8">로딩 중…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="productPagination" class="mt-6 flex justify-center gap-2"></div>
+    </section>
+
+    <!-- Tab: Categories -->
+    <section id="tabCategories" class="tab-panel hidden">
+      <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
+        <h2 class="font-display text-2xl font-semibold text-zinc-50">카테고리</h2>
+      </div>
+      <div class="bezel">
+        <div class="bezel-core overflow-x-auto">
+          <table>
+            <thead>
+              <tr><th>재질</th><th>카테고리명</th><th>Slug</th><th>제품 수</th><th>상태</th></tr>
+            </thead>
+            <tbody id="categoryTable">
+              <tr><td colspan="5" class="text-center text-zinc-500 py-8">로딩 중…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="mt-4 text-[12px] text-zinc-500 kr">
+        카테고리는 초기 시드 스크립트로 생성됩니다. 편집은 백엔드에서 직접 수행하세요.
+      </p>
+    </section>
+  </main>
+</div>
+
+
+<!-- ================= Product Edit Modal ================= -->
+<div id="productModal" class="modal">
+  <div class="modal-box">
+    <div class="flex items-center justify-between p-6 border-b border-white/5">
+      <h3 id="productModalTitle" class="font-display text-xl font-semibold text-zinc-50">제품 정보</h3>
+      <button onclick="closeProductModal()" class="btn btn-ghost btn-sm">
+        <iconify-icon icon="solar:close-circle-linear" width="16"></iconify-icon>
+        닫기
+      </button>
+    </div>
+    <form id="productForm" class="p-6 space-y-5">
+      <input type="hidden" id="pfId" />
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="label">제품 코드 <span class="text-red-400">*</span></label>
+          <input id="pfCode" class="input" required placeholder="SHG-1501" />
+        </div>
+        <div>
+          <label class="label">제품명</label>
+          <input id="pfName" class="input" placeholder="(선택) 제품 이름" />
+        </div>
+        <div>
+          <label class="label">재질 <span class="text-red-400">*</span></label>
+          <select id="pfType" class="select" required>
+            <option value="forged">단조</option>
+            <option value="aluminum">알루미늄 주물</option>
+          </select>
+        </div>
+        <div>
+          <label class="label">카테고리 <span class="text-red-400">*</span></label>
+          <select id="pfCategory" class="select" required></select>
+        </div>
+      </div>
+
+      <div>
+        <label class="label">설명</label>
+        <textarea id="pfDescription" class="textarea" placeholder="제품 설명 (선택)"></textarea>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div>
+          <label class="label">너비 (mm)</label>
+          <input id="pfWidth" type="number" class="input" />
+        </div>
+        <div>
+          <label class="label">높이 (mm)</label>
+          <input id="pfHeight" type="number" class="input" />
+        </div>
+        <div>
+          <label class="label">두께 (mm)</label>
+          <input id="pfThickness" type="number" class="input" />
+        </div>
+      </div>
+
+      <div class="flex items-center gap-5 text-sm text-zinc-300">
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input id="pfActive" type="checkbox" checked class="accent-bronze-400" /> 활성화
+        </label>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input id="pfFeatured" type="checkbox" class="accent-bronze-400" /> 추천 상품
+        </label>
+      </div>
+
+      <!-- Image management -->
+      <div id="imageSection" class="border-t border-white/5 pt-5">
+        <div class="flex items-center justify-between mb-3">
+          <label class="label" style="margin: 0;">제품 이미지</label>
+          <span class="text-[11px] text-zinc-500" id="imageCount">0 장</span>
+        </div>
+
+        <div id="dropzone" class="dropzone mb-4">
+          <iconify-icon icon="solar:cloud-upload-bold" width="32" class="text-bronze-400"></iconify-icon>
+          <div class="mt-3 text-sm text-zinc-300 kr">이미지를 드래그하거나 클릭하여 업로드</div>
+          <div class="mt-1 text-[11px] text-zinc-500">JPG, PNG, WebP (최대 10MB)</div>
+          <input id="fileInput" type="file" accept="image/*" multiple class="hidden" />
+        </div>
+
+        <div id="imageGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+      </div>
+
+      <div id="productFormError" class="hidden text-xs text-red-400 kr"></div>
+
+      <div class="flex items-center justify-end gap-2 pt-3 border-t border-white/5">
+        <button type="button" onclick="closeProductModal()" class="btn btn-ghost">취소</button>
+        <button type="submit" class="btn btn-primary">
+          <iconify-icon icon="solar:check-circle-bold" width="14"></iconify-icon>
+          저장
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- ================= Scripts ================= -->
+<script>
+  window.SH_API_MOCK__ = false; // admin은 실제 백엔드 필요
+</script>
+<script src="assets/js/api.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  const screen = {
+    login: document.getElementById('loginScreen'),
+    dashboard: document.getElementById('dashboard'),
+  };
+
+  function showLogin() {
+    screen.dashboard.classList.add('hidden');
+    screen.login.classList.remove('hidden');
+  }
+  function showDashboard() {
+    screen.login.classList.add('hidden');
+    screen.dashboard.classList.remove('hidden');
+    loadAll();
+  }
+
+  // ---------- Login ----------
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    const errEl = document.getElementById('loginError');
+    errEl.classList.add('hidden');
+    try {
+      await SH_API.Admin.login(email, password);
+      showDashboard();
+    } catch (err) {
+      errEl.textContent = err.status === 401 ? '이메일 또는 비밀번호가 올바르지 않습니다.' : '로그인에 실패했습니다: ' + err.message;
+      errEl.classList.remove('hidden');
+    }
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    SH_API.Admin.logout();
+    showLogin();
+  });
+
+  // ---------- Tabs ----------
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t === tab));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+      document.getElementById('tab' + tab.dataset.tab.charAt(0).toUpperCase() + tab.dataset.tab.slice(1)).classList.remove('hidden');
+    });
+  });
+
+  // ---------- Data loading ----------
+  let categoriesCache = [];
+
+  async function loadAll() {
+    try {
+      categoriesCache = await SH_API.Public.getCategories();
+      renderCategoriesTable();
+      populateCategorySelect();
+    } catch (e) { console.warn('categories:', e); }
+    loadInquiries();
+    loadProducts();
+  }
+
+  // ---------- Inquiries ----------
+  async function loadInquiries() {
+    const status = document.getElementById('inquiryStatusFilter').value;
+    const tbody = document.getElementById('inquiryTable');
+    tbody.innerHTML = '<tr><td colspan="6" class="text-center text-zinc-500 py-8">로딩 중…</td></tr>';
+    try {
+      const res = await SH_API.Admin.listInquiries({ status, limit: 50 });
+      const items = res.items || [];
+      if (!items.length) {
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center text-zinc-500 py-12 kr">문의 내역이 없습니다.</td></tr>';
+      } else {
+        tbody.innerHTML = items.map(renderInquiryRow).join('');
+        tbody.querySelectorAll('[data-inquiry-action]').forEach(btn => {
+          btn.addEventListener('click', () => handleInquiryAction(btn));
+        });
+      }
+      const newCount = items.filter(i => i.status === 'new').length;
+      const badge = document.getElementById('inquiryCountBadge');
+      badge.textContent = newCount;
+      badge.classList.toggle('hidden', !newCount);
+    } catch (e) {
+      tbody.innerHTML = `<tr><td colspan="6" class="text-center text-red-400 py-8 kr">문의 내역을 불러올 수 없습니다: ${escapeHtml(e.message)}</td></tr>`;
+    }
+  }
+
+  function renderInquiryRow(q) {
+    const badge = ({
+      new: 'badge-new', contacted: 'badge-contacted', completed: 'badge-completed', rejected: 'badge-rejected'
+    })[q.status] || 'badge-new';
+    const statusLabel = { new: '신규', contacted: '응대중', completed: '완료', rejected: '거절' }[q.status] || q.status;
+    return `
+      <tr data-id="${q.id}">
+        <td><span class="badge ${badge}">${statusLabel}</span></td>
+        <td class="text-xs text-zinc-400 whitespace-nowrap">${new Date(q.createdAt).toLocaleString('ko-KR')}</td>
+        <td>
+          <div class="font-medium text-zinc-100">${escapeHtml(q.name)}</div>
+          <div class="text-xs text-zinc-500">${escapeHtml(q.phone)}</div>
+          ${q.email ? `<div class="text-xs text-zinc-600">${escapeHtml(q.email)}</div>` : ''}
+        </td>
+        <td>
+          ${q.productCode ? `<a href="product.html?id=${encodeURIComponent(q.productCode)}" target="_blank" class="text-bronze-400 text-xs font-mono hover:underline">${escapeHtml(q.productCode)}</a>` : '<span class="text-zinc-600 text-xs">—</span>'}
+          <div class="text-[11px] text-zinc-500 kr">${escapeHtml(q.productType || '')}</div>
+        </td>
+        <td class="max-w-sm">
+          <div class="text-xs text-zinc-300 kr whitespace-pre-wrap line-clamp-3">${escapeHtml(q.message)}</div>
+        </td>
+        <td class="text-right">
+          <div class="flex gap-1 justify-end flex-wrap">
+            ${q.status !== 'contacted' ? `<button data-inquiry-action="contacted" data-id="${q.id}" class="btn btn-ghost btn-sm">응대중</button>` : ''}
+            ${q.status !== 'completed' ? `<button data-inquiry-action="completed" data-id="${q.id}" class="btn btn-ghost btn-sm">완료</button>` : ''}
+            ${q.status !== 'rejected' ? `<button data-inquiry-action="rejected" data-id="${q.id}" class="btn btn-danger btn-sm">거절</button>` : ''}
+          </div>
+        </td>
+      </tr>`;
+  }
+
+  async function handleInquiryAction(btn) {
+    const id = btn.dataset.id;
+    const status = btn.dataset.inquiryAction;
+    btn.disabled = true;
+    try {
+      await SH_API.Admin.updateInquiry(id, { status });
+      loadInquiries();
+    } catch (e) { alert('업데이트 실패: ' + e.message); btn.disabled = false; }
+  }
+
+  document.getElementById('inquiryStatusFilter').addEventListener('change', loadInquiries);
+  document.getElementById('refreshInquiriesBtn').addEventListener('click', loadInquiries);
+
+  // ---------- Products ----------
+  let productPage = 1;
+  async function loadProducts() {
+    const q = document.getElementById('productSearchInput').value.trim();
+    const type = document.getElementById('productTypeFilter').value;
+    const tbody = document.getElementById('productTable');
+    tbody.innerHTML = '<tr><td colspan="6" class="text-center text-zinc-500 py-8">로딩 중…</td></tr>';
+    try {
+      const res = await SH_API.Admin.listProducts({ q, type, page: productPage, limit: 30 });
+      const items = res.items || [];
+      if (!items.length) {
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center text-zinc-500 py-12 kr">제품이 없습니다.</td></tr>';
+      } else {
+        tbody.innerHTML = items.map(renderProductRow).join('');
+        tbody.querySelectorAll('[data-product-action]').forEach(btn => {
+          btn.addEventListener('click', () => handleProductAction(btn));
+        });
+      }
+      renderPagination(res);
+    } catch (e) {
+      tbody.innerHTML = `<tr><td colspan="6" class="text-center text-red-400 py-8 kr">로드 실패: ${escapeHtml(e.message)}</td></tr>`;
+    }
+  }
+
+  function renderProductRow(p) {
+    const thumb = p.thumbUrl || p.mainImage || '';
+    return `
+      <tr data-id="${p.id}">
+        <td>
+          ${thumb ? `<img src="${escapeHtml(thumb)}" class="w-12 h-12 object-cover rounded border border-white/10" alt="" />` : `<div class="w-12 h-12 rounded bg-ink-800 flex items-center justify-center text-zinc-700"><iconify-icon icon="solar:box-minimalistic-bold" width="18"></iconify-icon></div>`}
+        </td>
+        <td><span class="font-mono text-zinc-100">${escapeHtml(p.code)}</span>${p.isFeatured ? ' <iconify-icon icon="solar:star-bold" class="text-bronze-400 ml-1" width="12"></iconify-icon>' : ''}</td>
+        <td class="text-sm text-zinc-300 kr">${escapeHtml(p.category || '')}</td>
+        <td class="text-xs text-zinc-400">${p.type === 'forged' ? '단조' : '알루미늄'}</td>
+        <td>${p.isActive === false ? '<span class="badge badge-rejected">비활성</span>' : '<span class="badge badge-completed">활성</span>'}</td>
+        <td class="text-right">
+          <button data-product-action="edit" data-id="${p.id}" class="btn btn-ghost btn-sm"><iconify-icon icon="solar:pen-linear" width="12"></iconify-icon>수정</button>
+          <button data-product-action="delete" data-id="${p.id}" class="btn btn-danger btn-sm"><iconify-icon icon="solar:trash-bin-trash-linear" width="12"></iconify-icon></button>
+        </td>
+      </tr>`;
+  }
+
+  function renderPagination(res) {
+    const pag = document.getElementById('productPagination');
+    const total = res.total || 0;
+    const limit = res.limit || 30;
+    const pages = Math.ceil(total / limit);
+    if (pages <= 1) { pag.innerHTML = ''; return; }
+    const btns = [];
+    for (let i = 1; i <= Math.min(pages, 20); i++) {
+      btns.push(`<button class="btn ${i === productPage ? 'btn-primary' : 'btn-ghost'} btn-sm" onclick="gotoProductPage(${i})">${i}</button>`);
+    }
+    pag.innerHTML = btns.join('');
+  }
+  window.gotoProductPage = function (p) { productPage = p; loadProducts(); };
+
+  let productSearchTimer;
+  document.getElementById('productSearchInput').addEventListener('input', () => {
+    clearTimeout(productSearchTimer);
+    productSearchTimer = setTimeout(() => { productPage = 1; loadProducts(); }, 300);
+  });
+  document.getElementById('productTypeFilter').addEventListener('change', () => { productPage = 1; loadProducts(); });
+
+  async function handleProductAction(btn) {
+    const id = btn.dataset.id;
+    if (btn.dataset.productAction === 'edit') return openProductModal(id);
+    if (btn.dataset.productAction === 'delete') {
+      if (!confirm('정말 삭제하시겠습니까? 연결된 이미지도 함께 삭제됩니다.')) return;
+      try { await SH_API.Admin.deleteProduct(id); loadProducts(); }
+      catch (e) { alert('삭제 실패: ' + e.message); }
+    }
+  }
+
+  document.getElementById('addProductBtn').addEventListener('click', () => openProductModal(null));
+
+  // ---------- Product Modal ----------
+  let currentProduct = null;
+
+  function populateCategorySelect() {
+    const sel = document.getElementById('pfCategory');
+    sel.innerHTML = categoriesCache.map(c => `<option value="${c.id}" data-type="${c.type}">${escapeHtml(c.name)} (${c.type === 'forged' ? '단조' : '알루미늄'})</option>`).join('');
+  }
+
+  async function openProductModal(id) {
+    document.getElementById('productFormError').classList.add('hidden');
+    currentProduct = null;
+    if (id) {
+      try {
+        const res = await SH_API.Admin.listProducts({ id });
+        currentProduct = (res.items || []).find(p => String(p.id) === String(id)) || await SH_API.Public.getProduct(id);
+      } catch (e) { alert('제품 정보를 불러올 수 없습니다: ' + e.message); return; }
+    }
+    document.getElementById('productModalTitle').textContent = currentProduct ? '제품 수정' : '새 제품 등록';
+    document.getElementById('pfId').value = currentProduct?.id || '';
+    document.getElementById('pfCode').value = currentProduct?.code || '';
+    document.getElementById('pfName').value = currentProduct?.name || '';
+    document.getElementById('pfType').value = currentProduct?.type || 'forged';
+    document.getElementById('pfCategory').value = currentProduct?.categoryId || (categoriesCache[0]?.id || '');
+    document.getElementById('pfDescription').value = currentProduct?.description || '';
+    const specs = currentProduct?.specsJson || currentProduct?.specs || {};
+    document.getElementById('pfWidth').value = specs.width || '';
+    document.getElementById('pfHeight').value = specs.height || '';
+    document.getElementById('pfThickness').value = specs.thickness || '';
+    document.getElementById('pfActive').checked = currentProduct?.isActive !== false;
+    document.getElementById('pfFeatured').checked = !!currentProduct?.isFeatured;
+
+    renderProductImages();
+    document.getElementById('imageSection').style.display = currentProduct ? '' : 'none';
+
+    document.getElementById('productModal').classList.add('open');
+  }
+
+  window.closeProductModal = function () {
+    document.getElementById('productModal').classList.remove('open');
+    currentProduct = null;
+  };
+
+  function renderProductImages() {
+    const grid = document.getElementById('imageGrid');
+    const imgs = currentProduct?.images || [];
+    document.getElementById('imageCount').textContent = `${imgs.length} 장`;
+    if (!imgs.length) { grid.innerHTML = '<div class="col-span-full text-center text-xs text-zinc-500 py-4 kr">아직 업로드된 이미지가 없습니다.</div>'; return; }
+    grid.innerHTML = imgs.map(img => `
+      <div class="image-card" data-img-id="${img.id}">
+        <img src="${escapeHtml(img.thumbUrl || img.url)}" alt="" />
+        <div class="overlay">
+          <button class="btn btn-ghost btn-sm" onclick="setImageRole('${img.id}','installation')" title="시공사례로 지정"><iconify-icon icon="solar:camera-bold" width="12"></iconify-icon></button>
+          <button class="btn btn-danger btn-sm" onclick="deleteImage('${img.id}')" title="삭제"><iconify-icon icon="solar:trash-bin-trash-linear" width="12"></iconify-icon></button>
+        </div>
+        ${img.role === 'installation' ? '<span class="badge badge-new absolute top-1 left-1" style="font-size:9px;">시공</span>' : ''}
+      </div>
+    `).join('');
+  }
+
+  window.deleteImage = async function (imgId) {
+    if (!currentProduct || !confirm('이미지를 삭제하시겠습니까?')) return;
+    try {
+      await SH_API.Admin.deleteImage(currentProduct.id, imgId);
+      currentProduct.images = currentProduct.images.filter(i => String(i.id) !== String(imgId));
+      renderProductImages();
+    } catch (e) { alert('삭제 실패: ' + e.message); }
+  };
+
+  window.setImageRole = async function (imgId, role) {
+    if (!currentProduct) return;
+    try {
+      await SH_API.Admin.updateImage(currentProduct.id, imgId, { role });
+      const im = currentProduct.images.find(i => String(i.id) === String(imgId));
+      if (im) im.role = role;
+      renderProductImages();
+    } catch (e) { alert('변경 실패: ' + e.message); }
+  };
+
+  // Upload
+  const dropzone = document.getElementById('dropzone');
+  const fileInput = document.getElementById('fileInput');
+  dropzone.addEventListener('click', () => fileInput.click());
+  dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
+  dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+  dropzone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropzone.classList.remove('dragover');
+    handleFiles(e.dataTransfer.files);
+  });
+  fileInput.addEventListener('change', e => handleFiles(e.target.files));
+
+  async function handleFiles(files) {
+    if (!currentProduct) { alert('제품을 먼저 저장한 후 이미지를 업로드하세요.'); return; }
+    for (const file of Array.from(files)) {
+      if (file.size > 10 * 1024 * 1024) { alert(`${file.name}: 10MB를 초과합니다.`); continue; }
+      try {
+        const up = await SH_API.Admin.getUploadUrl(currentProduct.id, { filename: file.name, contentType: file.type, size: file.size });
+        await fetch(up.uploadUrl, { method: 'PUT', body: file, headers: { 'Content-Type': file.type } });
+        const result = await SH_API.Admin.confirmUpload(currentProduct.id, { uploadId: up.uploadId, role: 'detail' });
+        currentProduct.images = currentProduct.images || [];
+        currentProduct.images.push(result);
+        renderProductImages();
+      } catch (e) { alert(`${file.name} 업로드 실패: ${e.message}`); }
+    }
+  }
+
+  // Product save
+  document.getElementById('productForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const errEl = document.getElementById('productFormError');
+    errEl.classList.add('hidden');
+    const body = {
+      code: document.getElementById('pfCode').value.trim(),
+      name: document.getElementById('pfName').value.trim() || null,
+      type: document.getElementById('pfType').value,
+      categoryId: parseInt(document.getElementById('pfCategory').value, 10),
+      description: document.getElementById('pfDescription').value.trim() || null,
+      specsJson: {
+        width: numOrNull(document.getElementById('pfWidth').value),
+        height: numOrNull(document.getElementById('pfHeight').value),
+        thickness: numOrNull(document.getElementById('pfThickness').value),
+      },
+      isActive: document.getElementById('pfActive').checked,
+      isFeatured: document.getElementById('pfFeatured').checked,
+    };
+    try {
+      if (currentProduct) {
+        await SH_API.Admin.updateProduct(currentProduct.id, body);
+      } else {
+        const created = await SH_API.Admin.createProduct(body);
+        currentProduct = created;
+        document.getElementById('pfId').value = created.id;
+        document.getElementById('productModalTitle').textContent = '제품 수정';
+        document.getElementById('imageSection').style.display = '';
+      }
+      loadProducts();
+      alert('저장되었습니다' + (currentProduct && !currentProduct.images?.length ? '. 이제 이미지를 업로드할 수 있습니다.' : '.'));
+    } catch (err) {
+      errEl.textContent = '저장 실패: ' + err.message;
+      errEl.classList.remove('hidden');
+    }
+  });
+
+  function numOrNull(v) { const n = parseFloat(v); return isFinite(n) ? n : null; }
+
+  // ---------- Categories ----------
+  function renderCategoriesTable() {
+    const tbody = document.getElementById('categoryTable');
+    if (!categoriesCache.length) {
+      tbody.innerHTML = '<tr><td colspan="5" class="text-center text-zinc-500 py-12 kr">카테고리가 없습니다.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = categoriesCache.map(c => `
+      <tr>
+        <td class="text-xs text-zinc-400">${c.type === 'forged' ? '단조' : '알루미늄'}</td>
+        <td class="font-medium text-zinc-100 kr">${escapeHtml(c.name)}</td>
+        <td class="text-xs text-zinc-500 font-mono">${escapeHtml(c.slug)}</td>
+        <td class="text-sm text-zinc-300">${c.count ?? '—'}</td>
+        <td>${c.isActive === false ? '<span class="badge badge-rejected">비활성</span>' : '<span class="badge badge-completed">활성</span>'}</td>
+      </tr>
+    `).join('');
+  }
+
+  function escapeHtml(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]); }
+
+  // ---------- Init ----------
+  if (SH_API.Admin.isLoggedIn()) {
+    showDashboard();
+  } else {
+    showLogin();
+  }
+})();
+</script>
+</body>
+</html>

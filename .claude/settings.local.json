@@ -1,0 +1,9 @@
+{
+  "model": "opusplan",
+  "language": "Korean",
+  "permissions": {
+    "allow": [
+      "Bash(aws s3 *)"
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "shinhan-housing-api",
+  "version": "1.0.0",
+  "description": "신한하우징 제품·문의 백엔드 API (Express + Prisma + MariaDB)",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "prisma:migrate:deploy": "prisma migrate deploy",
+    "prisma:studio": "prisma studio",
+    "seed:categories": "node scripts/seed-categories.js",
+    "seed:products": "node scripts/seed-products.js",
+    "admin:create": "node scripts/create-admin.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.620.0",
+    "@aws-sdk/client-sesv2": "^3.620.0",
+    "@aws-sdk/s3-request-presigner": "^3.620.0",
+    "@prisma/client": "^5.18.0",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "pino": "^9.3.2",
+    "pino-http": "^10.2.0",
+    "sharp": "^0.33.5",
+    "uuid": "^10.0.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "prisma": "^5.18.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

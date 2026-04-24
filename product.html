@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>제품 상세 — 신한하우징</title>
+<meta name="description" content="신한하우징 제품 상세 정보. 이미지 슬라이드와 시공 사례, 문의하기." />
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      fontFamily: {
+        sans: ['"Pretendard Variable"', 'Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        display: ['"Cabinet Grotesk"', '"Pretendard Variable"', 'sans-serif'],
+        serif: ['"Noto Serif KR"', 'ui-serif', 'Georgia', 'serif'],
+      },
+      colors: {
+        ink: { 950: '#0a0a0a', 900: '#111111', 800: '#1a1a1a', 700: '#242424' },
+        bronze: { 400: '#D4A056', 450: '#C8913D', 500: '#B17A2A', 600: '#8E611F' },
+      },
+      transitionTimingFunction: { spring: 'cubic-bezier(0.16, 1, 0.3, 1)' },
+    } },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: #0a0a0a; color: #e4e4e7; word-break: keep-all; -webkit-font-smoothing: antialiased;
+  }
+  .kr { word-break: keep-all; }
+  .grain::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 60; opacity: .035;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .bezel { background: rgba(255,255,255,0.03); box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 1px 0 rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); padding: 6px; border-radius: 22px; }
+  .bezel > .bezel-core { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; }
+  .btn-primary { position: relative; overflow: hidden; transition: transform 500ms cubic-bezier(0.16,1,0.3,1), box-shadow 500ms cubic-bezier(0.16,1,0.3,1); box-shadow: 0 0 0 1px rgba(212,160,86,0.45), 0 10px 30px -10px rgba(212,160,86,0.5), inset 0 1px 0 rgba(255,255,255,0.3); }
+  .btn-primary:hover { transform: scale(1.02); box-shadow: 0 0 0 1px rgba(212,160,86,0.65), 0 18px 40px -10px rgba(212,160,86,0.7), inset 0 1px 0 rgba(255,255,255,0.4); }
+  .btn-ghost { transition: border-color 400ms cubic-bezier(0.16,1,0.3,1), background 400ms cubic-bezier(0.16,1,0.3,1); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.25); }
+  .glass-nav { background: rgba(10,10,10,0.55); backdrop-filter: saturate(150%) blur(14px); -webkit-backdrop-filter: saturate(150%) blur(14px); border: 1px solid rgba(255,255,255,0.08); box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 20px 50px -20px rgba(0,0,0,0.7); }
+  .nav-link { position: relative; }
+  .nav-link::after { content: ""; position: absolute; left: 50%; bottom: -6px; width: 0; height: 1px; background: #D4A056; transform: translateX(-50%); transition: width 350ms cubic-bezier(0.16,1,0.3,1); }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+  iconify-icon { display: inline-block; vertical-align: -0.125em; }
+  a, button { -webkit-tap-highlight-color: transparent; }
+  ::selection { background: #D4A056; color: #0a0a0a; }
+
+  /* Slider */
+  .slide-track { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .slide-track::-webkit-scrollbar { display: none; }
+  .slide-item { scroll-snap-align: center; flex: 0 0 100%; }
+
+  .slide-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 4; display: inline-flex; align-items: center; justify-content: center; height: 46px; width: 46px; border-radius: 999px; background: rgba(10,10,10,0.6); border: 1px solid rgba(255,255,255,0.1); color: #F5D38A; backdrop-filter: blur(8px); transition: all 300ms cubic-bezier(0.16,1,0.3,1); }
+  .slide-nav-btn:hover { background: rgba(212,160,86,0.2); border-color: rgba(212,160,86,0.4); }
+  .slide-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .thumb-btn { flex: 0 0 auto; width: 72px; height: 72px; border-radius: 12px; overflow: hidden; border: 2px solid transparent; opacity: 0.55; transition: all 300ms cubic-bezier(0.16,1,0.3,1); cursor: pointer; }
+  .thumb-btn:hover { opacity: 0.85; }
+  .thumb-btn.active { opacity: 1; border-color: #D4A056; box-shadow: 0 0 0 4px rgba(212,160,86,0.15); }
+  .thumb-btn img { width: 100%; height: 100%; object-fit: cover; }
+
+  .thumb-strip { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.1) transparent; }
+  .thumb-strip::-webkit-scrollbar { height: 4px; }
+  .thumb-strip::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+  /* Lightbox */
+  .lightbox { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; padding: 20px; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 95vh; object-fit: contain; border-radius: 8px; }
+  .lightbox .close-btn { position: absolute; top: 20px; right: 20px; height: 44px; width: 44px; border-radius: 999px; background: rgba(255,255,255,0.1); color: #fff; display: inline-flex; align-items: center; justify-content: center; transition: background 300ms; }
+  .lightbox .close-btn:hover { background: rgba(255,255,255,0.2); }
+  .lightbox .counter { position: absolute; top: 24px; left: 24px; font-size: 12px; letter-spacing: 0.2em; color: rgba(255,255,255,0.7); text-transform: uppercase; }
+
+  .prod-img { filter: grayscale(0.12) contrast(1.03) brightness(0.95); transition: filter 400ms; }
+  .prod-img:hover { filter: grayscale(0) contrast(1.08) brightness(1); }
+
+  .skeleton { background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 100%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 700ms cubic-bezier(0.16,1,0.3,1), transform 700ms cubic-bezier(0.16,1,0.3,1); }
+  .reveal.on { opacity: 1; transform: translateY(0); }
+
+  .tag-mini { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px; background: rgba(212,160,86,0.1); border: 1px solid rgba(212,160,86,0.25); color: #F5D38A; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; }
+
+  .related-card img { transition: transform 600ms cubic-bezier(0.16,1,0.3,1); }
+  .related-card:hover img { transform: scale(1.05); }
+
+  .dash-line { background-image: linear-gradient(to right, rgba(212,160,86,0.6) 50%, transparent 0); background-size: 12px 1px; background-repeat: repeat-x; background-position: center; height: 1px; }
+</style>
+</head>
+<body class="grain antialiased">
+
+<!-- ================= NAV ================= -->
+<header class="fixed top-4 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-1.5rem)] max-w-6xl">
+  <nav class="glass-nav rounded-2xl px-4 sm:px-5 py-3 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5 group">
+      <span class="relative inline-flex h-8 w-8 items-center justify-center rounded-lg bg-bronze-400/15 ring-1 ring-bronze-400/30">
+        <iconify-icon icon="solar:home-angle-2-bold" width="18" class="text-bronze-400"></iconify-icon>
+      </span>
+      <span class="flex items-baseline gap-1.5">
+        <span class="text-[15px] font-semibold tracking-tight text-zinc-50">신한하우징</span>
+        <span class="hidden sm:inline text-[11px] tracking-wider text-zinc-500">SHINHAN HOUSING</span>
+      </span>
+    </a>
+    <ul class="hidden md:flex items-center gap-7 text-sm text-zinc-300">
+      <li><a class="nav-link" href="index.html#about">회사소개</a></li>
+      <li><a class="nav-link active" href="products.html">제품소개</a></li>
+      <li><a class="nav-link" href="index.html#gallery">갤러리</a></li>
+      <li><a class="nav-link" href="index.html#process">시공안내</a></li>
+      <li><a class="nav-link" href="index.html#visit">찾아오시는 길</a></li>
+    </ul>
+    <a href="index.html#contact" class="btn-primary inline-flex items-center gap-2 rounded-full bg-bronze-400 text-ink-950 px-4 py-2 text-sm font-semibold">
+      견적 문의
+      <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-ink-950/15">
+        <iconify-icon icon="solar:arrow-right-linear" width="12"></iconify-icon>
+      </span>
+    </a>
+  </nav>
+</header>
+
+<main class="relative pt-28 sm:pt-32 pb-32">
+
+  <!-- Breadcrumb -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+    <nav id="breadcrumb" class="text-xs tracking-widest text-zinc-500 uppercase flex items-center gap-2 flex-wrap kr">
+      <a href="index.html" class="hover:text-bronze-400 transition">홈</a>
+      <iconify-icon icon="solar:alt-arrow-right-linear" width="10"></iconify-icon>
+      <a href="products.html" class="hover:text-bronze-400 transition">제품</a>
+      <iconify-icon icon="solar:alt-arrow-right-linear" width="10"></iconify-icon>
+      <span id="breadcrumbCategory" class="text-zinc-400">—</span>
+      <iconify-icon icon="solar:alt-arrow-right-linear" width="10"></iconify-icon>
+      <span id="breadcrumbCode" class="text-zinc-300">—</span>
+    </nav>
+  </div>
+
+  <div id="loadingState" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-8 aspect-[4/3] rounded-3xl skeleton"></div>
+      <div class="lg:col-span-4 space-y-4">
+        <div class="h-6 rounded skeleton w-24"></div>
+        <div class="h-12 rounded skeleton"></div>
+        <div class="h-24 rounded skeleton"></div>
+        <div class="h-14 rounded skeleton"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="notFoundState" class="hidden max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+    <iconify-icon icon="solar:box-minimalistic-bold" width="64" class="text-zinc-700"></iconify-icon>
+    <h2 class="mt-6 font-display text-3xl font-semibold text-zinc-100 kr">제품을 찾을 수 없습니다</h2>
+    <p class="mt-3 text-sm text-zinc-500 kr">요청하신 제품 코드가 올바르지 않거나 삭제되었을 수 있습니다.</p>
+    <a href="products.html" class="mt-8 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-6 py-3 text-sm text-zinc-200 hover:border-bronze-400/50 hover:text-bronze-400 transition">
+      <iconify-icon icon="solar:arrow-left-linear" width="14"></iconify-icon>
+      제품 목록으로 돌아가기
+    </a>
+  </div>
+
+  <!-- ================= Main content ================= -->
+  <div id="productContent" class="hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+
+      <!-- Left: slider -->
+      <div class="lg:col-span-8 reveal">
+        <div class="bezel">
+          <div class="bezel-core relative overflow-hidden aspect-[4/3] sm:aspect-[16/10]">
+            <div id="slideTrack" class="slide-track flex w-full h-full overflow-x-auto">
+              <!-- slides injected -->
+            </div>
+            <button id="prevBtn" class="slide-nav-btn left-4" aria-label="이전">
+              <iconify-icon icon="solar:alt-arrow-left-linear" width="22"></iconify-icon>
+            </button>
+            <button id="nextBtn" class="slide-nav-btn right-4" aria-label="다음">
+              <iconify-icon icon="solar:alt-arrow-right-linear" width="22"></iconify-icon>
+            </button>
+            <div class="absolute top-4 left-4 z-[3]">
+              <span id="slideCounter" class="inline-flex items-center gap-2 rounded-full bg-ink-950/70 border border-white/10 px-3 py-1.5 text-[11px] text-zinc-200 tracking-widest">
+                01 / 01
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Thumbnails -->
+        <div id="thumbStrip" class="thumb-strip mt-4 flex gap-2 overflow-x-auto pb-2"></div>
+      </div>
+
+      <!-- Right: info panel -->
+      <aside class="lg:col-span-4 reveal">
+        <div class="bezel sticky top-28">
+          <div class="bezel-core p-6 sm:p-8">
+            <div class="flex items-center gap-2 text-[10px] tracking-widest text-bronze-400 uppercase">
+              <span id="infoType" class="tag-mini">FORGED</span>
+              <span id="infoCategory">—</span>
+            </div>
+            <h1 id="infoCode" class="mt-4 font-display text-3xl sm:text-4xl font-semibold tracking-tight text-zinc-50">—</h1>
+            <div id="infoName" class="mt-1 text-base text-zinc-400 kr"></div>
+
+            <div class="mt-6 dash-line"></div>
+
+            <dl id="infoSpecs" class="mt-6 space-y-3 text-sm"></dl>
+
+            <div id="infoDescription" class="mt-6 text-sm text-zinc-400 leading-relaxed kr hidden"></div>
+
+            <div class="mt-8 flex flex-col gap-3">
+              <a id="inquireBtn" href="index.html#contact" class="btn-primary inline-flex items-center justify-center gap-2.5 rounded-full bg-bronze-400 text-ink-950 px-6 py-3.5 text-[15px] font-semibold">
+                이 제품 문의하기
+                <iconify-icon icon="solar:paper-plane-bold" width="15"></iconify-icon>
+              </a>
+              <a href="tel:031-000-0000" class="btn-ghost inline-flex items-center justify-center gap-2.5 rounded-full border border-white/25 bg-ink-950/30 text-zinc-100 px-6 py-3.5 text-[15px] font-medium">
+                <iconify-icon icon="solar:phone-calling-bold" width="16" class="text-bronze-400"></iconify-icon>
+                전화 문의 · 031-000-0000
+              </a>
+            </div>
+
+            <p class="mt-5 text-[11px] text-zinc-500 text-center kr">
+              제품 코드가 문의 내용에 자동으로 첨부됩니다
+            </p>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- ================= Installation cases ================= -->
+    <section id="installationSection" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+      <div class="flex items-center gap-4 text-xs tracking-widest text-zinc-500 uppercase mb-8">
+        <span class="text-bronze-400">시공 사례</span>
+        <span class="dash-line flex-1 max-w-xs"></span>
+        <span>Installation Cases</span>
+      </div>
+      <div id="installationGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- ================= Related products ================= -->
+    <section id="relatedSection" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
+      <div class="flex items-center gap-4 text-xs tracking-widest text-zinc-500 uppercase mb-8">
+        <span class="text-bronze-400">같은 카테고리</span>
+        <span class="dash-line flex-1 max-w-xs"></span>
+        <span>Related Products</span>
+      </div>
+      <div id="relatedGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+    </section>
+  </div>
+</main>
+
+
+<!-- ================= Lightbox ================= -->
+<div id="lightbox" class="lightbox">
+  <button class="close-btn" aria-label="닫기" onclick="closeLightbox()">
+    <iconify-icon icon="solar:close-circle-linear" width="22"></iconify-icon>
+  </button>
+  <span id="lightboxCounter" class="counter">01 / 01</span>
+  <button class="slide-nav-btn left-4 sm:left-10" onclick="lightboxPrev()" aria-label="이전">
+    <iconify-icon icon="solar:alt-arrow-left-linear" width="22"></iconify-icon>
+  </button>
+  <img id="lightboxImg" src="" alt="" />
+  <button class="slide-nav-btn right-4 sm:right-10" onclick="lightboxNext()" aria-label="다음">
+    <iconify-icon icon="solar:alt-arrow-right-linear" width="22"></iconify-icon>
+  </button>
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="relative border-t border-white/5 bg-ink-900/40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2.5">
+        <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-bronze-400/15 ring-1 ring-bronze-400/30">
+          <iconify-icon icon="solar:home-angle-2-bold" width="18" class="text-bronze-400"></iconify-icon>
+        </span>
+        <span class="text-[14px] font-semibold tracking-tight text-zinc-50">신한하우징</span>
+        <span class="text-[11px] tracking-wider text-zinc-500 ml-2">© 2026</span>
+      </div>
+      <div class="flex items-center gap-5 text-[13px] text-zinc-400">
+        <a href="index.html" class="hover:text-bronze-400 transition">홈</a>
+        <a href="products.html" class="hover:text-bronze-400 transition">제품</a>
+        <a href="index.html#contact" class="hover:text-bronze-400 transition">문의</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ================= Scripts ================= -->
+<script>
+  window.SH_API_MOCK__ = true;
+</script>
+<script src="assets/js/api.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  const productCode = new URLSearchParams(location.search).get('id');
+  if (!productCode) { location.href = 'products.html'; return; }
+
+  const el = {
+    loading: document.getElementById('loadingState'),
+    notFound: document.getElementById('notFoundState'),
+    content: document.getElementById('productContent'),
+    breadcrumbCat: document.getElementById('breadcrumbCategory'),
+    breadcrumbCode: document.getElementById('breadcrumbCode'),
+    infoType: document.getElementById('infoType'),
+    infoCategory: document.getElementById('infoCategory'),
+    infoCode: document.getElementById('infoCode'),
+    infoName: document.getElementById('infoName'),
+    infoSpecs: document.getElementById('infoSpecs'),
+    infoDesc: document.getElementById('infoDescription'),
+    inquireBtn: document.getElementById('inquireBtn'),
+    slideTrack: document.getElementById('slideTrack'),
+    thumbStrip: document.getElementById('thumbStrip'),
+    slideCounter: document.getElementById('slideCounter'),
+    prevBtn: document.getElementById('prevBtn'),
+    nextBtn: document.getElementById('nextBtn'),
+    instSection: document.getElementById('installationSection'),
+    instGrid: document.getElementById('installationGrid'),
+    relatedSection: document.getElementById('relatedSection'),
+    relatedGrid: document.getElementById('relatedGrid'),
+  };
+
+  let product = null;
+  let gallery = [];
+  let currentSlide = 0;
+
+  function escapeHtml(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]); }
+
+  async function load() {
+    try {
+      product = await SH_API.Public.getProduct(productCode);
+    } catch (e) {
+      console.error(e);
+      el.loading.classList.add('hidden');
+      el.notFound.classList.remove('hidden');
+      document.title = '제품을 찾을 수 없습니다 — 신한하우징';
+      return;
+    }
+
+    const images = (product.images || []).slice().sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
+    gallery = images.filter(i => i.role !== 'installation');
+    const installation = images.filter(i => i.role === 'installation');
+
+    // Fallback: 메인 이미지를 첫 번째 슬라이드로
+    if (!gallery.length && product.mainImage) {
+      gallery = [{ url: product.mainImage, thumbUrl: product.thumbUrl || product.mainImage, caption: product.code }];
+    }
+    if (!gallery.length) {
+      gallery = [{ url: '', thumbUrl: '', caption: '이미지 없음' }];
+    }
+
+    renderInfo();
+    renderSlides();
+    renderThumbs();
+    renderInstallation(installation);
+    loadRelated();
+
+    document.title = `${product.code} — ${product.category || ''} · 신한하우징`;
+    el.loading.classList.add('hidden');
+    el.content.classList.remove('hidden');
+    setTimeout(() => document.querySelectorAll('.reveal').forEach(e => e.classList.add('on')), 50);
+  }
+
+  function renderInfo() {
+    el.breadcrumbCat.textContent = product.category || '—';
+    el.breadcrumbCode.textContent = product.code;
+
+    el.infoType.textContent = product.type === 'forged' ? 'FORGED' : 'ALUMINUM';
+    el.infoCategory.textContent = product.category || '';
+    el.infoCode.textContent = product.code;
+    el.infoName.textContent = product.name && product.name !== product.code ? product.name : '';
+
+    const specs = product.specs || product.specsJson || {};
+    const rows = [];
+    rows.push(['제품 코드', product.code]);
+    rows.push(['재질', product.type === 'forged' ? '단조' : '알루미늄 주물']);
+    rows.push(['카테고리', product.category || '—']);
+    if (specs.height) rows.push(['높이', `${specs.height}mm`]);
+    if (specs.width) rows.push(['너비', `${specs.width}mm`]);
+    if (specs.thickness) rows.push(['두께', `${specs.thickness}mm`]);
+    if (specs.variant) rows.push(['형식', specs.variant]);
+
+    el.infoSpecs.innerHTML = rows.map(([k, v]) => `
+      <div class="flex items-baseline justify-between gap-4 pb-3 border-b border-white/5">
+        <dt class="text-[11px] tracking-widest text-zinc-500 uppercase shrink-0">${escapeHtml(k)}</dt>
+        <dd class="text-sm text-zinc-200 text-right kr">${escapeHtml(v)}</dd>
+      </div>
+    `).join('');
+
+    if (product.description) {
+      el.infoDesc.textContent = product.description;
+      el.infoDesc.classList.remove('hidden');
+    }
+
+    el.inquireBtn.href = `index.html?product=${encodeURIComponent(product.code)}#contact`;
+  }
+
+  function renderSlides() {
+    el.slideTrack.innerHTML = gallery.map((img, i) => `
+      <div class="slide-item relative h-full flex items-center justify-center" data-idx="${i}">
+        ${img.url
+          ? `<img src="${escapeHtml(img.url)}" alt="${escapeHtml(img.caption || product.code)}" class="prod-img absolute inset-0 h-full w-full object-cover cursor-zoom-in" loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async" onclick="openLightbox(${i})" onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\\'absolute inset-0 flex items-center justify-center text-zinc-700\\'><iconify-icon icon=\\'solar:box-minimalistic-bold\\' width=\\'48\\'></iconify-icon></div>'" />`
+          : `<div class="absolute inset-0 flex items-center justify-center text-zinc-700"><iconify-icon icon="solar:box-minimalistic-bold" width="48"></iconify-icon></div>`}
+        ${img.caption ? `<div class="absolute bottom-4 left-5 right-5 text-xs text-zinc-300 z-[2] bg-ink-950/50 backdrop-blur-sm rounded px-3 py-1.5 w-fit mx-auto">${escapeHtml(img.caption)}</div>` : ''}
+      </div>
+    `).join('');
+    updateCounter();
+    updateNavButtons();
+    el.slideTrack.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  function renderThumbs() {
+    if (gallery.length <= 1) { el.thumbStrip.classList.add('hidden'); return; }
+    el.thumbStrip.innerHTML = gallery.map((img, i) => `
+      <button class="thumb-btn ${i === 0 ? 'active' : ''}" data-idx="${i}" aria-label="이미지 ${i + 1}">
+        ${img.thumbUrl || img.url
+          ? `<img src="${escapeHtml(img.thumbUrl || img.url)}" alt="thumb ${i + 1}" loading="lazy" />`
+          : `<div class="w-full h-full flex items-center justify-center bg-ink-800 text-zinc-700"><iconify-icon icon="solar:box-minimalistic-bold" width="20"></iconify-icon></div>`}
+      </button>
+    `).join('');
+    el.thumbStrip.querySelectorAll('.thumb-btn').forEach(btn => {
+      btn.addEventListener('click', () => goSlide(parseInt(btn.dataset.idx, 10)));
+    });
+  }
+
+  function renderInstallation(imgs) {
+    if (!imgs.length) return;
+    el.instGrid.innerHTML = imgs.map((img, i) => `
+      <figure class="bezel related-card cursor-zoom-in" onclick="openInstallation(${i})">
+        <div class="bezel-core relative overflow-hidden aspect-[4/3]">
+          <img src="${escapeHtml(img.url)}" alt="${escapeHtml(img.caption || '시공 사례')}" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          ${img.caption ? `<figcaption class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink-950 to-transparent p-4 text-xs text-zinc-200 kr">${escapeHtml(img.caption)}</figcaption>` : ''}
+        </div>
+      </figure>
+    `).join('');
+    el.instSection.classList.remove('hidden');
+    window._installationImages = imgs;
+  }
+
+  window.openInstallation = function(i) {
+    const imgs = window._installationImages || [];
+    if (!imgs[i]) return;
+    window._lightboxContext = imgs.map(x => ({ url: x.url, caption: x.caption }));
+    window._lightboxIndex = i;
+    renderLightbox();
+    document.getElementById('lightbox').classList.add('open');
+  };
+
+  async function loadRelated() {
+    if (!product.categorySlug) return;
+    try {
+      const res = await SH_API.Public.getProducts({
+        category: product.categorySlug, limit: 12, page: 1,
+      });
+      const others = (res.items || []).filter(p => p.code !== product.code).slice(0, 4);
+      if (!others.length) return;
+      el.relatedGrid.innerHTML = others.map(p => `
+        <a href="product.html?id=${encodeURIComponent(p.code)}" class="bezel related-card block">
+          <div class="bezel-core relative overflow-hidden aspect-[3/4]">
+            ${p.thumbUrl || p.thumb
+              ? `<img src="${escapeHtml(p.thumbUrl || p.thumb)}" alt="${escapeHtml(p.code)}" class="absolute inset-0 h-full w-full object-cover" loading="lazy" />`
+              : `<div class="absolute inset-0 flex items-center justify-center text-zinc-700"><iconify-icon icon="solar:box-minimalistic-bold" width="32"></iconify-icon></div>`}
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-transparent to-transparent"></div>
+            <div class="absolute bottom-3 left-3 right-3">
+              <div class="text-[10px] tracking-widest text-bronze-400 uppercase truncate">${escapeHtml(p.category || '')}</div>
+              <div class="mt-0.5 text-sm font-semibold text-zinc-50 truncate">${escapeHtml(p.code)}</div>
+            </div>
+          </div>
+        </a>
+      `).join('');
+      el.relatedSection.classList.remove('hidden');
+    } catch (e) { console.warn(e); }
+  }
+
+  // ---------- Slider logic ----------
+  function goSlide(i) {
+    currentSlide = Math.max(0, Math.min(gallery.length - 1, i));
+    const slides = el.slideTrack.querySelectorAll('.slide-item');
+    if (slides[currentSlide]) {
+      el.slideTrack.scrollTo({ left: slides[currentSlide].offsetLeft, behavior: 'smooth' });
+    }
+    updateCounter();
+    updateNavButtons();
+    updateActiveThumb();
+  }
+
+  function onScroll() {
+    const width = el.slideTrack.clientWidth || 1;
+    const idx = Math.round(el.slideTrack.scrollLeft / width);
+    if (idx !== currentSlide) {
+      currentSlide = idx;
+      updateCounter();
+      updateNavButtons();
+      updateActiveThumb();
+    }
+  }
+
+  function updateCounter() {
+    const total = String(gallery.length).padStart(2, '0');
+    const current = String(currentSlide + 1).padStart(2, '0');
+    el.slideCounter.textContent = `${current} / ${total}`;
+  }
+  function updateNavButtons() {
+    el.prevBtn.disabled = currentSlide === 0;
+    el.nextBtn.disabled = currentSlide >= gallery.length - 1;
+    el.prevBtn.style.display = gallery.length > 1 ? '' : 'none';
+    el.nextBtn.style.display = gallery.length > 1 ? '' : 'none';
+  }
+  function updateActiveThumb() {
+    el.thumbStrip.querySelectorAll('.thumb-btn').forEach((b, i) => {
+      b.classList.toggle('active', i === currentSlide);
+    });
+  }
+
+  el.prevBtn.addEventListener('click', () => goSlide(currentSlide - 1));
+  el.nextBtn.addEventListener('click', () => goSlide(currentSlide + 1));
+  document.addEventListener('keydown', e => {
+    if (document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'ArrowLeft') goSlide(currentSlide - 1);
+    else if (e.key === 'ArrowRight') goSlide(currentSlide + 1);
+  });
+
+  // ---------- Lightbox ----------
+  window.openLightbox = function (idx) {
+    window._lightboxContext = gallery.map(x => ({ url: x.url, caption: x.caption }));
+    window._lightboxIndex = idx;
+    renderLightbox();
+    document.getElementById('lightbox').classList.add('open');
+  };
+  window.closeLightbox = function () { document.getElementById('lightbox').classList.remove('open'); };
+  window.lightboxPrev = function () { window._lightboxIndex = Math.max(0, window._lightboxIndex - 1); renderLightbox(); };
+  window.lightboxNext = function () { const ctx = window._lightboxContext || []; window._lightboxIndex = Math.min(ctx.length - 1, window._lightboxIndex + 1); renderLightbox(); };
+  function renderLightbox() {
+    const ctx = window._lightboxContext || [];
+    const idx = window._lightboxIndex || 0;
+    const img = ctx[idx]; if (!img) return;
+    document.getElementById('lightboxImg').src = img.url;
+    document.getElementById('lightboxImg').alt = img.caption || '';
+    document.getElementById('lightboxCounter').textContent = `${String(idx + 1).padStart(2, '0')} / ${String(ctx.length).padStart(2, '0')}`;
+  }
+  document.getElementById('lightbox').addEventListener('click', e => {
+    if (e.target.id === 'lightbox') closeLightbox();
+  });
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowLeft') lightboxPrev();
+    else if (e.key === 'ArrowRight') lightboxNext();
+  });
+
+  load();
+})();
+</script>
+</body>
+</html>

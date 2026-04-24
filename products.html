@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>제품 카탈로그 — 신한하우징</title>
+<meta name="description" content="신한하우징 단조·알루미늄 주물 제품 카탈로그. 대문, 휀스, 자동문, 계단난간, 우체통, 벤치 등 21개 카테고리의 공장 직영 제품을 확인하세요." />
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      fontFamily: {
+        sans: ['"Pretendard Variable"', 'Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        display: ['"Cabinet Grotesk"', '"Pretendard Variable"', 'sans-serif'],
+        serif: ['"Noto Serif KR"', 'ui-serif', 'Georgia', 'serif'],
+      },
+      colors: {
+        ink: { 950: '#0a0a0a', 900: '#111111', 800: '#1a1a1a', 700: '#242424' },
+        bronze: { 400: '#D4A056', 450: '#C8913D', 500: '#B17A2A', 600: '#8E611F' },
+      },
+      transitionTimingFunction: { spring: 'cubic-bezier(0.16, 1, 0.3, 1)' },
+    } },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: #0a0a0a; color: #e4e4e7; word-break: keep-all; -webkit-font-smoothing: antialiased;
+  }
+  .kr { word-break: keep-all; }
+
+  .grain::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 60; opacity: .035;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  .bezel { background: rgba(255,255,255,0.03); box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 1px 0 rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); padding: 6px; border-radius: 22px; }
+  .bezel > .bezel-core { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; }
+
+  .btn-primary { position: relative; overflow: hidden; transition: transform 500ms cubic-bezier(0.16,1,0.3,1), box-shadow 500ms cubic-bezier(0.16,1,0.3,1); box-shadow: 0 0 0 1px rgba(212,160,86,0.45), 0 10px 30px -10px rgba(212,160,86,0.5), inset 0 1px 0 rgba(255,255,255,0.3); }
+  .btn-primary:hover { transform: scale(1.02); box-shadow: 0 0 0 1px rgba(212,160,86,0.65), 0 18px 40px -10px rgba(212,160,86,0.7), inset 0 1px 0 rgba(255,255,255,0.4); }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-ghost { transition: border-color 400ms cubic-bezier(0.16,1,0.3,1), background 400ms cubic-bezier(0.16,1,0.3,1); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.25); }
+
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 700ms cubic-bezier(0.16,1,0.3,1), transform 700ms cubic-bezier(0.16,1,0.3,1); }
+  .reveal.on { opacity: 1; transform: translateY(0); }
+
+  .glass-nav { background: rgba(10,10,10,0.55); backdrop-filter: saturate(150%) blur(14px); -webkit-backdrop-filter: saturate(150%) blur(14px); border: 1px solid rgba(255,255,255,0.08); box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 20px 50px -20px rgba(0,0,0,0.7); }
+
+  .prod-img { filter: grayscale(0.18) contrast(1.05) brightness(0.92); transition: transform 800ms cubic-bezier(0.16,1,0.3,1), filter 500ms cubic-bezier(0.16,1,0.3,1); }
+  .prod-card:hover .prod-img { transform: scale(1.05); filter: grayscale(0) contrast(1.1) brightness(1); }
+
+  .nav-link { position: relative; }
+  .nav-link::after { content: ""; position: absolute; left: 50%; bottom: -6px; width: 0; height: 1px; background: #D4A056; transform: translateX(-50%); transition: width 350ms cubic-bezier(0.16,1,0.3,1); }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+  .chip-filter { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #d4d4d8; font-size: 13px; transition: all 300ms cubic-bezier(0.16,1,0.3,1); cursor: pointer; white-space: nowrap; }
+  .chip-filter:hover { border-color: rgba(212,160,86,0.45); color: #D4A056; background: rgba(212,160,86,0.07); }
+  .chip-filter.active { background: rgba(212,160,86,0.15); border-color: rgba(212,160,86,0.6); color: #F5D38A; }
+  .chip-filter .dot { width: 6px; height: 6px; border-radius: 999px; background: #C8913D; }
+
+  .search-input { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); transition: all 300ms cubic-bezier(0.16,1,0.3,1); }
+  .search-input:focus { border-color: rgba(212,160,86,0.6); background: rgba(255,255,255,0.05); outline: none; box-shadow: 0 0 0 3px rgba(212,160,86,0.15); }
+
+  .product-grid-card { opacity: 0; transform: translateY(18px); animation: cardIn 600ms cubic-bezier(0.16,1,0.3,1) forwards; }
+  @keyframes cardIn { to { opacity: 1; transform: translateY(0); } }
+
+  .skeleton { background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 100%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  iconify-icon { display: inline-block; vertical-align: -0.125em; }
+  a, button { -webkit-tap-highlight-color: transparent; }
+  ::selection { background: #D4A056; color: #0a0a0a; }
+
+  .aurora-small {
+    position: absolute; inset: -10%; z-index: -1;
+    background:
+      radial-gradient(35% 30% at 18% 28%, rgba(212,160,86,0.14), transparent 60%),
+      radial-gradient(30% 25% at 82% 18%, rgba(212,160,86,0.08), transparent 60%);
+    filter: blur(14px);
+  }
+
+  .dash-line { background-image: linear-gradient(to right, rgba(212,160,86,0.6) 50%, transparent 0); background-size: 12px 1px; background-repeat: repeat-x; background-position: center; height: 1px; }
+
+  .empty-state { border: 1px dashed rgba(255,255,255,0.1); border-radius: 18px; }
+
+  .tag-mini { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 999px; background: rgba(212,160,86,0.1); border: 1px solid rgba(212,160,86,0.25); color: #F5D38A; font-size: 10px; letter-spacing: 0.1em; }
+</style>
+</head>
+<body class="grain antialiased">
+
+<!-- ================= NAV ================= -->
+<header class="fixed top-4 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-1.5rem)] max-w-6xl">
+  <nav class="glass-nav rounded-2xl px-4 sm:px-5 py-3 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5 group">
+      <span class="relative inline-flex h-8 w-8 items-center justify-center rounded-lg bg-bronze-400/15 ring-1 ring-bronze-400/30">
+        <iconify-icon icon="solar:home-angle-2-bold" width="18" class="text-bronze-400"></iconify-icon>
+      </span>
+      <span class="flex items-baseline gap-1.5">
+        <span class="text-[15px] font-semibold tracking-tight text-zinc-50">신한하우징</span>
+        <span class="hidden sm:inline text-[11px] tracking-wider text-zinc-500">SHINHAN HOUSING</span>
+      </span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-7 text-sm text-zinc-300">
+      <li><a class="nav-link" href="index.html#about">회사소개</a></li>
+      <li><a class="nav-link active" href="products.html">제품소개</a></li>
+      <li><a class="nav-link" href="index.html#gallery">갤러리</a></li>
+      <li><a class="nav-link" href="index.html#process">시공안내</a></li>
+      <li><a class="nav-link" href="index.html#visit">찾아오시는 길</a></li>
+    </ul>
+
+    <a href="index.html#contact" class="btn-primary inline-flex items-center gap-2 rounded-full bg-bronze-400 text-ink-950 px-4 py-2 text-sm font-semibold">
+      견적 문의
+      <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-ink-950/15">
+        <iconify-icon icon="solar:arrow-right-linear" width="12"></iconify-icon>
+      </span>
+    </a>
+  </nav>
+</header>
+
+<main class="relative pt-28 sm:pt-32">
+
+<!-- ================= HERO ================= -->
+<section class="relative py-14 sm:py-20 overflow-hidden">
+  <div class="aurora-small"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col gap-6 reveal">
+      <div class="flex items-center gap-4 text-xs tracking-widest text-zinc-500 uppercase">
+        <span class="text-bronze-400">02 — Products</span>
+        <span class="dash-line flex-1 max-w-xs"></span>
+        <span class="hidden sm:inline">Shinhan Housing Catalog</span>
+      </div>
+      <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-semibold leading-[1.05] tracking-tight text-zinc-50 kr">
+        전체 제품<br />
+        <span class="text-zinc-400">카탈로그.</span>
+      </h1>
+      <p class="text-[15px] sm:text-base text-zinc-400 leading-relaxed max-w-2xl kr">
+        단조와 알루미늄 주물 제품을 한눈에 탐색하세요.
+        제품 코드·카테고리·이름으로 검색할 수 있으며, 상세 페이지에서 여러 각도의 이미지와 시공 사례를 확인하실 수 있습니다.
+      </p>
+    </div>
+
+    <!-- Search + Type toggle -->
+    <div class="mt-12 flex flex-col gap-5">
+      <!-- Search -->
+      <div class="relative">
+        <iconify-icon icon="solar:magnifer-linear" width="18" class="absolute left-5 top-1/2 -translate-y-1/2 text-zinc-500"></iconify-icon>
+        <input id="searchInput" type="text" placeholder="제품 코드나 이름으로 검색 (예: GA-1501, 대문, 휀스)"
+          class="search-input w-full rounded-full pl-12 pr-12 py-4 text-sm text-zinc-100 placeholder:text-zinc-600" />
+        <button id="clearSearchBtn" class="hidden absolute right-5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-bronze-400 transition">
+          <iconify-icon icon="solar:close-circle-bold" width="18"></iconify-icon>
+        </button>
+      </div>
+
+      <!-- Type toggle -->
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-[11px] tracking-widest text-zinc-500 uppercase mr-2">재질</span>
+        <button data-type="" class="type-btn chip-filter active">전체</button>
+        <button data-type="forged" class="type-btn chip-filter">단조</button>
+        <button data-type="aluminum" class="type-btn chip-filter">알루미늄 주물</button>
+      </div>
+
+      <!-- Category chips -->
+      <div class="flex items-start gap-2 sm:gap-3">
+        <span class="text-[11px] tracking-widest text-zinc-500 uppercase mt-2 mr-1 shrink-0">카테고리</span>
+        <div id="categoryChips" class="flex flex-wrap gap-2">
+          <div class="chip-filter skeleton" style="width: 80px; height: 30px;"></div>
+          <div class="chip-filter skeleton" style="width: 100px; height: 30px;"></div>
+          <div class="chip-filter skeleton" style="width: 90px; height: 30px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= PRODUCT GRID ================= -->
+<section class="relative pb-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="mb-6 flex items-center justify-between flex-wrap gap-4">
+      <div class="text-sm text-zinc-400">
+        <span id="resultCount" class="text-zinc-100 font-semibold">—</span>
+        <span class="ml-1">개의 제품</span>
+      </div>
+      <div class="text-[11px] tracking-widest text-zinc-500 uppercase hidden sm:block">
+        <span id="activeFilter">전체</span>
+      </div>
+    </div>
+
+    <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+      <!-- skeleton cards -->
+      <div class="aspect-[3/4] rounded-2xl skeleton"></div>
+      <div class="aspect-[3/4] rounded-2xl skeleton"></div>
+      <div class="aspect-[3/4] rounded-2xl skeleton"></div>
+      <div class="aspect-[3/4] rounded-2xl skeleton"></div>
+      <div class="aspect-[3/4] rounded-2xl skeleton"></div>
+      <div class="aspect-[3/4] rounded-2xl skeleton"></div>
+      <div class="aspect-[3/4] rounded-2xl skeleton"></div>
+      <div class="aspect-[3/4] rounded-2xl skeleton"></div>
+    </div>
+
+    <div id="emptyState" class="hidden empty-state mt-8 p-12 text-center">
+      <iconify-icon icon="solar:box-minimalistic-bold" width="48" class="text-zinc-700"></iconify-icon>
+      <h3 class="mt-4 text-xl font-semibold text-zinc-300 kr">검색 결과가 없습니다</h3>
+      <p class="mt-2 text-sm text-zinc-500 kr">다른 검색어를 시도하거나 필터를 초기화해 보세요.</p>
+      <button id="resetBtn" class="mt-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-5 py-2.5 text-sm text-zinc-200 hover:border-bronze-400/50 hover:text-bronze-400 transition">
+        <iconify-icon icon="solar:refresh-linear" width="14"></iconify-icon>
+        필터 초기화
+      </button>
+    </div>
+
+    <!-- Infinite scroll sentinel -->
+    <div id="scrollSentinel" class="h-20 mt-10"></div>
+    <div id="loadingMore" class="hidden text-center text-sm text-zinc-500 py-6">
+      <iconify-icon icon="solar:loading-bold" width="20" class="text-bronze-400 animate-spin"></iconify-icon>
+      <span class="ml-2">더 불러오는 중…</span>
+    </div>
+    <div id="endMessage" class="hidden text-center text-[11px] tracking-widest text-zinc-600 uppercase py-8">
+      — 모든 제품을 확인하셨습니다 —
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="relative border-t border-white/5 bg-ink-900/40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-2.5">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-bronze-400/15 ring-1 ring-bronze-400/30">
+            <iconify-icon icon="solar:home-angle-2-bold" width="18" class="text-bronze-400"></iconify-icon>
+          </span>
+          <span class="text-[15px] font-semibold tracking-tight text-zinc-50">신한하우징</span>
+        </div>
+        <p class="mt-5 text-sm text-zinc-400 leading-relaxed max-w-md kr">
+          단조, 알루미늄주물 등 철제 제품을 공장에서 직접 생산합니다.
+          유럽풍 클래식한 공간은 물론, 자연의 아름다움으로 편안한 공간을 연출해 드립니다.
+        </p>
+      </div>
+      <div class="md:col-span-2">
+        <div class="text-[11px] tracking-widest text-zinc-500 uppercase">SITE</div>
+        <ul class="mt-4 space-y-2.5 text-sm text-zinc-300">
+          <li><a class="hover:text-bronze-400 transition" href="index.html#about">회사소개</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="products.html">제품소개</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="index.html#gallery">갤러리</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="index.html#process">시공안내</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="index.html#visit">찾아오시는 길</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-2">
+        <div class="text-[11px] tracking-widest text-zinc-500 uppercase">PRODUCT</div>
+        <ul id="footerProductLinks" class="mt-4 space-y-2.5 text-sm text-zinc-300">
+          <li><a class="hover:text-bronze-400 transition" href="products.html?type=forged">단조 제품</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="products.html?type=aluminum">알루미늄 주물</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="index.html#contact">견적 문의</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-3">
+        <div class="text-[11px] tracking-widest text-zinc-500 uppercase">CONTACT</div>
+        <ul class="mt-4 space-y-2.5 text-sm text-zinc-300 kr">
+          <li class="flex items-center gap-2">
+            <iconify-icon icon="solar:phone-linear" width="16" class="text-bronze-400 shrink-0"></iconify-icon>
+            031-000-0000
+          </li>
+          <li class="flex items-center gap-2">
+            <iconify-icon icon="solar:letter-linear" width="16" class="text-bronze-400 shrink-0"></iconify-icon>
+            shinhan@shinhanhousing.co.kr
+          </li>
+          <li class="flex items-center gap-2">
+            <iconify-icon icon="solar:clock-circle-linear" width="16" class="text-bronze-400 shrink-0"></iconify-icon>
+            평일 09:00 – 18:00
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 pt-6 border-t border-white/5 text-[12px] text-zinc-500 kr">
+      © 2026 신한하우징 · 단조·알루미늄 주물 공장 직영
+    </div>
+  </div>
+</footer>
+
+<!-- ================= Scripts ================= -->
+<script>
+  // 1단계 mock 모드: 로컬 products.json 사용. 백엔드 연결 후 false로 전환.
+  window.SH_API_MOCK__ = true;
+</script>
+<script src="assets/js/api.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  const state = {
+    type: '',
+    category: '',
+    q: '',
+    page: 1,
+    limit: 24,
+    hasMore: true,
+    loading: false,
+    categories: [],
+  };
+
+  const el = {
+    grid: document.getElementById('productGrid'),
+    empty: document.getElementById('emptyState'),
+    search: document.getElementById('searchInput'),
+    clearBtn: document.getElementById('clearSearchBtn'),
+    resetBtn: document.getElementById('resetBtn'),
+    catChips: document.getElementById('categoryChips'),
+    count: document.getElementById('resultCount'),
+    filter: document.getElementById('activeFilter'),
+    sentinel: document.getElementById('scrollSentinel'),
+    loadingMore: document.getElementById('loadingMore'),
+    endMsg: document.getElementById('endMessage'),
+    typeButtons: document.querySelectorAll('.type-btn'),
+  };
+
+  // ---------- URL 상태 동기화 ----------
+  function readURL() {
+    const p = new URLSearchParams(location.search);
+    state.type = p.get('type') || '';
+    state.category = p.get('category') || '';
+    state.q = p.get('q') || '';
+  }
+  function writeURL() {
+    const p = new URLSearchParams();
+    if (state.type) p.set('type', state.type);
+    if (state.category) p.set('category', state.category);
+    if (state.q) p.set('q', state.q);
+    const qs = p.toString();
+    const url = location.pathname + (qs ? '?' + qs : '');
+    history.replaceState(null, '', url);
+  }
+
+  // ---------- 카테고리 로드 ----------
+  async function loadCategories() {
+    try {
+      const cats = await SH_API.Public.getCategories();
+      state.categories = cats;
+      renderCategoryChips();
+    } catch (e) {
+      console.error(e);
+      el.catChips.innerHTML = '<div class="text-xs text-zinc-500">카테고리를 불러올 수 없습니다.</div>';
+    }
+  }
+
+  function renderCategoryChips() {
+    const filtered = state.categories.filter(c => !state.type || c.type === state.type);
+    const html = [
+      `<button data-cat="" class="cat-chip chip-filter ${!state.category ? 'active' : ''}"><span class="dot"></span>전체</button>`
+    ];
+    for (const c of filtered) {
+      html.push(`<button data-cat="${c.slug}" class="cat-chip chip-filter ${state.category === c.slug ? 'active' : ''}">
+        <span class="dot"></span>${escapeHtml(c.name)}
+        ${c.count != null ? `<span class="text-zinc-500 text-[10px] ml-0.5">${c.count}</span>` : ''}
+      </button>`);
+    }
+    el.catChips.innerHTML = html.join('');
+    el.catChips.querySelectorAll('.cat-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.category = btn.dataset.cat;
+        state.page = 1;
+        writeURL();
+        renderCategoryChips();
+        reloadGrid();
+      });
+    });
+  }
+
+  // ---------- 제품 그리드 로드 ----------
+  async function reloadGrid() {
+    state.page = 1;
+    state.hasMore = true;
+    el.grid.innerHTML = '';
+    el.endMsg.classList.add('hidden');
+    el.empty.classList.add('hidden');
+    // Show skeletons
+    for (let i = 0; i < 8; i++) {
+      const s = document.createElement('div');
+      s.className = 'aspect-[3/4] rounded-2xl skeleton';
+      el.grid.appendChild(s);
+    }
+    await loadMore(true);
+  }
+
+  async function loadMore(isFirst) {
+    if (state.loading || !state.hasMore) return;
+    state.loading = true;
+    if (!isFirst) el.loadingMore.classList.remove('hidden');
+
+    try {
+      const res = await SH_API.Public.getProducts({
+        type: state.type, category: state.category, q: state.q,
+        page: state.page, limit: state.limit,
+      });
+      if (isFirst) {
+        el.grid.innerHTML = '';
+        el.count.textContent = (res.total || 0).toLocaleString();
+        el.filter.textContent = buildFilterLabel();
+      }
+      for (const p of res.items) el.grid.appendChild(renderCard(p));
+      state.hasMore = !!res.hasMore;
+      state.page += 1;
+
+      if (!res.items.length && isFirst) {
+        el.empty.classList.remove('hidden');
+      }
+      if (!state.hasMore && res.total > 0) {
+        el.endMsg.classList.remove('hidden');
+      }
+    } catch (e) {
+      console.error(e);
+      if (isFirst) {
+        el.grid.innerHTML = '<div class="col-span-full text-center text-sm text-zinc-500 py-12">제품 목록을 불러올 수 없습니다.</div>';
+      }
+    } finally {
+      state.loading = false;
+      el.loadingMore.classList.add('hidden');
+    }
+  }
+
+  function buildFilterLabel() {
+    const parts = [];
+    if (state.type === 'forged') parts.push('단조');
+    else if (state.type === 'aluminum') parts.push('알루미늄 주물');
+    else parts.push('전체');
+    if (state.category) {
+      const c = state.categories.find(x => x.slug === state.category);
+      if (c) parts.push(c.name);
+    }
+    if (state.q) parts.push(`"${state.q}"`);
+    return parts.join(' · ');
+  }
+
+  function renderCard(p) {
+    const a = document.createElement('a');
+    a.href = `product.html?id=${encodeURIComponent(p.code)}`;
+    a.className = 'product-grid-card group block';
+    const thumb = p.thumbUrl || p.thumb || (p.mainImage ? p.mainImage : '');
+    a.innerHTML = `
+      <div class="bezel hover:border-bronze-400/40 transition-all duration-500">
+        <div class="bezel-core relative overflow-hidden aspect-[3/4]">
+          ${thumb
+            ? `<img src="${escapeAttr(thumb)}" alt="${escapeAttr(p.name || p.code)}" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" onerror="this.parentElement.innerHTML='<div class=\\'absolute inset-0 flex items-center justify-center text-zinc-700\\'><iconify-icon icon=\\'solar:box-minimalistic-bold\\' width=\\'40\\'></iconify-icon></div>'" />`
+            : `<div class="absolute inset-0 flex items-center justify-center text-zinc-700"><iconify-icon icon="solar:box-minimalistic-bold" width="40"></iconify-icon></div>`
+          }
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-transparent to-transparent"></div>
+          <div class="absolute top-3 left-3">
+            <span class="tag-mini uppercase">${p.type === 'forged' ? 'FORGED' : 'ALUMINUM'}</span>
+          </div>
+          <div class="absolute bottom-3 left-3 right-3">
+            <div class="text-[10px] tracking-widest text-bronze-400 uppercase truncate">${escapeHtml(p.category || '')}</div>
+            <div class="mt-0.5 text-sm font-semibold text-zinc-50 truncate">${escapeHtml(p.code)}</div>
+          </div>
+        </div>
+      </div>
+    `;
+    return a;
+  }
+
+  // ---------- 이벤트 바인딩 ----------
+  el.typeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.type = btn.dataset.type;
+      state.category = '';
+      state.page = 1;
+      el.typeButtons.forEach(b => b.classList.toggle('active', b === btn));
+      writeURL();
+      renderCategoryChips();
+      reloadGrid();
+    });
+  });
+
+  let searchTimer = null;
+  el.search.addEventListener('input', (e) => {
+    el.clearBtn.classList.toggle('hidden', !e.target.value);
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      state.q = e.target.value.trim();
+      writeURL();
+      reloadGrid();
+    }, 250);
+  });
+  el.clearBtn.addEventListener('click', () => {
+    el.search.value = '';
+    state.q = '';
+    el.clearBtn.classList.add('hidden');
+    writeURL();
+    reloadGrid();
+  });
+  el.resetBtn.addEventListener('click', () => {
+    state.type = ''; state.category = ''; state.q = '';
+    el.search.value = '';
+    el.clearBtn.classList.add('hidden');
+    el.typeButtons.forEach(b => b.classList.toggle('active', b.dataset.type === ''));
+    writeURL();
+    renderCategoryChips();
+    reloadGrid();
+  });
+
+  // Infinite scroll
+  const io = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) loadMore(false);
+  }, { rootMargin: '300px' });
+  io.observe(el.sentinel);
+
+  // ---------- init ----------
+  function escapeHtml(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]); }
+  function escapeAttr(s) { return escapeHtml(s); }
+
+  readURL();
+  el.search.value = state.q;
+  if (state.q) el.clearBtn.classList.remove('hidden');
+  el.typeButtons.forEach(b => b.classList.toggle('active', b.dataset.type === state.type));
+
+  loadCategories().then(() => reloadGrid());
+
+  // Reveal animation for hero
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('on'));
+})();
+</script>
+</body>
+</html>

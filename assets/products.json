@@ -1,0 +1,218 @@
+{
+  "_comment": "1단계 mock 데이터. 2단계에서 백엔드 API가 동일 스키마를 반환하고, seed 스크립트가 1,481개 실제 제품으로 채웁니다.",
+  "categories": [
+    { "id": 1,  "type": "forged",   "slug": "gates",            "name": "대문",            "icon": "solar:key-square-2-bold",    "sortOrder": 1,  "isActive": true, "count": 4 },
+    { "id": 2,  "type": "forged",   "slug": "fences",           "name": "휀스·울타리",     "icon": "solar:course-up-bold",       "sortOrder": 2,  "isActive": true, "count": 1 },
+    { "id": 3,  "type": "forged",   "slug": "auto-gates",       "name": "자동문",          "icon": "solar:cycling-bold",         "sortOrder": 3,  "isActive": true, "count": 1 },
+    { "id": 4,  "type": "forged",   "slug": "arches",           "name": "아치",            "icon": "solar:bookmark-circle-bold", "sortOrder": 4,  "isActive": true, "count": 0 },
+    { "id": 5,  "type": "forged",   "slug": "stair-railings",   "name": "계단난간",        "icon": "solar:stairs-bold",          "sortOrder": 5,  "isActive": true, "count": 1 },
+    { "id": 6,  "type": "forged",   "slug": "balcony-windows",  "name": "발코니·방범창",   "icon": "solar:window-frame-bold",    "sortOrder": 6,  "isActive": true, "count": 0 },
+    { "id": 7,  "type": "forged",   "slug": "partitions",       "name": "파티션",          "icon": "solar:widget-2-bold",        "sortOrder": 7,  "isActive": true, "count": 0 },
+    { "id": 8,  "type": "forged",   "slug": "mailboxes",        "name": "우체통",          "icon": "solar:letter-bold",          "sortOrder": 8,  "isActive": true, "count": 0 },
+    { "id": 9,  "type": "forged",   "slug": "accessories",      "name": "소품",            "icon": "solar:flower-bold",          "sortOrder": 9,  "isActive": true, "count": 0 },
+    { "id": 10, "type": "forged",   "slug": "parts",            "name": "부속품",          "icon": "solar:settings-bold",        "sortOrder": 10, "isActive": true, "count": 0 },
+
+    { "id": 11, "type": "aluminum", "slug": "gates",            "name": "대문",            "icon": "solar:key-square-2-bold",    "sortOrder": 11, "isActive": true, "count": 2 },
+    { "id": 12, "type": "aluminum", "slug": "fences",           "name": "휀스",            "icon": "solar:course-up-bold",       "sortOrder": 12, "isActive": true, "count": 1 },
+    { "id": 13, "type": "aluminum", "slug": "guard-fences",     "name": "가드 휀스",       "icon": "solar:shield-bold",          "sortOrder": 13, "isActive": true, "count": 0 },
+    { "id": 14, "type": "aluminum", "slug": "wood-fences",      "name": "목재 휀스",       "icon": "solar:leaf-bold",            "sortOrder": 14, "isActive": true, "count": 0 },
+    { "id": 15, "type": "aluminum", "slug": "system-fences",    "name": "시스템 휀스",     "icon": "solar:widget-bold",          "sortOrder": 15, "isActive": true, "count": 0 },
+    { "id": 16, "type": "aluminum", "slug": "entrance-doors",   "name": "현관문",          "icon": "solar:login-3-bold",         "sortOrder": 16, "isActive": true, "count": 0 },
+    { "id": 17, "type": "aluminum", "slug": "deshi-moladon",    "name": "데스리·모라돈",   "icon": "solar:ruler-angular-bold",   "sortOrder": 17, "isActive": true, "count": 0 },
+    { "id": 18, "type": "aluminum", "slug": "benches",          "name": "벤치",            "icon": "solar:armchair-bold",        "sortOrder": 18, "isActive": true, "count": 1 },
+    { "id": 19, "type": "aluminum", "slug": "lamp-covers",      "name": "가로등 커버",     "icon": "solar:lightbulb-bold",       "sortOrder": 19, "isActive": true, "count": 0 },
+    { "id": 20, "type": "aluminum", "slug": "tree-protectors",  "name": "수목 보호덮개",   "icon": "solar:tree-bold",            "sortOrder": 20, "isActive": true, "count": 0 },
+    { "id": 21, "type": "aluminum", "slug": "bike-racks",       "name": "자전거 보관대",   "icon": "solar:cycling-bold",         "sortOrder": 21, "isActive": true, "count": 0 },
+    { "id": 22, "type": "aluminum", "slug": "public-facilities","name": "공공 시설물",     "icon": "solar:city-bold",            "sortOrder": 22, "isActive": true, "count": 0 },
+    { "id": 23, "type": "aluminum", "slug": "trash-bins",       "name": "휴지통",          "icon": "solar:trash-bin-minimalistic-bold", "sortOrder": 23, "isActive": true, "count": 0 }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "code": "GA-1501",
+      "name": "단조 대문 GA-1501",
+      "type": "forged",
+      "category": "대문",
+      "categorySlug": "gates",
+      "categoryId": 1,
+      "thumbUrl": "images/gate-wrought-iron-luxury-md.webp",
+      "mainImage": "images/gate-wrought-iron-luxury-lg.webp",
+      "description": "단조 프레임에 스크롤 장식 문양을 용접한 전통 방식. 단독 주택·전원 주택의 정면을 품격 있게 완성합니다.",
+      "specs": { "height": "1900", "width": "3600" },
+      "isActive": true,
+      "isFeatured": true,
+      "images": [
+        { "id": "1-1", "url": "images/gate-wrought-iron-luxury-lg.webp", "thumbUrl": "images/gate-wrought-iron-luxury-md.webp", "role": "main",   "caption": "정면 전체", "sortOrder": 0 },
+        { "id": "1-2", "url": "images/forged-detail-classic-lg.webp",   "thumbUrl": "images/forged-detail-classic-md.webp",   "role": "detail", "caption": "스크롤 장식 디테일", "sortOrder": 1 },
+        { "id": "1-3", "url": "images/iron-scroll-detail-lg.webp",      "thumbUrl": "images/iron-scroll-detail-md.webp",      "role": "detail", "caption": "단조 문양 클로즈업", "sortOrder": 2 }
+      ]
+    },
+    {
+      "id": "2",
+      "code": "GA-606",
+      "name": "단조 대문 GA-606",
+      "type": "forged",
+      "category": "대문",
+      "categorySlug": "gates",
+      "categoryId": 1,
+      "thumbUrl": "images/gate-garden-entrance-elegant-md.webp",
+      "mainImage": "images/gate-garden-entrance-elegant-lg.webp",
+      "description": "정원 진입로에 어울리는 우아한 곡선 프레임 대문.",
+      "specs": { "height": "1700" },
+      "isActive": true,
+      "images": [
+        { "id": "2-1", "url": "images/gate-garden-entrance-elegant-lg.webp", "thumbUrl": "images/gate-garden-entrance-elegant-md.webp", "role": "main", "sortOrder": 0 }
+      ]
+    },
+    {
+      "id": "3",
+      "code": "GA-420",
+      "name": "단조 대문 GA-420",
+      "type": "forged",
+      "category": "대문",
+      "categorySlug": "gates",
+      "categoryId": 1,
+      "thumbUrl": "frames/hero/020.webp",
+      "mainImage": "frames/hero/020.webp",
+      "specs": {},
+      "isActive": true,
+      "images": [
+        { "id": "3-1", "url": "frames/hero/020.webp", "thumbUrl": "frames/hero/020.webp", "role": "main", "sortOrder": 0 },
+        { "id": "3-2", "url": "frames/hero/040.webp", "thumbUrl": "frames/hero/040.webp", "role": "detail", "sortOrder": 1 }
+      ]
+    },
+    {
+      "id": "4",
+      "code": "SHG-1501",
+      "name": "단조 대문 SHG-1501",
+      "type": "forged",
+      "category": "대문",
+      "categorySlug": "gates",
+      "categoryId": 1,
+      "thumbUrl": "frames/hero/050.webp",
+      "mainImage": "frames/hero/050.webp",
+      "specs": { "height": "1700", "width": "3000" },
+      "isActive": true,
+      "images": [
+        { "id": "4-1", "url": "frames/hero/050.webp", "thumbUrl": "frames/hero/050.webp", "role": "main", "sortOrder": 0 }
+      ]
+    },
+    {
+      "id": "5",
+      "code": "SHF-101",
+      "name": "단조 휀스 SHF-101",
+      "type": "forged",
+      "category": "휀스·울타리",
+      "categorySlug": "fences",
+      "categoryId": 2,
+      "thumbUrl": "frames/secondary/004.webp",
+      "mainImage": "frames/secondary/004.webp",
+      "description": "묵직한 단조 프레임에 세로 살 배열.",
+      "specs": { "height": "1200" },
+      "isActive": true,
+      "images": [
+        { "id": "5-1", "url": "frames/secondary/004.webp", "thumbUrl": "frames/secondary/004.webp", "role": "main", "sortOrder": 0 }
+      ]
+    },
+    {
+      "id": "6",
+      "code": "SHA-201",
+      "name": "자동문 SHA-201",
+      "type": "forged",
+      "category": "자동문",
+      "categorySlug": "auto-gates",
+      "categoryId": 3,
+      "thumbUrl": "frames/secondary/012.webp",
+      "mainImage": "frames/secondary/012.webp",
+      "description": "매립형 자동 모터 포함. 단조 대문과 조합 가능합니다.",
+      "specs": {},
+      "isActive": true,
+      "images": [
+        { "id": "6-1", "url": "frames/secondary/012.webp", "thumbUrl": "frames/secondary/012.webp", "role": "main", "sortOrder": 0 }
+      ]
+    },
+    {
+      "id": "7",
+      "code": "SHST-001",
+      "name": "계단난간 SHST-001",
+      "type": "forged",
+      "category": "계단난간",
+      "categorySlug": "stair-railings",
+      "categoryId": 5,
+      "thumbUrl": "images/iron-scroll-detail-md.webp",
+      "mainImage": "images/iron-scroll-detail-lg.webp",
+      "specs": {},
+      "isActive": true,
+      "images": [
+        { "id": "7-1", "url": "images/iron-scroll-detail-lg.webp", "thumbUrl": "images/iron-scroll-detail-md.webp", "role": "main", "sortOrder": 0 }
+      ]
+    },
+    {
+      "id": "8",
+      "code": "GA-125",
+      "name": "알루미늄 대문 GA-125",
+      "type": "aluminum",
+      "category": "대문",
+      "categorySlug": "gates",
+      "categoryId": 11,
+      "thumbUrl": "images/gate-garden-entrance-elegant-md.webp",
+      "mainImage": "images/gate-garden-entrance-elegant-lg.webp",
+      "description": "알루미늄 주물 기본형 대문. 가볍고 부식에 강합니다.",
+      "specs": { "width": "1500", "height": "1300" },
+      "isActive": true,
+      "images": [
+        { "id": "8-1", "url": "images/gate-garden-entrance-elegant-lg.webp", "thumbUrl": "images/gate-garden-entrance-elegant-md.webp", "role": "main", "sortOrder": 0 },
+        { "id": "8-2", "url": "frames/hero/060.webp", "thumbUrl": "frames/hero/060.webp", "role": "installation", "caption": "홍천 기무대관사 설치 사례", "sortOrder": 1 }
+      ]
+    },
+    {
+      "id": "9",
+      "code": "GA-209",
+      "name": "알루미늄 대문 GA-209",
+      "type": "aluminum",
+      "category": "대문",
+      "categorySlug": "gates",
+      "categoryId": 11,
+      "thumbUrl": "frames/secondary/018.webp",
+      "mainImage": "frames/secondary/018.webp",
+      "specs": { "width": "1200", "height": "2050" },
+      "isActive": true,
+      "images": [
+        { "id": "9-1", "url": "frames/secondary/018.webp", "thumbUrl": "frames/secondary/018.webp", "role": "main", "sortOrder": 0 }
+      ]
+    },
+    {
+      "id": "10",
+      "code": "SF-5001",
+      "name": "알루미늄 휀스 SF-5001",
+      "type": "aluminum",
+      "category": "휀스",
+      "categorySlug": "fences",
+      "categoryId": 12,
+      "thumbUrl": "images/iron-scroll-detail-md.webp",
+      "mainImage": "images/iron-scroll-detail-lg.webp",
+      "specs": {},
+      "isActive": true,
+      "images": [
+        { "id": "10-1", "url": "images/iron-scroll-detail-lg.webp", "thumbUrl": "images/iron-scroll-detail-md.webp", "role": "main", "sortOrder": 0 }
+      ]
+    },
+    {
+      "id": "11",
+      "code": "SB-001",
+      "name": "알루미늄 벤치 SB-001",
+      "type": "aluminum",
+      "category": "벤치",
+      "categorySlug": "benches",
+      "categoryId": 18,
+      "thumbUrl": "frames/secondary/022.webp",
+      "mainImage": "frames/secondary/022.webp",
+      "description": "공원·정원용 알루미늄 주물 벤치.",
+      "specs": { "width": "1800" },
+      "isActive": true,
+      "images": [
+        { "id": "11-1", "url": "frames/secondary/022.webp", "thumbUrl": "frames/secondary/022.webp", "role": "main", "sortOrder": 0 }
+      ]
+    }
+  ]
+}

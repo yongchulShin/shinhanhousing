@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>신한하우징 — 단조·알루미늄 주물 공장 직영</title>
+<meta name="description" content="단조 제작, 알루미늄 주물, 펜스, 우체통, 계단, 대문 시공 안내. 유럽풍 클래식한 공간과 자연의 아름다움을 담은 하우징 공예품을 공장에서 직접 생산·공급합니다." />
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+
+<!-- Preload first few hero frames so the canvas paints instantly -->
+<link rel="preload" as="image" href="frames/hero/000.webp" fetchpriority="high" />
+<link rel="preload" as="image" href="frames/hero/001.webp" />
+<link rel="preload" as="image" href="frames/hero/003.webp" />
+<link rel="preload" as="image" href="frames/hero/005.webp" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['"Pretendard Variable"', 'Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+          display: ['"Cabinet Grotesk"', '"Pretendard Variable"', 'sans-serif'],
+          serif: ['"Noto Serif KR"', 'ui-serif', 'Georgia', 'serif'],
+        },
+        colors: {
+          ink: {
+            950: '#0a0a0a',
+            900: '#111111',
+            800: '#1a1a1a',
+            700: '#242424',
+          },
+          bronze: {
+            400: '#D4A056',
+            450: '#C8913D',
+            500: '#B17A2A',
+            600: '#8E611F',
+          },
+        },
+        transitionTimingFunction: {
+          spring: 'cubic-bezier(0.16, 1, 0.3, 1)',
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: #0a0a0a;
+    color: #e4e4e7;
+    word-break: keep-all;
+    -webkit-font-smoothing: antialiased;
+  }
+  .kr { word-break: keep-all; }
+
+  /* Grain texture overlay */
+  .grain::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 60;
+    opacity: .035;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* Double-bezel card */
+  .bezel {
+    background: rgba(255,255,255,0.03);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 1px 0 rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 6px;
+    border-radius: 22px;
+  }
+  .bezel > .bezel-core {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+  }
+
+  /* Magnetic CTA */
+  .btn-primary {
+    position: relative;
+    overflow: hidden;
+    transition: transform 500ms cubic-bezier(0.16,1,0.3,1), box-shadow 500ms cubic-bezier(0.16,1,0.3,1);
+    box-shadow: 0 0 0 1px rgba(212,160,86,0.45), 0 10px 30px -10px rgba(212,160,86,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+  .btn-primary:hover { transform: scale(1.02); box-shadow: 0 0 0 1px rgba(212,160,86,0.65), 0 18px 40px -10px rgba(212,160,86,0.7), inset 0 1px 0 rgba(255,255,255,0.4); }
+  .btn-primary:active { transform: scale(0.98); }
+
+  .btn-ghost { transition: border-color 400ms cubic-bezier(0.16,1,0.3,1), background 400ms cubic-bezier(0.16,1,0.3,1); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.25); }
+
+  /* Reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 900ms cubic-bezier(0.16,1,0.3,1), transform 900ms cubic-bezier(0.16,1,0.3,1); }
+  .reveal.on { opacity: 1; transform: translateY(0); }
+
+  /* Marquee */
+  @keyframes marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-track { animation: marq 46s linear infinite; }
+
+  /* Float */
+  @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .floaty { animation: floaty 6s ease-in-out infinite; }
+
+  .grad-text {
+    background: linear-gradient(90deg, #D4A056 0%, #F5D38A 50%, #D4A056 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+
+  /* Hero aurora — warm bronze */
+  .aurora {
+    position: absolute; inset: -10%;
+    background:
+      radial-gradient(40% 35% at 18% 28%, rgba(212,160,86,0.16), transparent 60%),
+      radial-gradient(35% 30% at 82% 18%, rgba(212,160,86,0.10), transparent 60%),
+      radial-gradient(50% 40% at 60% 82%, rgba(100,70,30,0.22), transparent 60%);
+    filter: blur(10px); z-index: 0;
+  }
+
+  .stat-num { font-variant-numeric: tabular-nums; letter-spacing: -0.04em; }
+
+  .dash-line {
+    background-image: linear-gradient(to right, rgba(212,160,86,0.6) 50%, transparent 0);
+    background-size: 12px 1px; background-repeat: repeat-x; background-position: center; height: 1px;
+  }
+
+  .glass-nav {
+    background: rgba(10,10,10,0.55);
+    backdrop-filter: saturate(150%) blur(14px);
+    -webkit-backdrop-filter: saturate(150%) blur(14px);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 20px 50px -20px rgba(0,0,0,0.7);
+  }
+
+  .prod-img {
+    filter: grayscale(0.18) contrast(1.05) brightness(0.92);
+    transition: transform 900ms cubic-bezier(0.16,1,0.3,1), filter 600ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .prod-card:hover .prod-img { transform: scale(1.06); filter: grayscale(0) contrast(1.1) brightness(1); }
+
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: ""; position: absolute; left: 50%; bottom: -6px; width: 0; height: 1px;
+    background: #D4A056; transform: translateX(-50%);
+    transition: width 350ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  iconify-icon { display: inline-block; vertical-align: -0.125em; }
+  a, button { -webkit-tap-highlight-color: transparent; }
+  ::selection { background: #D4A056; color: #0a0a0a; }
+
+  /* ===== Scroll-driven hero ===== */
+  .hero-scroll { position: relative; height: 220vh; }
+  .hero-sticky {
+    position: sticky; top: 0;
+    height: 100vh; width: 100%;
+    overflow: hidden;
+  }
+  .hero-canvas {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    display: block;
+    background: #0a0a0a;
+    z-index: 0;
+  }
+  /* Dark cinematic vignette for legibility */
+  .hero-veil {
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.15) 30%, rgba(10,10,10,0.15) 55%, rgba(10,10,10,0.85) 100%),
+      linear-gradient(90deg, rgba(10,10,10,0.75) 0%, rgba(10,10,10,0.25) 40%, rgba(10,10,10,0) 70%),
+      radial-gradient(120% 80% at 50% 50%, transparent 35%, rgba(10,10,10,0.55) 100%);
+    pointer-events: none;
+  }
+  @media (max-width: 768px) {
+    .hero-veil {
+      background:
+        linear-gradient(180deg, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.05) 22%, rgba(10,10,10,0.4) 70%, rgba(10,10,10,0.92) 100%),
+        radial-gradient(120% 90% at 50% 50%, transparent 50%, rgba(10,10,10,0.5) 100%);
+    }
+  }
+  /* Frame-preload progress ring */
+  .hero-loading {
+    position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+    z-index: 4;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; color: rgba(228,228,231,0.7); letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: opacity 500ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .hero-loading.done { opacity: 0; pointer-events: none; }
+  .hero-loading .bar { width: 120px; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+  .hero-loading .bar-fill { height: 100%; background: linear-gradient(90deg, #D4A056, #F5D38A); width: 0%; transition: width 180ms ease-out; }
+
+  /* Fade-in content on load */
+  .hero-content { opacity: 0; transform: translateY(12px); transition: opacity 900ms cubic-bezier(0.16,1,0.3,1) 200ms, transform 900ms cubic-bezier(0.16,1,0.3,1) 200ms; }
+  .hero-content.on { opacity: 1; transform: translateY(0); }
+
+  /* Chip */
+  .chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 12px; border-radius: 999px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #d4d4d8; font-size: 12px;
+    transition: all 300ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .chip:hover { border-color: rgba(212,160,86,0.45); color: #D4A056; background: rgba(212,160,86,0.07); }
+
+  /* Ornate divider — evokes iron scroll */
+  .ornate {
+    position: relative; text-align: center;
+    color: rgba(212,160,86,0.5);
+    font-family: 'Noto Serif KR', serif;
+  }
+  .ornate::before, .ornate::after {
+    content: ""; display: inline-block; width: 64px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,160,86,0.4), transparent);
+    vertical-align: middle; margin: 0 16px;
+  }
+
+  /* Category pill */
+  .cat-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 999px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+    color: #e4e4e7; font-weight: 500; font-size: 14px;
+    transition: all 300ms cubic-bezier(0.16,1,0.3,1);
+  }
+  .cat-pill:hover {
+    background: rgba(212,160,86,0.1); border-color: rgba(212,160,86,0.4); color: #D4A056;
+    transform: translateY(-1px);
+  }
+  .cat-pill .dot { width: 6px; height: 6px; border-radius: 999px; background: #C8913D; }
+
+</style>
+</head>
+<body class="grain antialiased">
+
+<!-- ================= FLOATING NAV ================= -->
+<header class="fixed top-4 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-1.5rem)] max-w-6xl">
+  <nav class="glass-nav rounded-2xl px-4 sm:px-5 py-3 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2.5 group">
+      <span class="relative inline-flex h-8 w-8 items-center justify-center rounded-lg bg-bronze-400/15 ring-1 ring-bronze-400/30">
+        <iconify-icon icon="solar:home-angle-2-bold" width="18" class="text-bronze-400"></iconify-icon>
+      </span>
+      <span class="flex items-baseline gap-1.5">
+        <span class="text-[15px] font-semibold tracking-tight text-zinc-50">신한하우징</span>
+        <span class="hidden sm:inline text-[11px] tracking-wider text-zinc-500">SHINHAN HOUSING</span>
+      </span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-7 text-sm text-zinc-300">
+      <li><a class="nav-link" href="#about">회사소개</a></li>
+      <li><a class="nav-link" href="products.html">제품소개</a></li>
+      <li><a class="nav-link" href="#gallery">갤러리</a></li>
+      <li><a class="nav-link" href="#process">시공안내</a></li>
+      <li><a class="nav-link" href="#visit">찾아오시는 길</a></li>
+    </ul>
+
+    <a href="#contact"
+       class="btn-primary inline-flex items-center gap-2 rounded-full bg-bronze-400 text-ink-950 px-4 py-2 text-sm font-semibold">
+      견적 문의
+      <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-ink-950/15">
+        <iconify-icon icon="solar:arrow-right-linear" width="12"></iconify-icon>
+      </span>
+    </a>
+  </nav>
+</header>
+
+<main id="top" class="relative">
+
+<!-- ================= HERO — SCROLL-DRIVEN CANVAS ================= -->
+<section id="hero" class="hero-scroll">
+  <div class="hero-sticky">
+    <!-- Canvas frame sequence -->
+    <canvas id="heroCanvas" class="hero-canvas" aria-label="신한하우징 단조 대문 스크롤 애니메이션"></canvas>
+
+    <!-- Cinematic veil -->
+    <div class="hero-veil"></div>
+
+    <!-- Loading indicator -->
+    <div id="heroLoading" class="hero-loading">
+      <span id="heroLoadingText">LOADING</span>
+      <span class="bar"><span id="heroLoadingBar" class="bar-fill"></span></span>
+    </div>
+
+    <!-- Overlay content -->
+    <div class="absolute inset-0 z-[2] flex flex-col pt-24 sm:pt-28 pb-10 sm:pb-16 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl w-full mx-auto flex-1 flex flex-col justify-center min-h-0">
+        <div class="hero-content max-w-3xl" id="heroContent">
+          <div class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-ink-950/50 backdrop-blur-md px-3 py-1.5 text-xs text-zinc-200">
+            <iconify-icon icon="solar:medal-ribbon-bold" width="14" class="text-bronze-400"></iconify-icon>
+            단조 · 알루미늄 주물 · 공장 직영 생산
+          </div>
+
+          <h1 class="mt-5 sm:mt-6 font-display font-bold leading-[1.05] tracking-tight text-zinc-50 kr"
+              style="text-shadow: 0 2px 24px rgba(0,0,0,0.5); font-size: clamp(34px, 5.2vw, 60px);">
+            유럽풍 클래식과 자연의 아름다움,<br />
+            <span class="grad-text">집의 첫 얼굴</span>을 신한하우징이 짓습니다.
+          </h1>
+
+          <p class="mt-5 sm:mt-6 text-[15px] sm:text-base lg:text-lg text-zinc-200 leading-relaxed max-w-[60ch] kr"
+             style="text-shadow: 0 1px 12px rgba(0,0,0,0.6);">
+            대문 · 휀스 · 자동문 · 계단 난간 · 우체통까지.<br />
+            단조의 묵직함과 주물의 섬세함을 공장에서 직접 만듭니다.
+          </p>
+
+          <div class="mt-6 sm:mt-8 flex flex-wrap items-center gap-3">
+            <a href="products.html" class="btn-primary inline-flex items-center gap-2.5 rounded-full bg-bronze-400 text-ink-950 px-6 py-3.5 text-[15px] sm:text-base font-semibold">
+              제품 카탈로그 보기
+              <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-ink-950/15">
+                <iconify-icon icon="solar:arrow-right-up-linear" width="14"></iconify-icon>
+              </span>
+            </a>
+            <a href="#gallery" class="btn-ghost inline-flex items-center gap-2.5 rounded-full border border-white/25 bg-ink-950/30 backdrop-blur-sm text-zinc-100 px-6 py-3.5 text-[15px] sm:text-base font-medium">
+              <iconify-icon icon="solar:gallery-wide-linear" width="18" class="text-bronze-400"></iconify-icon>
+              시공 갤러리
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom chips -->
+      <div class="hero-content max-w-7xl w-full mx-auto" id="heroChips">
+        <div class="flex flex-wrap gap-2">
+          <span class="chip"><span class="w-1.5 h-1.5 rounded-full bg-bronze-400"></span>대문</span>
+          <span class="chip"><span class="w-1.5 h-1.5 rounded-full bg-bronze-400"></span>휀스·울타리</span>
+          <span class="chip"><span class="w-1.5 h-1.5 rounded-full bg-bronze-400"></span>자동문</span>
+          <span class="chip"><span class="w-1.5 h-1.5 rounded-full bg-bronze-400"></span>계단난간</span>
+          <span class="chip hidden sm:inline-flex"><span class="w-1.5 h-1.5 rounded-full bg-bronze-400"></span>발코니·방범창</span>
+          <span class="chip hidden sm:inline-flex"><span class="w-1.5 h-1.5 rounded-full bg-bronze-400"></span>우체통</span>
+          <span class="chip hidden md:inline-flex"><span class="w-1.5 h-1.5 rounded-full bg-bronze-400"></span>아치·파티션</span>
+          <span class="chip hidden md:inline-flex"><span class="w-1.5 h-1.5 rounded-full bg-bronze-400"></span>벤치·가로등 커버</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll hint bottom right -->
+    <div class="absolute bottom-6 right-6 z-[3] text-[11px] tracking-[0.3em] text-zinc-300 uppercase hidden sm:flex items-center gap-2">
+      <span>Scroll to reveal</span>
+      <iconify-icon icon="solar:arrow-down-linear" width="12" class="text-bronze-400"></iconify-icon>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= KEYWORD MARQUEE ================= -->
+<section class="relative border-y border-white/5 bg-ink-900/40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="flex items-center gap-4 text-xs tracking-widest text-zinc-500 uppercase">
+      <span>취급 품목</span>
+      <span class="dash-line flex-1"></span>
+      <span>PRODUCT RANGE</span>
+    </div>
+  </div>
+  <div class="relative overflow-hidden">
+    <div class="marquee-track flex gap-12 whitespace-nowrap pb-10 will-change-transform">
+      <div class="flex gap-12 items-center text-zinc-500">
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">대문</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">휀스</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">자동문</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">아치</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">계단난간</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">발코니·방범창</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">파티션</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">우체통</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">현관문</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">데스리</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">벤치</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">가로등 커버</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">수목 보호덮개</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">자전거 보관대</span>
+        <span class="text-bronze-400">✦</span>
+      </div>
+      <div class="flex gap-12 items-center text-zinc-500" aria-hidden="true">
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">대문</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">휀스</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">자동문</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">아치</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">계단난간</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">발코니·방범창</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">파티션</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">우체통</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">현관문</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">데스리</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">벤치</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">가로등 커버</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">수목 보호덮개</span>
+        <span class="text-bronze-400">✦</span>
+        <span class="font-serif text-xl sm:text-3xl tracking-tight">자전거 보관대</span>
+        <span class="text-bronze-400">✦</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= ABOUT — EDITORIAL ================= -->
+<section id="about" class="relative py-24 sm:py-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+    <aside class="lg:col-span-3 reveal">
+      <div class="sticky top-28">
+        <div class="text-[11px] tracking-[0.35em] text-bronze-400 uppercase">01 — About</div>
+        <div class="mt-4 text-sm text-zinc-400 kr leading-relaxed">
+          신한하우징 홈페이지를<br />
+          방문해 주셔서 감사합니다.
+        </div>
+        <div class="ornate mt-6 text-2xl">✦</div>
+      </div>
+    </aside>
+
+    <div class="lg:col-span-9 reveal">
+      <h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-semibold leading-[1.1] tracking-tight text-zinc-50 kr">
+        단조, 알루미늄 주물 등<br />
+        <span class="text-zinc-400">철제 제품을 공장에서 직접.</span>
+      </h2>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 text-[15px] leading-relaxed text-zinc-400 kr">
+        <p>
+          저희 신한하우징은 단조와 알루미늄 주물 등 철제 제품을 공장에서 직접 생산하며,
+          고품격의 저렴하고 우수한 하우징에 관한 모든 제품을 공급하고 있습니다.
+          유통 단계를 거치지 않기 때문에 같은 품질이라도 더 합리적인 가격에 제안 드릴 수 있습니다.
+        </p>
+        <p>
+          유럽풍의 클래식한 공간은 물론, 자연의 아름다움으로 편안한 공간을 연출하여
+          고객님의 욕구를 만족 시켜드릴 수 있는 다양한 제품들을 최고의 품질과 서비스로
+          고객님이 최대의 만족을 느낄 수 있도록 최선을 다하는 신한하우징이 되겠습니다.
+        </p>
+      </div>
+
+      <!-- 3 pillars -->
+      <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bezel">
+          <div class="bezel-core p-6">
+            <div class="flex items-center justify-between">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-bronze-400/10 ring-1 ring-bronze-400/30">
+                <iconify-icon icon="solar:factory-bold" width="20" class="text-bronze-400"></iconify-icon>
+              </span>
+              <span class="text-[11px] tracking-widest text-zinc-500">01</span>
+            </div>
+            <h3 class="mt-5 text-lg font-semibold text-zinc-50 kr">공장 직영 생산</h3>
+            <p class="mt-2 text-sm text-zinc-400 leading-relaxed kr">
+              유통 마진이 없습니다. 설계·단조·주물·도장까지 한 공장에서 마무리하기에 가격이 투명합니다.
+            </p>
+          </div>
+        </div>
+        <div class="bezel">
+          <div class="bezel-core p-6">
+            <div class="flex items-center justify-between">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-bronze-400/10 ring-1 ring-bronze-400/30">
+                <iconify-icon icon="solar:crown-star-bold" width="20" class="text-bronze-400"></iconify-icon>
+              </span>
+              <span class="text-[11px] tracking-widest text-zinc-500">02</span>
+            </div>
+            <h3 class="mt-5 text-lg font-semibold text-zinc-50 kr">유럽풍 클래식 디자인</h3>
+            <p class="mt-2 text-sm text-zinc-400 leading-relaxed kr">
+              스크롤·아칸서스 등 유럽식 장식 문양을 현장에서 단조로 두드려 만듭니다. 동일 제품이 없는 공예입니다.
+            </p>
+          </div>
+        </div>
+        <div class="bezel">
+          <div class="bezel-core p-6">
+            <div class="flex items-center justify-between">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-bronze-400/10 ring-1 ring-bronze-400/30">
+                <iconify-icon icon="solar:leaf-bold" width="20" class="text-bronze-400"></iconify-icon>
+              </span>
+              <span class="text-[11px] tracking-widest text-zinc-500">03</span>
+            </div>
+            <h3 class="mt-5 text-lg font-semibold text-zinc-50 kr">자연스러운 공간 연출</h3>
+            <p class="mt-2 text-sm text-zinc-400 leading-relaxed kr">
+              전원주택·정원·카페 등 주변 풍경에 녹아드는 곡선과 마감으로 편안한 공간을 만듭니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= PRODUCTS — 2 CATEGORIES ================= -->
+<section id="products" class="relative py-24 sm:py-32 bg-gradient-to-b from-transparent via-ink-900/30 to-transparent">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- header -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end reveal">
+      <div class="lg:col-span-8">
+        <div class="text-[11px] tracking-[0.35em] text-bronze-400 uppercase">02 — Products</div>
+        <h2 class="mt-4 font-display text-3xl sm:text-5xl lg:text-6xl font-semibold leading-[1.08] tracking-tight text-zinc-50 kr">
+          단조와 주물,<br />
+          두 가지 철의 언어.
+        </h2>
+      </div>
+      <div class="lg:col-span-4">
+        <p class="text-[15px] text-zinc-400 leading-relaxed kr">
+          묵직한 단조 제품과 섬세한 알루미늄 주물 제품 —
+          공간의 용도와 분위기에 맞춰 가장 적절한 재료를 제안드립니다.
+        </p>
+      </div>
+    </div>
+
+    <!-- ========== 단조 제품 ========== -->
+    <div class="mt-16 reveal">
+      <div class="flex items-end justify-between flex-wrap gap-4">
+        <div>
+          <div class="flex items-center gap-3">
+            <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-bronze-400/10 ring-1 ring-bronze-400/30">
+              <iconify-icon icon="solar:hammer-bold" width="22" class="text-bronze-400"></iconify-icon>
+            </span>
+            <div>
+              <div class="text-[11px] tracking-[0.3em] text-bronze-400 uppercase">Forged Iron</div>
+              <h3 class="font-display text-2xl sm:text-3xl font-semibold text-zinc-50 kr">단조 제품</h3>
+            </div>
+          </div>
+          <p class="mt-3 text-sm text-zinc-400 leading-relaxed max-w-2xl kr">
+            달궈진 쇠를 망치로 두드려 성형합니다. 표면의 결이 살아 있어 묵직하고, 세월이 지날수록 깊어지는 질감이 특징입니다.
+          </p>
+        </div>
+        <span class="text-[11px] text-zinc-600">10 CATEGORIES</span>
+      </div>
+
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-6 gap-4">
+        <!-- flagship -->
+        <a href="products.html?type=forged&category=gates" class="prod-card bezel md:col-span-3 md:row-span-2 group block">
+          <div class="bezel-core relative overflow-hidden h-full min-h-[360px]">
+            <img src="images/gate-wrought-iron-luxury-lg.webp" alt="유럽풍 단조 대문 — 정교한 스크롤 장식의 클래식 디자인" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/40 to-transparent"></div>
+            <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-ink-950/70 border border-white/10 px-3 py-1.5 text-[11px] text-zinc-200">
+              <iconify-icon icon="solar:star-bold" width="12" class="text-bronze-400"></iconify-icon> BEST SELLER
+            </div>
+            <div class="absolute bottom-5 left-5 right-5">
+              <div class="text-[11px] tracking-widest text-bronze-400 uppercase">Category 01</div>
+              <h4 class="mt-1 text-2xl sm:text-3xl font-semibold text-zinc-50 kr">대문</h4>
+              <p class="mt-2 text-sm text-zinc-300 leading-relaxed max-w-md kr">
+                단조 프레임에 장식 문양을 용접한 전통 방식. 단독 주택·전원 주택의 정면을 품격 있게 완성합니다.
+              </p>
+              <div class="mt-3 flex flex-wrap gap-1.5 text-[10px]">
+                <span class="rounded-full border border-white/15 bg-white/5 px-2 py-0.5 text-zinc-300">GA-1501</span>
+                <span class="rounded-full border border-white/15 bg-white/5 px-2 py-0.5 text-zinc-300">GA-606</span>
+                <span class="rounded-full border border-white/15 bg-white/5 px-2 py-0.5 text-zinc-300">GA-420</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- small cards -->
+        <a href="products.html?type=forged&category=fences" class="prod-card bezel md:col-span-3 group block">
+          <div class="bezel-core relative overflow-hidden h-full min-h-[170px]">
+            <img src="frames/secondary/004.webp" alt="단조 휀스" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/50 to-transparent"></div>
+            <div class="absolute bottom-4 left-5 right-5 flex items-center justify-between">
+              <div>
+                <div class="text-[10px] tracking-widest text-bronze-400 uppercase">Category 02</div>
+                <h4 class="text-xl font-semibold text-zinc-50 kr">휀스·울타리</h4>
+              </div>
+              <iconify-icon icon="solar:arrow-right-up-linear" width="18" class="text-zinc-300"></iconify-icon>
+            </div>
+          </div>
+        </a>
+
+        <a href="products.html?type=forged&category=auto-gates" class="prod-card bezel md:col-span-3 group block">
+          <div class="bezel-core relative overflow-hidden h-full min-h-[170px]">
+            <img src="frames/secondary/012.webp" alt="자동문 모터" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/50 to-transparent"></div>
+            <div class="absolute top-3 right-4">
+              <span class="inline-flex items-center gap-1 rounded-full bg-bronze-400/95 text-ink-950 px-2 py-0.5 text-[10px] font-semibold">AUTO</span>
+            </div>
+            <div class="absolute bottom-4 left-5 right-5 flex items-center justify-between">
+              <div>
+                <div class="text-[10px] tracking-widest text-bronze-400 uppercase">Category 03</div>
+                <h4 class="text-xl font-semibold text-zinc-50 kr">자동문 · 자동모터</h4>
+              </div>
+              <iconify-icon icon="solar:arrow-right-up-linear" width="18" class="text-zinc-300"></iconify-icon>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- subcategory pills -->
+      <div class="mt-5 flex flex-wrap gap-2.5">
+        <a href="products.html?type=forged&category=arches" class="cat-pill"><span class="dot"></span>아치</a>
+        <a href="products.html?type=forged&category=stair-railings" class="cat-pill"><span class="dot"></span>계단난간</a>
+        <a href="products.html?type=forged&category=balcony-windows" class="cat-pill"><span class="dot"></span>발코니 · 방범창</a>
+        <a href="products.html?type=forged&category=partitions" class="cat-pill"><span class="dot"></span>파티션</a>
+        <a href="products.html?type=forged&category=mailboxes" class="cat-pill"><span class="dot"></span>우체통</a>
+        <a href="products.html?type=forged&category=accessories" class="cat-pill"><span class="dot"></span>소품</a>
+        <a href="products.html?type=forged&category=parts" class="cat-pill"><span class="dot"></span>부속품</a>
+      </div>
+    </div>
+
+    <!-- ========== 알루미늄 주물 제품 ========== -->
+    <div class="mt-24 reveal">
+      <div class="flex items-end justify-between flex-wrap gap-4">
+        <div>
+          <div class="flex items-center gap-3">
+            <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-bronze-400/10 ring-1 ring-bronze-400/30">
+              <iconify-icon icon="solar:snowflake-bold" width="22" class="text-bronze-400"></iconify-icon>
+            </span>
+            <div>
+              <div class="text-[11px] tracking-[0.3em] text-bronze-400 uppercase">Aluminum Casting</div>
+              <h3 class="font-display text-2xl sm:text-3xl font-semibold text-zinc-50 kr">알루미늄 주물 제품</h3>
+            </div>
+          </div>
+          <p class="mt-3 text-sm text-zinc-400 leading-relaxed max-w-2xl kr">
+            녹인 알루미늄을 주형에 부어 성형합니다. 가볍고 부식에 강해 정원·공원·공공 시설물에 적합합니다.
+          </p>
+        </div>
+        <span class="text-[11px] text-zinc-600">13 CATEGORIES</span>
+      </div>
+
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-6 gap-4">
+        <a href="products.html?type=aluminum&category=gates" class="prod-card bezel md:col-span-2 group block">
+          <div class="bezel-core relative overflow-hidden h-full min-h-[220px]">
+            <img src="images/gate-garden-entrance-elegant-md.webp" alt="알루미늄 주물 대문 — 우아한 곡선" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/40 to-transparent"></div>
+            <div class="absolute bottom-4 left-5 right-5">
+              <div class="text-[10px] tracking-widest text-bronze-400 uppercase">A-01</div>
+              <h4 class="text-lg font-semibold text-zinc-50 kr">대문</h4>
+            </div>
+          </div>
+        </a>
+
+        <a href="products.html?type=aluminum&category=fences" class="prod-card bezel md:col-span-2 group block">
+          <div class="bezel-core relative overflow-hidden h-full min-h-[220px]">
+            <img src="images/iron-scroll-detail-md.webp" alt="알루미늄 주물 휀스 — 일반·가드·목재·시스템 형태" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/40 to-transparent"></div>
+            <div class="absolute bottom-4 left-5 right-5">
+              <div class="text-[10px] tracking-widest text-bronze-400 uppercase">A-02 / 03 / 04 / 05</div>
+              <h4 class="text-lg font-semibold text-zinc-50 kr">휀스 (일반·가드·목재·시스템)</h4>
+            </div>
+          </div>
+        </a>
+
+        <a href="products.html?type=aluminum&category=entrance-doors" class="prod-card bezel md:col-span-2 group block">
+          <div class="bezel-core relative overflow-hidden h-full min-h-[220px]">
+            <img src="frames/secondary/018.webp" alt="알루미늄 주물 현관문" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/40 to-transparent"></div>
+            <div class="absolute bottom-4 left-5 right-5">
+              <div class="text-[10px] tracking-widest text-bronze-400 uppercase">A-06</div>
+              <h4 class="text-lg font-semibold text-zinc-50 kr">현관문</h4>
+            </div>
+          </div>
+        </a>
+
+        <a href="products.html?type=aluminum&category=deshi-moladon" class="prod-card bezel md:col-span-3 group block">
+          <div class="bezel-core relative overflow-hidden h-full min-h-[220px]">
+            <img src="images/forged-detail-classic-md.webp" alt="데스리·모라돈 — 계단·발코니용 장식 난간" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-tr from-ink-950 via-ink-950/40 to-transparent"></div>
+            <div class="absolute bottom-4 left-5 right-5">
+              <div class="text-[10px] tracking-widest text-bronze-400 uppercase">A-07 / 08</div>
+              <h4 class="text-lg font-semibold text-zinc-50 kr">데스리 · 모라돈</h4>
+              <p class="mt-1 text-[12px] text-zinc-400 kr">계단·발코니용 장식 난간 및 주물 장식재</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="products.html?type=aluminum&category=public-facilities" class="prod-card bezel md:col-span-3 group block">
+          <div class="bezel-core relative overflow-hidden h-full min-h-[220px]">
+            <img src="frames/secondary/022.webp" alt="공공 시설물 — 벤치·가로등 커버·수목 보호덮개·자전거 보관대" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-tl from-ink-950 via-ink-950/40 to-transparent"></div>
+            <div class="absolute bottom-4 left-5 right-5">
+              <div class="text-[10px] tracking-widest text-bronze-400 uppercase">A-09 ~ 13</div>
+              <h4 class="text-lg font-semibold text-zinc-50 kr">공공·조경 시설물</h4>
+              <p class="mt-1 text-[12px] text-zinc-400 kr">벤치 · 가로등 커버 · 수목 보호덮개 · 자전거 보관대 · 휴지통</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery" class="relative py-24 sm:py-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="flex items-end justify-between flex-wrap gap-6 reveal">
+      <div>
+        <div class="text-[11px] tracking-[0.35em] text-bronze-400 uppercase">03 — Gallery</div>
+        <h2 class="mt-4 font-display text-3xl sm:text-5xl lg:text-6xl font-semibold leading-[1.08] tracking-tight text-zinc-50 kr">
+          설치된 순간,<br />
+          공간이 달라집니다.
+        </h2>
+      </div>
+      <p class="max-w-sm text-[15px] text-zinc-400 leading-relaxed kr">
+        실제 고객 현장에 시공된 신한하우징의 작품들 —
+        전원 주택부터 카페, 관공서, 아파트 단지까지.
+      </p>
+    </div>
+
+    <!-- Asymmetric masonry -->
+    <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+      <figure class="relative overflow-hidden rounded-xl aspect-[3/4] row-span-2 bezel !p-1.5 reveal">
+        <div class="bezel-core relative h-full overflow-hidden">
+          <img src="images/gate-wrought-iron-luxury-md.webp" alt="전원 주택 대문 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-transparent to-transparent"></div>
+          <figcaption class="absolute bottom-4 left-4 right-4 text-xs text-zinc-200 kr">
+            <div class="text-[10px] text-bronze-400 tracking-widest uppercase">CASE 01</div>
+            경기 양평 · 단조 대문 시공
+          </figcaption>
+        </div>
+      </figure>
+
+      <figure class="relative overflow-hidden rounded-xl aspect-square bezel !p-1.5 reveal">
+        <div class="bezel-core relative h-full overflow-hidden">
+          <img src="frames/hero/020.webp" alt="카페 휀스 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent"></div>
+          <figcaption class="absolute bottom-3 left-3 right-3 text-xs text-zinc-200 kr">
+            <div class="text-[10px] text-bronze-400 tracking-widest uppercase">CASE 02</div>
+            강원 강릉 카페 휀스
+          </figcaption>
+        </div>
+      </figure>
+
+      <figure class="relative overflow-hidden rounded-xl aspect-square bezel !p-1.5 reveal">
+        <div class="bezel-core relative h-full overflow-hidden">
+          <img src="images/iron-scroll-detail-md.webp" alt="계단 난간 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent"></div>
+          <figcaption class="absolute bottom-3 left-3 right-3 text-xs text-zinc-200 kr">
+            <div class="text-[10px] text-bronze-400 tracking-widest uppercase">CASE 03</div>
+            서울 성북 · 주택 계단 난간
+          </figcaption>
+        </div>
+      </figure>
+
+      <figure class="relative overflow-hidden rounded-xl aspect-[3/4] row-span-2 bezel !p-1.5 reveal">
+        <div class="bezel-core relative h-full overflow-hidden">
+          <img src="images/gate-garden-entrance-elegant-md.webp" alt="정원 아치 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-transparent to-transparent"></div>
+          <figcaption class="absolute bottom-4 left-4 right-4 text-xs text-zinc-200 kr">
+            <div class="text-[10px] text-bronze-400 tracking-widest uppercase">CASE 04</div>
+            충북 청주 · 정원 아치
+          </figcaption>
+        </div>
+      </figure>
+
+      <figure class="relative overflow-hidden rounded-xl aspect-square bezel !p-1.5 reveal">
+        <div class="bezel-core relative h-full overflow-hidden">
+          <img src="frames/secondary/008.webp" alt="우체통 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent"></div>
+          <figcaption class="absolute bottom-3 left-3 right-3 text-xs text-zinc-200 kr">
+            <div class="text-[10px] text-bronze-400 tracking-widest uppercase">CASE 05</div>
+            제주 한림 · 클래식 우체통
+          </figcaption>
+        </div>
+      </figure>
+
+      <figure class="relative overflow-hidden rounded-xl aspect-square bezel !p-1.5 reveal">
+        <div class="bezel-core relative h-full overflow-hidden">
+          <img src="images/forged-detail-classic-md.webp" alt="공원 벤치 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent"></div>
+          <figcaption class="absolute bottom-3 left-3 right-3 text-xs text-zinc-200 kr">
+            <div class="text-[10px] text-bronze-400 tracking-widest uppercase">CASE 06</div>
+            공공 조경 · 주물 벤치
+          </figcaption>
+        </div>
+      </figure>
+    </div>
+
+    <div class="mt-10 text-center">
+      <a href="#contact" class="btn-ghost inline-flex items-center gap-2 rounded-full border border-white/15 text-zinc-200 px-6 py-3 text-sm font-medium">
+        갤러리 더 보기
+        <iconify-icon icon="solar:arrow-right-linear" width="14" class="text-bronze-400"></iconify-icon>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= PROCESS — 시공안내 ================= -->
+<section id="process" class="relative py-24 sm:py-32 bg-gradient-to-b from-transparent via-ink-900/40 to-transparent">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="max-w-3xl reveal">
+      <div class="text-[11px] tracking-[0.35em] text-bronze-400 uppercase">04 — Process</div>
+      <h2 class="mt-4 font-display text-3xl sm:text-5xl lg:text-6xl font-semibold leading-[1.08] tracking-tight text-zinc-50 kr">
+        상담에서 설치까지,<br />
+        한 공장의 책임.
+      </h2>
+      <p class="mt-6 text-[15px] text-zinc-400 leading-relaxed max-w-xl kr">
+        카탈로그 상품을 그대로 주문하셔도 좋고, 원하시는 디자인·치수로 맞춤 제작도 가능합니다.
+        어떤 경우든 같은 공장에서 시작해 같은 담당자가 끝까지 책임집니다.
+      </p>
+    </div>
+
+    <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="bezel reveal">
+        <div class="bezel-core p-6 h-full">
+          <div class="flex items-center justify-between">
+            <span class="font-display text-5xl font-semibold text-bronze-400">01</span>
+            <iconify-icon icon="solar:phone-calling-bold" width="28" class="text-zinc-500"></iconify-icon>
+          </div>
+          <h3 class="mt-6 text-lg font-semibold text-zinc-50 kr">상담 · 견적 요청</h3>
+          <p class="mt-2 text-sm text-zinc-400 leading-relaxed kr">
+            원하시는 품목·용도·대략적 치수를 전화나 문의 게시판으로 남겨 주세요.
+          </p>
+        </div>
+      </div>
+      <div class="bezel reveal">
+        <div class="bezel-core p-6 h-full">
+          <div class="flex items-center justify-between">
+            <span class="font-display text-5xl font-semibold text-bronze-400">02</span>
+            <iconify-icon icon="solar:pen-new-round-bold" width="28" class="text-zinc-500"></iconify-icon>
+          </div>
+          <h3 class="mt-6 text-lg font-semibold text-zinc-50 kr">디자인 · 도면 확정</h3>
+          <p class="mt-2 text-sm text-zinc-400 leading-relaxed kr">
+            카탈로그 상품 또는 맞춤 디자인 시안을 보내 드리고 상세 사양을 함께 확정합니다.
+          </p>
+        </div>
+      </div>
+      <div class="bezel reveal">
+        <div class="bezel-core p-6 h-full">
+          <div class="flex items-center justify-between">
+            <span class="font-display text-5xl font-semibold text-bronze-400">03</span>
+            <iconify-icon icon="solar:fire-bold" width="28" class="text-zinc-500"></iconify-icon>
+          </div>
+          <h3 class="mt-6 text-lg font-semibold text-zinc-50 kr">공장 생산</h3>
+          <p class="mt-2 text-sm text-zinc-400 leading-relaxed kr">
+            단조·주물·용접·도장까지 외주 없이 자사 공장에서 직접 제작합니다.
+          </p>
+        </div>
+      </div>
+      <div class="bezel reveal">
+        <div class="bezel-core p-6 h-full">
+          <div class="flex items-center justify-between">
+            <span class="font-display text-5xl font-semibold text-bronze-400">04</span>
+            <iconify-icon icon="solar:delivery-bold" width="28" class="text-zinc-500"></iconify-icon>
+          </div>
+          <h3 class="mt-6 text-lg font-semibold text-zinc-50 kr">배송 · 시공</h3>
+          <p class="mt-2 text-sm text-zinc-400 leading-relaxed kr">
+            전국 배송과 자사 기술진의 현장 시공·설치까지 한 번에 처리합니다.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Before/After Framing -->
+    <div class="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-6 reveal">
+      <div class="bezel">
+        <div class="bezel-core p-6 sm:p-8">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] tracking-widest text-zinc-500 uppercase">일반 유통</span>
+            <span class="text-zinc-600 text-sm">BEFORE</span>
+          </div>
+          <h3 class="mt-4 text-xl sm:text-2xl font-semibold text-zinc-50 kr">상사 → 중간 유통 → 시공 업체</h3>
+          <ul class="mt-5 space-y-2.5 text-sm text-zinc-400">
+            <li class="flex items-start gap-2">
+              <iconify-icon icon="solar:close-circle-bold" width="16" class="text-zinc-600 mt-0.5 shrink-0"></iconify-icon>
+              <span class="kr">단계별 마진이 누적되어 가격이 올라감</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <iconify-icon icon="solar:close-circle-bold" width="16" class="text-zinc-600 mt-0.5 shrink-0"></iconify-icon>
+              <span class="kr">문제가 생기면 서로 책임을 미루기 쉬움</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <iconify-icon icon="solar:close-circle-bold" width="16" class="text-zinc-600 mt-0.5 shrink-0"></iconify-icon>
+              <span class="kr">맞춤 디자인 변경이 어렵고 시간이 오래 걸림</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="bezel">
+        <div class="bezel-core p-6 sm:p-8 relative overflow-hidden">
+          <div class="absolute -top-24 -right-24 h-40 w-40 rounded-full bg-bronze-400/15 blur-3xl"></div>
+          <div class="flex items-center justify-between relative">
+            <span class="text-[11px] tracking-widest text-bronze-400 uppercase">신한하우징 방식</span>
+            <span class="text-bronze-400/90 text-sm">AFTER</span>
+          </div>
+          <h3 class="mt-4 text-xl sm:text-2xl font-semibold text-zinc-50 kr relative">상담 → 자사 공장 → 현장 시공</h3>
+          <ul class="mt-5 space-y-2.5 text-sm text-zinc-300 relative">
+            <li class="flex items-start gap-2">
+              <iconify-icon icon="solar:check-circle-bold" width="16" class="text-bronze-400 mt-0.5 shrink-0"></iconify-icon>
+              <span class="kr">중간 마진이 없어 같은 제품이라도 더 합리적인 가격</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <iconify-icon icon="solar:check-circle-bold" width="16" class="text-bronze-400 mt-0.5 shrink-0"></iconify-icon>
+              <span class="kr">한 담당자가 끝까지 책임지니 소통이 간결함</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <iconify-icon icon="solar:check-circle-bold" width="16" class="text-bronze-400 mt-0.5 shrink-0"></iconify-icon>
+              <span class="kr">공장에서 바로 수정·맞춤이 가능해 유연한 제작</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================= FAQ ================= -->
+<section class="relative py-24 sm:py-32">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center reveal">
+      <div class="text-[11px] tracking-[0.35em] text-bronze-400 uppercase">05 — FAQ</div>
+      <h2 class="mt-4 font-display text-3xl sm:text-5xl font-semibold leading-[1.1] tracking-tight text-zinc-50 kr">
+        자주 묻는 질문
+      </h2>
+    </div>
+
+    <div class="mt-14 divide-y divide-white/10 border-y border-white/10 reveal">
+      <details class="group py-6">
+        <summary class="list-none flex items-center justify-between cursor-pointer">
+          <span class="text-base sm:text-lg font-medium text-zinc-100 kr pr-6">카탈로그에 없는 디자인도 주문 제작이 가능한가요?</span>
+          <span class="shrink-0 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 transition group-open:rotate-45 group-open:border-bronze-400/40 group-open:bg-bronze-400/10">
+            <iconify-icon icon="solar:add-circle-linear" width="18" class="text-bronze-400"></iconify-icon>
+          </span>
+        </summary>
+        <p class="mt-4 text-[15px] text-zinc-400 leading-relaxed kr max-w-3xl">
+          네, 가능합니다. 원하시는 이미지나 스케치를 보내 주시면 디자이너가 도면으로 옮겨 드리고,
+          확정된 도면을 기준으로 공장에서 직접 제작합니다.
+        </p>
+      </details>
+      <details class="group py-6">
+        <summary class="list-none flex items-center justify-between cursor-pointer">
+          <span class="text-base sm:text-lg font-medium text-zinc-100 kr pr-6">시공 지역은 어디까지 가능한가요?</span>
+          <span class="shrink-0 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 transition group-open:rotate-45 group-open:border-bronze-400/40 group-open:bg-bronze-400/10">
+            <iconify-icon icon="solar:add-circle-linear" width="18" class="text-bronze-400"></iconify-icon>
+          </span>
+        </summary>
+        <p class="mt-4 text-[15px] text-zinc-400 leading-relaxed kr max-w-3xl">
+          전국 어디든 배송하며, 대부분의 지역은 자사 기술진이 직접 출장 시공합니다.
+          도서 지역이나 일부 원거리 현장은 사전에 별도 상담을 드립니다.
+        </p>
+      </details>
+      <details class="group py-6">
+        <summary class="list-none flex items-center justify-between cursor-pointer">
+          <span class="text-base sm:text-lg font-medium text-zinc-100 kr pr-6">단조와 알루미늄 주물은 어떻게 다른가요?</span>
+          <span class="shrink-0 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 transition group-open:rotate-45 group-open:border-bronze-400/40 group-open:bg-bronze-400/10">
+            <iconify-icon icon="solar:add-circle-linear" width="18" class="text-bronze-400"></iconify-icon>
+          </span>
+        </summary>
+        <p class="mt-4 text-[15px] text-zinc-400 leading-relaxed kr max-w-3xl">
+          단조는 달궈진 쇠를 두드려 모양을 잡는 방식으로 무게감·질감이 특징이며, 유럽식 대문·난간에 자주 쓰입니다.
+          알루미늄 주물은 녹인 금속을 틀에 부어 만드는 방식으로 가볍고 부식에 강해 정원·공공 시설물에 적합합니다.
+        </p>
+      </details>
+      <details class="group py-6">
+        <summary class="list-none flex items-center justify-between cursor-pointer">
+          <span class="text-base sm:text-lg font-medium text-zinc-100 kr pr-6">도장 색상은 어떻게 선택하나요?</span>
+          <span class="shrink-0 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 transition group-open:rotate-45 group-open:border-bronze-400/40 group-open:bg-bronze-400/10">
+            <iconify-icon icon="solar:add-circle-linear" width="18" class="text-bronze-400"></iconify-icon>
+          </span>
+        </summary>
+        <p class="mt-4 text-[15px] text-zinc-400 leading-relaxed kr max-w-3xl">
+          분체 도장·브론즈·골드·블랙·화이트 등 다양한 색상을 선택하실 수 있습니다.
+          주택 외관이나 조경 색상과 어울리는 톤을 추천드리며, 샘플을 보내 드릴 수 있습니다.
+        </p>
+      </details>
+      <details class="group py-6">
+        <summary class="list-none flex items-center justify-between cursor-pointer">
+          <span class="text-base sm:text-lg font-medium text-zinc-100 kr pr-6">공장 견학이 가능한가요?</span>
+          <span class="shrink-0 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 transition group-open:rotate-45 group-open:border-bronze-400/40 group-open:bg-bronze-400/10">
+            <iconify-icon icon="solar:add-circle-linear" width="18" class="text-bronze-400"></iconify-icon>
+          </span>
+        </summary>
+        <p class="mt-4 text-[15px] text-zinc-400 leading-relaxed kr max-w-3xl">
+          가능합니다. 사전에 연락 주시면 전시장과 공장을 함께 둘러보실 수 있습니다.
+          실물을 직접 보고 선택하시는 것이 가장 정확한 방법입니다.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= CONTACT + VISIT ================= -->
+<section id="contact" class="relative py-24 sm:py-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bezel reveal">
+      <div class="bezel-core relative overflow-hidden p-8 sm:p-14 lg:p-16">
+        <div class="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-bronze-400/15 blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 -right-10 h-[28rem] w-[28rem] rounded-full bg-bronze-500/10 blur-3xl pointer-events-none"></div>
+
+        <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-7">
+            <div class="text-[11px] tracking-[0.35em] text-bronze-400 uppercase">06 — Contact</div>
+            <h2 class="mt-4 font-display text-3xl sm:text-5xl lg:text-[52px] font-semibold leading-[1.08] tracking-tight text-zinc-50 kr">
+              궁금한 점이 있으시면<br />
+              언제든지 연락 주세요.
+            </h2>
+            <p class="mt-6 text-[15px] text-zinc-400 leading-relaxed kr max-w-xl">
+              전화 · 이메일 · 견적 게시판, 어떤 방법이든 편하신 대로 문의해 주시면
+              담당자가 직접 친절하게 안내드립니다.
+            </p>
+
+            <div class="mt-10 space-y-4">
+              <a href="tel:031-000-0000" class="flex items-center gap-4 group">
+                <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-bronze-400/10 ring-1 ring-bronze-400/30 group-hover:bg-bronze-400/20 transition">
+                  <iconify-icon icon="solar:phone-calling-bold" width="18" class="text-bronze-400"></iconify-icon>
+                </span>
+                <div>
+                  <div class="text-[11px] text-zinc-500 tracking-widest uppercase">대표 전화</div>
+                  <div class="block text-lg font-semibold text-zinc-50">031-000-0000</div>
+                  <div class="text-[11px] text-zinc-600 kr">평일 09:00 – 18:00 · 주말 예약 상담</div>
+                </div>
+              </a>
+              <a href="mailto:shinhan@shinhanhousing.co.kr" class="flex items-center gap-4 group">
+                <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-bronze-400/10 ring-1 ring-bronze-400/30 group-hover:bg-bronze-400/20 transition">
+                  <iconify-icon icon="solar:letter-bold" width="18" class="text-bronze-400"></iconify-icon>
+                </span>
+                <div>
+                  <div class="text-[11px] text-zinc-500 tracking-widest uppercase">이메일</div>
+                  <div class="block text-lg font-semibold text-zinc-50">shinhan@shinhanhousing.co.kr</div>
+                </div>
+              </a>
+              <a href="http://www.shinhanhousing.co.kr/bbs/zboard.php?id=order" target="_blank" rel="noopener" class="flex items-center gap-4 group">
+                <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-bronze-400/10 ring-1 ring-bronze-400/30 group-hover:bg-bronze-400/20 transition">
+                  <iconify-icon icon="solar:chat-square-2-bold" width="18" class="text-bronze-400"></iconify-icon>
+                </span>
+                <div>
+                  <div class="text-[11px] text-zinc-500 tracking-widest uppercase">견적 게시판</div>
+                  <div class="block text-lg font-semibold text-zinc-50 kr">주문 · 견적 문의 바로가기</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact form -->
+          <form id="inquiryForm" class="lg:col-span-5 bezel">
+            <div class="bezel-core p-6 sm:p-7 space-y-4">
+              <input type="hidden" id="productCode" name="productCode" />
+              <div id="productBadge" class="hidden rounded-xl border border-bronze-400/30 bg-bronze-400/10 px-4 py-3 text-xs text-bronze-400 kr">
+                <div class="flex items-center gap-2">
+                  <iconify-icon icon="solar:box-bold" width="14"></iconify-icon>
+                  <span>문의 제품: <strong id="productBadgeCode" class="font-mono text-[#F5D38A]"></strong></span>
+                  <button type="button" id="productBadgeClear" class="ml-auto text-zinc-500 hover:text-bronze-400 transition" aria-label="제품 연결 해제">
+                    <iconify-icon icon="solar:close-circle-linear" width="14"></iconify-icon>
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label for="name" class="text-[11px] tracking-widest text-zinc-500 uppercase">성함</label>
+                <input id="name" name="name" type="text" required
+                       class="mt-2 w-full rounded-xl bg-white/[0.03] border border-white/10 px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-bronze-400/60 focus:outline-none focus:ring-2 focus:ring-bronze-400/20 transition"
+                       placeholder="홍길동" />
+              </div>
+              <div>
+                <label for="phone" class="text-[11px] tracking-widest text-zinc-500 uppercase">연락처</label>
+                <input id="phone" name="phone" type="tel" required
+                       class="mt-2 w-full rounded-xl bg-white/[0.03] border border-white/10 px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-bronze-400/60 focus:outline-none focus:ring-2 focus:ring-bronze-400/20 transition"
+                       placeholder="010-0000-0000" />
+              </div>
+              <div>
+                <label for="type" class="text-[11px] tracking-widest text-zinc-500 uppercase">문의 품목</label>
+                <select id="type" name="productType"
+                        class="mt-2 w-full rounded-xl bg-white/[0.03] border border-white/10 px-4 py-3 text-sm text-zinc-100 focus:border-bronze-400/60 focus:outline-none focus:ring-2 focus:ring-bronze-400/20 transition">
+                  <option>대문</option>
+                  <option>휀스 · 울타리</option>
+                  <option>자동문 · 자동모터</option>
+                  <option>계단난간 · 발코니</option>
+                  <option>우체통 · 소품</option>
+                  <option>아치 · 파티션</option>
+                  <option>알루미늄 주물 제품</option>
+                  <option>공공 · 조경 시설물</option>
+                  <option>기타 문의</option>
+                </select>
+              </div>
+              <div>
+                <label for="msg" class="text-[11px] tracking-widest text-zinc-500 uppercase">내용</label>
+                <textarea id="msg" name="message" rows="4" required
+                          class="mt-2 w-full rounded-xl bg-white/[0.03] border border-white/10 px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-bronze-400/60 focus:outline-none focus:ring-2 focus:ring-bronze-400/20 transition resize-none"
+                          placeholder="원하시는 디자인, 치수, 설치 장소 등을 알려주세요."></textarea>
+              </div>
+              <div id="inquiryError" class="hidden text-xs text-red-400 kr"></div>
+              <button id="inquirySubmitBtn" type="submit"
+                      class="btn-primary w-full inline-flex items-center justify-center gap-3 rounded-full bg-bronze-400 text-ink-950 px-6 py-4 text-base font-semibold">
+                <span class="btn-label">문의 보내기</span>
+                <iconify-icon icon="solar:paper-plane-bold" width="16"></iconify-icon>
+              </button>
+              <p class="text-[11px] text-zinc-500 text-center kr">
+                접수 내용은 상담 목적 외에 사용되지 않습니다.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= VISIT / MAP ================= -->
+<section id="visit" class="relative py-24 sm:py-32 bg-gradient-to-b from-transparent via-ink-900/40 to-transparent">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-5 reveal">
+        <div class="text-[11px] tracking-[0.35em] text-bronze-400 uppercase">07 — Visit Us</div>
+        <h2 class="mt-4 font-display text-3xl sm:text-5xl font-semibold leading-[1.08] tracking-tight text-zinc-50 kr">
+          찾아오시는 길
+        </h2>
+        <p class="mt-6 text-[15px] text-zinc-400 leading-relaxed max-w-md kr">
+          방문 상담을 원하시면 미리 연락 주세요. 전시장과 공장을 함께 안내 드립니다.
+          실물을 직접 확인하시면 결정에 큰 도움이 됩니다.
+        </p>
+
+        <div class="mt-8 space-y-4">
+          <div class="flex items-start gap-3">
+            <iconify-icon icon="solar:map-point-bold" width="20" class="text-bronze-400 mt-0.5 shrink-0"></iconify-icon>
+            <div>
+              <div class="text-[11px] text-zinc-500 tracking-widest uppercase">본사 · 공장</div>
+              <div class="mt-1 text-[15px] text-zinc-100 kr">신한하우징 본사 공장</div>
+              <div class="text-sm text-zinc-500 kr">자세한 주소는 우측 지도를 참고해 주세요.</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <iconify-icon icon="solar:clock-circle-bold" width="20" class="text-bronze-400 mt-0.5 shrink-0"></iconify-icon>
+            <div>
+              <div class="text-[11px] text-zinc-500 tracking-widest uppercase">영업 시간</div>
+              <div class="mt-1 text-[15px] text-zinc-100 kr">평일 09:00 – 18:00</div>
+              <div class="text-sm text-zinc-500 kr">주말 · 공휴일은 사전 예약제</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <iconify-icon icon="solar:routing-bold" width="20" class="text-bronze-400 mt-0.5 shrink-0"></iconify-icon>
+            <div>
+              <div class="text-[11px] text-zinc-500 tracking-widest uppercase">주차 안내</div>
+              <div class="mt-1 text-[15px] text-zinc-100 kr">방문 고객 주차 공간 마련</div>
+              <div class="text-sm text-zinc-500 kr">전시장 앞 공간을 이용하실 수 있습니다.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 reveal">
+        <div class="bezel">
+          <div class="bezel-core relative overflow-hidden">
+            <!-- Kakao Daum Roughmap embed using the real key from shinhanhousing.co.kr -->
+            <div id="daumRoughmapContainer1655797459115" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100%;"></div>
+            <!-- Fallback image if map script fails -->
+            <noscript>
+              <img src="images/gate-garden-entrance-elegant-md.webp" alt="신한하우징 위치 지도" class="w-full h-[320px] sm:h-[420px] object-cover" />
+            </noscript>
+          </div>
+        </div>
+        <p class="mt-3 text-[11px] text-zinc-500 text-right kr">지도 제공 · 카카오맵</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="relative border-t border-white/5 bg-ink-900/40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-2.5">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-bronze-400/15 ring-1 ring-bronze-400/30">
+            <iconify-icon icon="solar:home-angle-2-bold" width="18" class="text-bronze-400"></iconify-icon>
+          </span>
+          <span class="text-[15px] font-semibold tracking-tight text-zinc-50">신한하우징</span>
+        </div>
+        <p class="mt-5 text-sm text-zinc-400 leading-relaxed max-w-md kr">
+          단조, 알루미늄주물 등 철제 제품을 공장에서 직접 생산합니다.
+          유럽풍 클래식한 공간은 물론, 자연의 아름다움으로 편안한 공간을 연출해 드립니다.
+        </p>
+        <p class="mt-4 text-[11px] text-zinc-600 kr">
+          원문 홈페이지 · <a href="http://www.shinhanhousing.co.kr" class="hover:text-bronze-400 transition">www.shinhanhousing.co.kr</a>
+        </p>
+      </div>
+
+      <div class="md:col-span-2">
+        <div class="text-[11px] tracking-widest text-zinc-500 uppercase">SITE</div>
+        <ul class="mt-4 space-y-2.5 text-sm text-zinc-300">
+          <li><a class="hover:text-bronze-400 transition" href="#about">회사소개</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="products.html">제품소개</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="#gallery">갤러리</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="#process">시공안내</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="#visit">찾아오시는 길</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-2">
+        <div class="text-[11px] tracking-widest text-zinc-500 uppercase">PRODUCT</div>
+        <ul class="mt-4 space-y-2.5 text-sm text-zinc-300">
+          <li><a class="hover:text-bronze-400 transition" href="products.html?type=forged&category=gates">단조 대문</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="products.html?type=forged&category=fences">단조 휀스</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="products.html?type=forged&category=auto-gates">자동문</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="products.html?type=forged&category=stair-railings">계단난간</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="products.html?type=aluminum">알루미늄 주물</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-3">
+        <div class="text-[11px] tracking-widest text-zinc-500 uppercase">CONTACT</div>
+        <ul class="mt-4 space-y-2.5 text-sm text-zinc-300 kr">
+          <li class="flex items-center gap-2">
+            <iconify-icon icon="solar:phone-linear" width="16" class="text-bronze-400 shrink-0"></iconify-icon>
+            031-000-0000
+          </li>
+          <li class="flex items-center gap-2">
+            <iconify-icon icon="solar:letter-linear" width="16" class="text-bronze-400 shrink-0"></iconify-icon>
+            shinhan@shinhanhousing.co.kr
+          </li>
+          <li class="flex items-center gap-2">
+            <iconify-icon icon="solar:clock-circle-linear" width="16" class="text-bronze-400 shrink-0"></iconify-icon>
+            평일 09:00 – 18:00
+          </li>
+          <li class="flex items-start gap-2">
+            <iconify-icon icon="solar:map-point-linear" width="16" class="text-bronze-400 mt-0.5 shrink-0"></iconify-icon>
+            본사·공장 방문 시 사전 연락 부탁드립니다
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-[12px] text-zinc-500 kr">
+        © 2026 신한하우징 · 단조·알루미늄 주물 공장 직영
+      </div>
+      <div class="flex items-center gap-4 text-[12px] text-zinc-500">
+        <a class="hover:text-zinc-300 transition" href="#">이용약관</a>
+        <span class="h-3 w-px bg-zinc-700"></span>
+        <a class="hover:text-zinc-300 transition" href="#">개인정보처리방침</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<!-- Kakao Daum Roughmap loader (using the real key '2aovh' found on shinhanhousing.co.kr/contactus.htm) -->
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+<script charset="UTF-8">
+  if (window.daum && daum.roughmap) {
+    new daum.roughmap.Lander({
+      "timestamp": "1655797459115",
+      "key": "2aovh",
+      "mapWidth": "760",
+      "mapHeight": "420"
+    }).render();
+  }
+</script>
+
+<script>
+  /* ========================================================================
+     HERO — Scroll-driven WebP frame sequence (Apple-style)
+     ------------------------------------------------------------------------
+     - 90 sequential WebP frames extracted from the hero MP4
+     - Preloaded in parallel; progress shown in loading bar
+     - Scroll progress (0..1) within .hero-scroll maps to frame index
+     - Target frame index is lerped toward by current index at 0.15/frame
+       for buttery-smooth motion that doesn't stutter with wheel ticks
+     - devicePixelRatio-aware canvas for crisp rendering
+     - object-cover style drawing to preserve portrait video's aspect
+     ======================================================================== */
+  (() => {
+    const TOTAL = 90;
+    const FRAME_URL = (i) => `frames/hero/${String(i).padStart(3, '0')}.webp`;
+
+    const section = document.getElementById('hero');
+    const canvas  = document.getElementById('heroCanvas');
+    const content = document.getElementById('heroContent');
+    const chips   = document.getElementById('heroChips');
+    const loadEl  = document.getElementById('heroLoading');
+    const loadBar = document.getElementById('heroLoadingBar');
+    const loadText= document.getElementById('heroLoadingText');
+    if (!canvas || !section) return;
+
+    const ctx = canvas.getContext('2d');
+    const frames = new Array(TOTAL);
+    let loaded = 0;
+    let firstFrameReady = false;
+
+    // ---- Preload frames in parallel ----
+    const preload = (i) => new Promise((resolve) => {
+      const img = new Image();
+      img.decoding = 'async';
+      img.onload  = () => { loaded++; frames[i] = img; updateProgress(); if (i === 0 && !firstFrameReady) { firstFrameReady = true; draw(0); revealContent(); } resolve(); };
+      img.onerror = () => { loaded++; updateProgress(); resolve(); };
+      img.src = FRAME_URL(i);
+    });
+
+    function updateProgress() {
+      const pct = Math.round((loaded / TOTAL) * 100);
+      if (loadBar)  loadBar.style.width = pct + '%';
+      if (loadText) loadText.textContent = pct < 100 ? `LOADING ${pct}%` : 'READY';
+      if (loaded === TOTAL && loadEl) {
+        setTimeout(() => loadEl.classList.add('done'), 300);
+      }
+    }
+
+    function revealContent() {
+      content?.classList.add('on');
+      chips?.classList.add('on');
+    }
+
+    // Parallel preload, with first frame prioritized
+    preload(0).then(() => {
+      const queue = [];
+      for (let i = 1; i < TOTAL; i++) queue.push(preload(i));
+      return Promise.all(queue);
+    });
+
+    // ---- Canvas sizing (DPR-aware) ----
+    function resizeCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2); // cap at 2 for perf
+      const rect = canvas.getBoundingClientRect();
+      canvas.width  = Math.round(rect.width * dpr);
+      canvas.height = Math.round(rect.height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      draw(Math.round(currentFrame));
+    }
+
+    // ---- Draw image with cinematic letterbox ----
+    // Pass 1: blurred, brightness-dampened cover fills the canvas (backdrop)
+    // Pass 2: sharp contain-fit draws the full frame centered on top
+    // This shows the full portrait video on wide screens without cropping,
+    // while keeping the background visually filled instead of hard black bars.
+    function drawCover(img, dw, dh) {
+      const ir = img.naturalWidth / img.naturalHeight;
+      const cr = dw / dh;
+      let sx, sy, sw, sh;
+      if (cr > ir) {
+        sw = img.naturalWidth; sh = img.naturalWidth / cr;
+        sx = 0; sy = (img.naturalHeight - sh) / 2;
+      } else {
+        sh = img.naturalHeight; sw = img.naturalHeight * cr;
+        sy = 0; sx = (img.naturalWidth - sw) / 2;
+      }
+      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, dw, dh);
+    }
+
+    function drawContain(img, dw, dh) {
+      const ir = img.naturalWidth / img.naturalHeight;
+      const cr = dw / dh;
+      let tw, th;
+      if (cr > ir) {
+        // container wider → fit by height, center horizontally
+        th = dh;
+        tw = dh * ir;
+      } else {
+        // container taller → fit by width, center vertically
+        tw = dw;
+        th = dw / ir;
+      }
+      const tx = (dw - tw) / 2;
+      const ty = (dh - th) / 2;
+      ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, tx, ty, tw, th);
+    }
+
+    const SUPPORTS_FILTER = (() => {
+      // Feature-detect ctx.filter support once
+      try { ctx.save(); ctx.filter = 'blur(1px)'; const ok = ctx.filter !== 'none' && ctx.filter !== undefined; ctx.restore(); return ok; }
+      catch { return false; }
+    })();
+
+    function draw(i) {
+      if (i < 0) i = 0; if (i >= TOTAL) i = TOTAL - 1;
+      const img = frames[i] || frames[0];
+      if (!img || !img.complete || !img.naturalWidth) return;
+      const rect = canvas.getBoundingClientRect();
+      const dw = rect.width, dh = rect.height;
+
+      // Solid dark base
+      ctx.fillStyle = '#0a0a0a';
+      ctx.fillRect(0, 0, dw, dh);
+
+      // Pass 1: blurred backdrop (only needed when foreground won't fill)
+      const ir = img.naturalWidth / img.naturalHeight;
+      const cr = dw / dh;
+      const needsBackdrop = Math.abs(cr - ir) > 0.02;
+      if (needsBackdrop) {
+        if (SUPPORTS_FILTER) {
+          ctx.save();
+          // Blur + dim + slight zoom to avoid blur edge bleed
+          ctx.filter = 'blur(36px) brightness(0.42) saturate(1.15)';
+          // draw slightly larger than canvas so blur's soft edges don't show
+          const pad = 48;
+          ctx.translate(-pad, -pad);
+          drawCover(img, dw + pad * 2, dh + pad * 2);
+          ctx.restore();
+        } else {
+          // Fallback: dimmed cover without blur
+          ctx.save();
+          ctx.globalAlpha = 0.35;
+          drawCover(img, dw, dh);
+          ctx.restore();
+        }
+      }
+
+      // Pass 2: sharp contain foreground
+      drawContain(img, dw, dh);
+    }
+
+    // ---- Scroll progress ----
+    function getProgress() {
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const total = rect.height - vh;             // total scrollable distance within section
+      const passed = -rect.top;                    // how much scrolled into section
+      if (total <= 0) return 0;
+      const p = passed / total;
+      return Math.max(0, Math.min(1, p));
+    }
+
+    // ---- Smooth anim loop (lerp) ----
+    let targetFrame = 0;
+    let currentFrame = 0;
+    let rafId = 0;
+    let running = false;
+    const LERP = 0.18; // higher = snappier, lower = smoother trailing
+
+    function tick() {
+      const delta = targetFrame - currentFrame;
+      if (Math.abs(delta) < 0.05) {
+        currentFrame = targetFrame;
+        draw(Math.round(currentFrame));
+        running = false;
+        return;
+      }
+      currentFrame += delta * LERP;
+      draw(Math.round(currentFrame));
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function onScroll() {
+      targetFrame = getProgress() * (TOTAL - 1);
+      if (!running) {
+        running = true;
+        cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(tick);
+      }
+    }
+
+    // ---- Init ----
+    window.addEventListener('resize', () => { resizeCanvas(); onScroll(); }, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('orientationchange', () => setTimeout(resizeCanvas, 200));
+
+    // First sizing + initial scroll sync
+    resizeCanvas();
+    onScroll();
+
+    // Also re-draw whenever a new frame finishes loading (during early playback)
+    let loadedSince = 0;
+    const paintWhenReady = setInterval(() => {
+      if (loaded !== loadedSince) {
+        loadedSince = loaded;
+        draw(Math.round(currentFrame));
+      }
+      if (loaded >= TOTAL) clearInterval(paintWhenReady);
+    }, 120);
+  })();
+
+
+  /* ========================================================================
+     General — reveal-on-scroll + magnetic CTA
+     ======================================================================== */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('on'), (i % 4) * 90);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  document.querySelectorAll('.btn-primary').forEach((btn) => {
+    btn.addEventListener('mousemove', (e) => {
+      const r = btn.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width / 2;
+      const y = e.clientY - r.top - r.height / 2;
+      btn.style.transform = `translate(${x * 0.08}px, ${y * 0.08}px) scale(1.02)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
+</script>
+
+<!-- ================= API client + inquiry form wiring ================= -->
+<script>
+  // 1단계(프론트엔드 mock 모드): products.json을 사용. 백엔드 연결 후 false로 전환.
+  window.SH_API_MOCK__ = true;
+</script>
+<script src="assets/js/api.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  const form = document.getElementById('inquiryForm');
+  if (!form) return;
+  const submitBtn = document.getElementById('inquirySubmitBtn');
+  const errEl = document.getElementById('inquiryError');
+  const badge = document.getElementById('productBadge');
+  const badgeCode = document.getElementById('productBadgeCode');
+  const badgeClear = document.getElementById('productBadgeClear');
+  const productCodeInput = document.getElementById('productCode');
+  const typeSelect = document.getElementById('type');
+  const msgField = document.getElementById('msg');
+
+  // ---------- ?product= 쿼리 처리 ----------
+  const params = new URLSearchParams(location.search);
+  const prefillCode = params.get('product');
+
+  function setProductBadge(code) {
+    productCodeInput.value = code;
+    badgeCode.textContent = code;
+    badge.classList.remove('hidden');
+  }
+  function clearProductBadge() {
+    productCodeInput.value = '';
+    badge.classList.add('hidden');
+    const prefix = msgField.value.match(/^\[문의 제품: [^\]]+\]\n\n/);
+    if (prefix) msgField.value = msgField.value.slice(prefix[0].length);
+  }
+  badgeClear.addEventListener('click', clearProductBadge);
+
+  async function applyPrefill(code) {
+    setProductBadge(code);
+    if (!msgField.value.startsWith('[문의 제품:')) {
+      msgField.value = `[문의 제품: ${code}]\n\n` + msgField.value;
+    }
+    try {
+      const product = await SH_API.Public.getProduct(code);
+      if (product && product.category) {
+        const options = Array.from(typeSelect.options).map(o => o.value);
+        const match = options.find(o => o.includes(product.category)) ||
+                      options.find(o => product.category.includes(o.replace(/ ·.*$/, '')));
+        if (match) typeSelect.value = match;
+      }
+    } catch (e) { /* 제품이 mock에 없거나 오류여도 무시 */ }
+    // #contact로 스크롤
+    setTimeout(() => {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+  }
+  if (prefillCode) applyPrefill(prefillCode);
+
+  // ---------- 문의 제출 ----------
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errEl.classList.add('hidden');
+    submitBtn.disabled = true;
+    const label = submitBtn.querySelector('.btn-label');
+    const originalLabel = label.textContent;
+    label.textContent = '전송 중…';
+
+    const body = {
+      name: document.getElementById('name').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      productType: typeSelect.value,
+      productCode: productCodeInput.value || null,
+      message: msgField.value.trim(),
+    };
+
+    try {
+      const res = await SH_API.Public.submitInquiry(body);
+      label.textContent = '접수 완료 ✓';
+      alert('문의가 접수되었습니다. 담당자가 빠른 시일 내 연락드리겠습니다.\n' + (res.id ? `(접수번호: ${res.id})` : ''));
+      form.reset();
+      clearProductBadge();
+      setTimeout(() => { label.textContent = originalLabel; submitBtn.disabled = false; }, 1500);
+    } catch (err) {
+      console.error(err);
+      errEl.textContent = '문의 접수 중 오류가 발생했습니다: ' + err.message + '\n전화(031-000-0000) 또는 이메일로 문의해 주세요.';
+      errEl.classList.remove('hidden');
+      label.textContent = originalLabel;
+      submitBtn.disabled = false;
+    }
+  });
+})();
+</script>
+</body>
+</html>

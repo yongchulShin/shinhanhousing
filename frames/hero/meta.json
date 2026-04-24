@@ -1,0 +1,26 @@
+{
+  "source": "랜딩페이지_히어로_영상_생성.mp4",
+  "frames": 90,
+  "fps": 24.0,
+  "duration_sec": 8.0,
+  "src_width": 720,
+  "src_height": 1280,
+  "crop_bottom_px": 166,
+  "effective_src_height": 1114,
+  "out_width": 720,
+  "out_height": 1114,
+  "quality": 78,
+  "total_bytes": 8099506,
+  "avg_kb_per_frame": 87.9,
+  "files": [
+    "000.webp",
+    "001.webp",
+    "002.webp",
+    "003.webp",
+    "004.webp",
+    "...",
+    "087.webp",
+    "088.webp",
+    "089.webp"
+  ]
+}
