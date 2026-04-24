@@ -114,7 +114,7 @@
     <ul class="hidden md:flex items-center gap-7 text-sm text-zinc-300">
       <li><a class="nav-link" href="index.html#about">회사소개</a></li>
       <li><a class="nav-link active" href="products.html">제품소개</a></li>
-      <li><a class="nav-link" href="index.html#gallery">갤러리</a></li>
+      <li><a class="nav-link" href="gallery.html">갤러리</a></li>
       <li><a class="nav-link" href="index.html#process">시공안내</a></li>
       <li><a class="nav-link" href="index.html#visit">찾아오시는 길</a></li>
     </ul>
@@ -256,7 +256,7 @@
         <ul class="mt-4 space-y-2.5 text-sm text-zinc-300">
           <li><a class="hover:text-bronze-400 transition" href="index.html#about">회사소개</a></li>
           <li><a class="hover:text-bronze-400 transition" href="products.html">제품소개</a></li>
-          <li><a class="hover:text-bronze-400 transition" href="index.html#gallery">갤러리</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="gallery.html">갤러리</a></li>
           <li><a class="hover:text-bronze-400 transition" href="index.html#process">시공안내</a></li>
           <li><a class="hover:text-bronze-400 transition" href="index.html#visit">찾아오시는 길</a></li>
         </ul>
@@ -295,8 +295,8 @@
 
 <!-- ================= Scripts ================= -->
 <script>
-  // 1단계 mock 모드: 로컬 products.json 사용. 백엔드 연결 후 false로 전환.
-  window.SH_API_MOCK__ = true;
+  window.SH_API_MOCK__ = false;
+  window.SH_API_BASE__ = 'http://localhost:3000/api';
 </script>
 <script src="assets/js/api.js"></script>
 <script>

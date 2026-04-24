@@ -57,7 +57,7 @@ router.get('/products', async (req, res, next) => {
     const mapped = items.map(p => {
       const main = p.images[0];
       return {
-        id: p.id, code: p.code, name: p.name,
+        id: p.id.toString(), code: p.code, name: p.name,
         type: p.type, category: p.category.name, categorySlug: p.category.slug, categoryId: p.categoryId,
         thumbUrl: main?.thumbUrl || null, mainImage: main?.url || null,
         isFeatured: p.isFeatured,
@@ -81,7 +81,7 @@ router.get('/products/:code', async (req, res, next) => {
     if (!product || !product.isActive) return res.status(404).json({ error: 'not_found' });
 
     res.json({
-      id: product.id, code: product.code, name: product.name, type: product.type,
+      id: product.id.toString(), code: product.code, name: product.name, type: product.type,
       description: product.description,
       categoryId: product.category.id, category: product.category.name, categorySlug: product.category.slug,
       specs: product.specsJson || {},
@@ -89,7 +89,7 @@ router.get('/products/:code', async (req, res, next) => {
       mainImage: product.images.find(i => i.role === 'main')?.url || product.images[0]?.url || null,
       thumbUrl: product.images.find(i => i.role === 'main')?.thumbUrl || product.images[0]?.thumbUrl || null,
       images: product.images.map(i => ({
-        id: i.id, url: i.url, thumbUrl: i.thumbUrl, caption: i.caption, role: i.role, sortOrder: i.sortOrder,
+        id: i.id.toString(), url: i.url, thumbUrl: i.thumbUrl, caption: i.caption, role: i.role, sortOrder: i.sortOrder,
       })),
     });
   } catch (e) { next(e); }

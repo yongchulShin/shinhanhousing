@@ -47,6 +47,7 @@ export async function putWebP(key, buffer) {
 }
 
 export async function deleteKey(key) {
+  if (!key || /^https?:\/\//i.test(String(key))) return;
   // key가 풀 URL이면 접두사 제거
   if (PUBLIC_BASE && key.startsWith(PUBLIC_BASE)) key = key.slice(PUBLIC_BASE.length + 1);
   await s3.send(new DeleteObjectCommand({ Bucket: BUCKET, Key: key }));

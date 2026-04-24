@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>시공갤러리 — 신한하우징</title>
+<meta name="description" content="신한하우징 시공갤러리. 실제 현장사진 중심으로 대문, 휀스, 계단 난간, 우체통 등 시공 사례를 블로그형으로 확인하세요." />
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+
+<script>
+  tailwind.config = {
+    theme: { extend: {
+      fontFamily: {
+        sans: ['"Pretendard Variable"', 'Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        display: ['"Cabinet Grotesk"', '"Pretendard Variable"', 'sans-serif'],
+        serif: ['"Noto Serif KR"', 'ui-serif', 'Georgia', 'serif'],
+      },
+      colors: {
+        ink: { 950: '#0a0a0a', 900: '#111111', 800: '#1a1a1a', 700: '#242424' },
+        bronze: { 400: '#D4A056', 450: '#C8913D', 500: '#B17A2A', 600: '#8E611F' },
+      },
+      transitionTimingFunction: { spring: 'cubic-bezier(0.16, 1, 0.3, 1)' },
+    } },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: #0a0a0a; color: #e4e4e7; word-break: keep-all; -webkit-font-smoothing: antialiased;
+  }
+  .kr { word-break: keep-all; }
+  .grain::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 60; opacity: .035;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .bezel { background: rgba(255,255,255,0.03); box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 1px 0 rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08); padding: 6px; border-radius: 22px; }
+  .bezel > .bezel-core { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; }
+  .btn-primary { position: relative; overflow: hidden; transition: transform 500ms cubic-bezier(0.16,1,0.3,1), box-shadow 500ms cubic-bezier(0.16,1,0.3,1); box-shadow: 0 0 0 1px rgba(212,160,86,0.45), 0 10px 30px -10px rgba(212,160,86,0.5), inset 0 1px 0 rgba(255,255,255,0.3); }
+  .btn-primary:hover { transform: scale(1.02); box-shadow: 0 0 0 1px rgba(212,160,86,0.65), 0 18px 40px -10px rgba(212,160,86,0.7), inset 0 1px 0 rgba(255,255,255,0.4); }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-ghost { transition: border-color 400ms cubic-bezier(0.16,1,0.3,1), background 400ms cubic-bezier(0.16,1,0.3,1), color 400ms cubic-bezier(0.16,1,0.3,1); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.25); }
+  .glass-nav { background: rgba(10,10,10,0.55); backdrop-filter: saturate(150%) blur(14px); -webkit-backdrop-filter: saturate(150%) blur(14px); border: 1px solid rgba(255,255,255,0.08); box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 20px 50px -20px rgba(0,0,0,0.7); }
+  .nav-link { position: relative; }
+  .nav-link::after { content: ""; position: absolute; left: 50%; bottom: -6px; width: 0; height: 1px; background: #D4A056; transform: translateX(-50%); transition: width 350ms cubic-bezier(0.16,1,0.3,1); }
+  .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 700ms cubic-bezier(0.16,1,0.3,1), transform 700ms cubic-bezier(0.16,1,0.3,1); }
+  .reveal.on { opacity: 1; transform: translateY(0); }
+  .dash-line { background-image: linear-gradient(to right, rgba(212,160,86,0.6) 50%, transparent 0); background-size: 12px 1px; background-repeat: repeat-x; background-position: center; height: 1px; }
+  .aurora-small {
+    position: absolute; inset: -10%; z-index: -1;
+    background:
+      radial-gradient(35% 30% at 18% 28%, rgba(212,160,86,0.14), transparent 60%),
+      radial-gradient(30% 25% at 82% 18%, rgba(212,160,86,0.08), transparent 60%),
+      radial-gradient(45% 40% at 52% 80%, rgba(100,70,30,0.2), transparent 65%);
+    filter: blur(14px);
+  }
+  .tag-mini { display: inline-flex; align-items: center; gap: 5px; padding: 4px 9px; border-radius: 999px; background: rgba(212,160,86,0.1); border: 1px solid rgba(212,160,86,0.25); color: #F5D38A; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .story-card img { filter: grayscale(0.12) contrast(1.04) brightness(0.94); transition: transform 800ms cubic-bezier(0.16,1,0.3,1), filter 500ms cubic-bezier(0.16,1,0.3,1); }
+  .story-card:hover img { transform: scale(1.045); filter: grayscale(0) contrast(1.08) brightness(1); }
+  .story-card { cursor: zoom-in; }
+  .lightbox { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; padding: 20px; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 82vh; object-fit: contain; border-radius: 10px; }
+  .lightbox .close-btn { position: absolute; top: 20px; right: 20px; height: 44px; width: 44px; border-radius: 999px; background: rgba(255,255,255,0.1); color: #fff; display: inline-flex; align-items: center; justify-content: center; transition: background 300ms; }
+  .lightbox .close-btn:hover { background: rgba(255,255,255,0.2); }
+  .lightbox .caption { position: absolute; left: 20px; right: 20px; bottom: 20px; text-align: center; color: rgba(255,255,255,0.82); font-size: 13px; }
+  iconify-icon { display: inline-block; vertical-align: -0.125em; }
+  a, button { -webkit-tap-highlight-color: transparent; }
+  ::selection { background: #D4A056; color: #0a0a0a; }
+</style>
+</head>
+<body class="grain antialiased">
+
+<!-- ================= NAV ================= -->
+<header class="fixed top-4 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-1.5rem)] max-w-6xl">
+  <nav class="glass-nav rounded-2xl px-4 sm:px-5 py-3 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5 group">
+      <span class="relative inline-flex h-8 w-8 items-center justify-center rounded-lg bg-bronze-400/15 ring-1 ring-bronze-400/30">
+        <iconify-icon icon="solar:home-angle-2-bold" width="18" class="text-bronze-400"></iconify-icon>
+      </span>
+      <span class="flex items-baseline gap-1.5">
+        <span class="text-[15px] font-semibold tracking-tight text-zinc-50">신한하우징</span>
+        <span class="hidden sm:inline text-[11px] tracking-wider text-zinc-500">SHINHAN HOUSING</span>
+      </span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-7 text-sm text-zinc-300">
+      <li><a class="nav-link" href="index.html#about">회사소개</a></li>
+      <li><a class="nav-link" href="products.html">제품소개</a></li>
+      <li><a class="nav-link active" href="gallery.html">갤러리</a></li>
+      <li><a class="nav-link" href="index.html#process">시공안내</a></li>
+      <li><a class="nav-link" href="index.html#visit">찾아오시는 길</a></li>
+    </ul>
+
+    <a href="index.html#contact" class="btn-primary inline-flex items-center gap-2 rounded-full bg-bronze-400 text-ink-950 px-4 py-2 text-sm font-semibold">
+      견적 문의
+      <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-ink-950/15">
+        <iconify-icon icon="solar:arrow-right-linear" width="12"></iconify-icon>
+      </span>
+    </a>
+  </nav>
+</header>
+
+<main class="relative pt-28 sm:pt-32">
+
+<!-- ================= HERO ================= -->
+<section class="relative py-14 sm:py-20 overflow-hidden">
+  <div class="aurora-small"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+      <div class="lg:col-span-8 reveal">
+        <div class="flex items-center gap-4 text-xs tracking-widest text-zinc-500 uppercase">
+          <span class="text-bronze-400">03 — Gallery</span>
+          <span class="dash-line flex-1 max-w-xs"></span>
+          <span class="hidden sm:inline">Installation Journal</span>
+        </div>
+        <h1 class="mt-6 font-display text-4xl sm:text-6xl lg:text-7xl font-semibold leading-[1.05] tracking-tight text-zinc-50 kr">
+          시공갤러리<br />
+          <span class="text-zinc-400">현장의 기록.</span>
+        </h1>
+      </div>
+      <div class="lg:col-span-4 reveal">
+        <p class="text-[15px] sm:text-base text-zinc-400 leading-relaxed kr">
+          실제 고객 현장에 설치된 신한하우징의 대문, 휀스, 난간, 우체통 사례를 사진 중심의 블로그 형태로 모았습니다.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="tag-mini">현장사진</span>
+          <span class="tag-mini">대문</span>
+          <span class="tag-mini">휀스</span>
+          <span class="tag-mini">난간</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURED STORY ================= -->
+<section class="relative pb-12 sm:pb-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <article class="story-card bezel reveal" data-image="images/gate-wrought-iron-luxury-md.webp" data-caption="경기 양평 전원주택 단조 대문 시공">
+      <div class="bezel-core overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12">
+          <div class="relative lg:col-span-7 min-h-[360px] sm:min-h-[460px] overflow-hidden">
+            <img src="images/gate-wrought-iron-luxury-md.webp" alt="경기 양평 전원주택 단조 대문 시공" class="absolute inset-0 h-full w-full object-cover" loading="eager" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-ink-950/10 to-transparent lg:bg-gradient-to-r"></div>
+            <div class="absolute left-5 top-5">
+              <span class="tag-mini">Featured Case</span>
+            </div>
+          </div>
+          <div class="lg:col-span-5 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 text-[11px] tracking-widest text-zinc-500 uppercase">
+                <span class="text-bronze-400">CASE 01</span>
+                <span>2026.04</span>
+              </div>
+              <h2 class="mt-5 font-display text-3xl sm:text-4xl font-semibold leading-tight text-zinc-50 kr">
+                전원주택의 첫인상을 바꾼 단조 대문 시공
+              </h2>
+              <p class="mt-5 text-sm sm:text-[15px] text-zinc-400 leading-relaxed kr">
+                넓은 진입로와 조경 분위기에 맞춰 클래식한 곡선 문양을 선택했습니다. 묵직한 프레임과 섬세한 장식이 외관의 중심을 잡아주는 현장입니다.
+              </p>
+            </div>
+            <div class="mt-8 flex flex-wrap gap-2">
+              <span class="tag-mini">경기 양평</span>
+              <span class="tag-mini">단조 대문</span>
+              <span class="tag-mini">전원주택</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= STORY GRID ================= -->
+<section class="relative pb-24 sm:pb-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-8 flex items-end justify-between gap-5 flex-wrap reveal">
+      <div>
+        <div class="text-[11px] tracking-[0.35em] text-bronze-400 uppercase">Field Stories</div>
+        <h2 class="mt-3 font-display text-3xl sm:text-5xl font-semibold tracking-tight text-zinc-50 kr">최근 시공 현장</h2>
+      </div>
+      <p class="max-w-md text-sm text-zinc-500 leading-relaxed kr">
+        사진을 선택하면 크게 볼 수 있습니다. 상세한 현장 설명은 이후 관리자 연동 단계에서 글 형태로 확장할 수 있습니다.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+      <article class="story-card bezel reveal" data-image="frames/hero/020.webp" data-caption="강원 강릉 카페 외부 휀스 시공">
+        <div class="bezel-core overflow-hidden">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src="frames/hero/020.webp" alt="강원 강릉 카페 외부 휀스 시공" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-transparent to-transparent"></div>
+            <span class="absolute left-4 top-4 tag-mini">CASE 02</span>
+          </div>
+          <div class="p-5">
+            <div class="text-[11px] tracking-widest text-bronze-400 uppercase">강원 강릉 · 휀스</div>
+            <h3 class="mt-3 text-xl font-semibold text-zinc-50 kr">카페 외부 동선을 정리한 클래식 휀스</h3>
+            <p class="mt-3 text-sm text-zinc-400 leading-relaxed kr">매장 분위기를 해치지 않으면서 야외 좌석과 보행 동선을 분리한 현장입니다.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="story-card bezel reveal" data-image="images/iron-scroll-detail-md.webp" data-caption="서울 성북 주택 계단 난간 시공">
+        <div class="bezel-core overflow-hidden">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src="images/iron-scroll-detail-md.webp" alt="서울 성북 주택 계단 난간 시공" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-transparent to-transparent"></div>
+            <span class="absolute left-4 top-4 tag-mini">CASE 03</span>
+          </div>
+          <div class="p-5">
+            <div class="text-[11px] tracking-widest text-bronze-400 uppercase">서울 성북 · 난간</div>
+            <h3 class="mt-3 text-xl font-semibold text-zinc-50 kr">곡선 장식이 돋보이는 주택 계단 난간</h3>
+            <p class="mt-3 text-sm text-zinc-400 leading-relaxed kr">실내외 분위기와 연결되도록 단조 스크롤 디테일을 강조했습니다.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="story-card bezel reveal" data-image="images/gate-garden-entrance-elegant-md.webp" data-caption="충북 청주 정원 아치 시공">
+        <div class="bezel-core overflow-hidden">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src="images/gate-garden-entrance-elegant-md.webp" alt="충북 청주 정원 아치 시공" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-transparent to-transparent"></div>
+            <span class="absolute left-4 top-4 tag-mini">CASE 04</span>
+          </div>
+          <div class="p-5">
+            <div class="text-[11px] tracking-widest text-bronze-400 uppercase">충북 청주 · 아치</div>
+            <h3 class="mt-3 text-xl font-semibold text-zinc-50 kr">정원 입구를 완성한 클래식 아치</h3>
+            <p class="mt-3 text-sm text-zinc-400 leading-relaxed kr">조경과 어울리는 색감과 비례를 맞춰 입구의 존재감을 살렸습니다.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="story-card bezel reveal" data-image="frames/secondary/008.webp" data-caption="제주 한림 클래식 우체통 설치">
+        <div class="bezel-core overflow-hidden">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src="frames/secondary/008.webp" alt="제주 한림 클래식 우체통 설치" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-transparent to-transparent"></div>
+            <span class="absolute left-4 top-4 tag-mini">CASE 05</span>
+          </div>
+          <div class="p-5">
+            <div class="text-[11px] tracking-widest text-bronze-400 uppercase">제주 한림 · 우체통</div>
+            <h3 class="mt-3 text-xl font-semibold text-zinc-50 kr">전원주택 외관에 맞춘 클래식 우체통</h3>
+            <p class="mt-3 text-sm text-zinc-400 leading-relaxed kr">작은 제품이지만 대문과 함께 보이는 첫인상을 고려해 디자인했습니다.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="story-card bezel reveal" data-image="images/forged-detail-classic-md.webp" data-caption="공공 조경 주물 벤치 설치">
+        <div class="bezel-core overflow-hidden">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src="images/forged-detail-classic-md.webp" alt="공공 조경 주물 벤치 설치" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-transparent to-transparent"></div>
+            <span class="absolute left-4 top-4 tag-mini">CASE 06</span>
+          </div>
+          <div class="p-5">
+            <div class="text-[11px] tracking-widest text-bronze-400 uppercase">공공 조경 · 벤치</div>
+            <h3 class="mt-3 text-xl font-semibold text-zinc-50 kr">공간의 쉼표가 되는 주물 벤치</h3>
+            <p class="mt-3 text-sm text-zinc-400 leading-relaxed kr">내구성과 장식성을 함께 고려해 공공 조경 공간에 설치한 사례입니다.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="bezel reveal">
+        <div class="bezel-core h-full p-6 sm:p-7 flex flex-col justify-between min-h-[330px] bg-bronze-400/[0.04]">
+          <div>
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-bronze-400/15 ring-1 ring-bronze-400/30">
+              <iconify-icon icon="solar:camera-add-bold" width="24" class="text-bronze-400"></iconify-icon>
+            </div>
+            <h3 class="mt-6 text-2xl font-semibold text-zinc-50 kr">새 현장사진을 계속 추가할 수 있습니다.</h3>
+            <p class="mt-4 text-sm text-zinc-400 leading-relaxed kr">
+              이번 페이지는 정적 블로그형 구조로 만들었습니다. 추후 관리자 업로드 기능을 붙이면 이 카드 목록을 실제 게시글 데이터로 바꿀 수 있습니다.
+            </p>
+          </div>
+          <a href="index.html#contact" class="mt-8 btn-primary inline-flex items-center justify-center gap-2 rounded-full bg-bronze-400 text-ink-950 px-5 py-3 text-sm font-semibold">
+            시공 상담 문의
+            <iconify-icon icon="solar:arrow-right-linear" width="14"></iconify-icon>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="relative pb-24 sm:pb-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bezel reveal">
+      <div class="bezel-core p-8 sm:p-10 lg:p-12 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+        <div>
+          <div class="text-[11px] tracking-[0.35em] text-bronze-400 uppercase">Contact</div>
+          <h2 class="mt-4 font-display text-3xl sm:text-5xl font-semibold text-zinc-50 kr">우리 현장에도 어울릴까요?</h2>
+          <p class="mt-4 text-sm sm:text-base text-zinc-400 leading-relaxed kr max-w-2xl">
+            설치 위치와 원하시는 분위기를 알려주시면 제품 선택부터 시공 방향까지 함께 제안드립니다.
+          </p>
+        </div>
+        <a href="index.html#contact" class="btn-primary inline-flex items-center justify-center gap-2.5 rounded-full bg-bronze-400 text-ink-950 px-7 py-4 text-[15px] font-semibold shrink-0">
+          견적 문의하기
+          <iconify-icon icon="solar:paper-plane-bold" width="15"></iconify-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-white/5 bg-ink-950">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-2.5">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-bronze-400/15 ring-1 ring-bronze-400/30">
+            <iconify-icon icon="solar:home-angle-2-bold" width="18" class="text-bronze-400"></iconify-icon>
+          </span>
+          <span class="text-[15px] font-semibold tracking-tight text-zinc-50">신한하우징</span>
+        </div>
+        <p class="mt-5 text-sm text-zinc-400 leading-relaxed max-w-md kr">
+          단조, 알루미늄주물 등 철제 제품을 공장에서 직접 생산합니다.
+          유럽풍 클래식한 공간은 물론, 자연의 아름다움으로 편안한 공간을 연출해 드립니다.
+        </p>
+      </div>
+      <div class="md:col-span-2">
+        <div class="text-[11px] tracking-widest text-zinc-500 uppercase">SITE</div>
+        <ul class="mt-4 space-y-2.5 text-sm text-zinc-300">
+          <li><a class="hover:text-bronze-400 transition" href="index.html#about">회사소개</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="products.html">제품소개</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="gallery.html">갤러리</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="index.html#process">시공안내</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="index.html#visit">찾아오시는 길</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-2">
+        <div class="text-[11px] tracking-widest text-zinc-500 uppercase">PRODUCT</div>
+        <ul class="mt-4 space-y-2.5 text-sm text-zinc-300">
+          <li><a class="hover:text-bronze-400 transition" href="products.html?type=forged">단조 제품</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="products.html?type=aluminum">알루미늄 주물</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="index.html#contact">견적 문의</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-3">
+        <div class="text-[11px] tracking-widest text-zinc-500 uppercase">CONTACT</div>
+        <ul class="mt-4 space-y-2.5 text-sm text-zinc-300 kr">
+          <li class="flex items-center gap-2">
+            <iconify-icon icon="solar:phone-linear" width="16" class="text-bronze-400 shrink-0"></iconify-icon>
+            031-000-0000
+          </li>
+          <li class="flex items-center gap-2">
+            <iconify-icon icon="solar:letter-linear" width="16" class="text-bronze-400 shrink-0"></iconify-icon>
+            shinhan@shinhanhousing.co.kr
+          </li>
+          <li class="flex items-center gap-2">
+            <iconify-icon icon="solar:clock-circle-linear" width="16" class="text-bronze-400 shrink-0"></iconify-icon>
+            평일 09:00 - 18:00
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 pt-6 border-t border-white/5 text-[12px] text-zinc-500 kr">
+      © 2026 신한하우징 · 단조·알루미늄 주물 공장 직영
+    </div>
+  </div>
+</footer>
+
+<!-- ================= LIGHTBOX ================= -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="시공 사진 크게 보기">
+  <button id="lightboxClose" class="close-btn" aria-label="닫기">
+    <iconify-icon icon="solar:close-circle-bold" width="24"></iconify-icon>
+  </button>
+  <img id="lightboxImage" src="" alt="" />
+  <div id="lightboxCaption" class="caption kr"></div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('on');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const closeBtn = document.getElementById('lightboxClose');
+
+  function openLightbox(src, caption) {
+    lightboxImage.src = src;
+    lightboxImage.alt = caption || '시공 사진';
+    lightboxCaption.textContent = caption || '';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    lightboxImage.src = '';
+  }
+
+  document.querySelectorAll('.story-card[data-image]').forEach(card => {
+    card.addEventListener('click', () => openLightbox(card.dataset.image, card.dataset.caption));
+  });
+  closeBtn.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
+})();
+</script>
+</body>
+</html>

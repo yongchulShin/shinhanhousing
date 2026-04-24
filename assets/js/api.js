@@ -131,6 +131,7 @@
     createProduct: b => request('/admin/products', { method: 'POST', body: b }),
     updateProduct: (id, b) => request('/admin/products/' + id, { method: 'PUT', body: b }),
     deleteProduct: id => request('/admin/products/' + id, { method: 'DELETE' }),
+    uploadImage: (id, formData) => request(`/admin/products/${id}/images`, { method: 'POST', body: formData }),
     getUploadUrl: (id, meta) => request(`/admin/products/${id}/images/upload-url`, { method: 'POST', body: meta }),
     confirmUpload: (id, body) => request(`/admin/products/${id}/images/confirm`, { method: 'POST', body }),
     updateImage: (pid, iid, b) => request(`/admin/products/${pid}/images/${iid}`, { method: 'PUT', body: b }),

@@ -369,6 +369,9 @@
 <!-- ================= Scripts ================= -->
 <script>
   window.SH_API_MOCK__ = false; // admin은 실제 백엔드 필요
+  // 정적 서버만으로 사이트를 연 경우(예: python -m http.server) POST가 그 서버로 가서 501이 납니다.
+  // api 폴더에서 API를 띄운 뒤, 아래 한 줄 주석을 해제하고 포트를 맞추세요(기본 3000).
+  window.SH_API_BASE__ = 'http://localhost:3000/api';
 </script>
 <script src="assets/js/api.js"></script>
 <script>
@@ -673,9 +676,10 @@
     for (const file of Array.from(files)) {
       if (file.size > 10 * 1024 * 1024) { alert(`${file.name}: 10MB를 초과합니다.`); continue; }
       try {
-        const up = await SH_API.Admin.getUploadUrl(currentProduct.id, { filename: file.name, contentType: file.type, size: file.size });
-        await fetch(up.uploadUrl, { method: 'PUT', body: file, headers: { 'Content-Type': file.type } });
-        const result = await SH_API.Admin.confirmUpload(currentProduct.id, { uploadId: up.uploadId, role: 'detail' });
+        const form = new FormData();
+        form.append('image', file);
+        form.append('role', 'detail');
+        const result = await SH_API.Admin.uploadImage(currentProduct.id, form);
         currentProduct.images = currentProduct.images || [];
         currentProduct.images.push(result);
         renderProductImages();

@@ -17,7 +17,7 @@ datasource db {
 model Category {
   id        Int       @id @default(autoincrement())
   type      String    @db.VarChar(16)  // "forged" | "aluminum"
-  slug      String    @unique @db.VarChar(64)
+  slug      String    @db.VarChar(64)
   name      String    @db.VarChar(64)
   icon      String?   @db.VarChar(128)
   sortOrder Int       @default(0)
@@ -26,6 +26,7 @@ model Category {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 
+  @@unique([type, slug])
   @@index([type])
   @@index([isActive])
   @@map("categories")

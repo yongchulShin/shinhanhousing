@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { z } from 'zod';
+import multer from 'multer';
 import { requireAdmin, signAccess, signRefresh } from '../middleware/auth.js';
 import { loginLimiter } from '../middleware/rateLimit.js';
 import { validateUploadMeta, createUploadUrl, downloadRaw, putWebP, deleteKey, buildProductKey, PUBLIC_BASE, PRODUCTS_PREFIX, s3 } from '../services/uploader.js';
@@ -11,6 +12,16 @@ import { DeleteObjectCommand } from '@aws-sdk/client-s3';
 
 const prisma = new PrismaClient();
 const router = express.Router();
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 },
+  fileFilter(_req, file, cb) {
+    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.mimetype)) {
+      return cb(Object.assign(new Error('JPG · PNG · WebP만 허용됩니다.'), { status: 400 }));
+    }
+    cb(null, true);
+  },
+});
 
 // ========== 인증 ==========
 router.post('/login', loginLimiter, async (req, res, next) => {
@@ -151,6 +162,49 @@ router.delete('/products/:id', async (req, res, next) => {
 });
 
 // ========== 이미지 업로드 ==========
+// 관리 화면용 직접 업로드: 브라우저→API→S3 경로라 S3 CORS 설정에 의존하지 않습니다.
+router.post('/products/:id/images', upload.single('image'), async (req, res, next) => {
+  try {
+    const productId = BigInt(req.params.id);
+    const { role = 'detail', caption } = req.body;
+    if (!req.file) return res.status(400).json({ error: 'missing_file' });
+
+    const product = await prisma.product.findUnique({ where: { id: productId } });
+    if (!product) return res.status(404).json({ error: 'product_not_found' });
+
+    const { mainBuf, thumbBuf } = await processToWebP(req.file.buffer);
+    const mainKey = buildProductKey(product.code, 'main');
+    const thumbKey = mainKey.replace(/\.webp$/, '-thumb.webp');
+    const [mainUrl, thumbUrl] = await Promise.all([
+      putWebP(mainKey, mainBuf),
+      putWebP(thumbKey, thumbBuf),
+    ]);
+
+    const maxOrder = await prisma.productImage.aggregate({
+      where: { productId },
+      _max: { sortOrder: true },
+    });
+    const sortOrder = (maxOrder._max.sortOrder ?? -1) + 1;
+    const safeRole = ['main', 'detail', 'installation'].includes(role) ? role : 'detail';
+
+    const img = await prisma.productImage.create({
+      data: {
+        productId,
+        url: mainUrl,
+        thumbUrl,
+        caption: caption || null,
+        role: sortOrder === 0 && safeRole === 'detail' ? 'main' : safeRole,
+        sortOrder,
+      },
+    });
+
+    res.status(201).json({
+      id: img.id.toString(), url: img.url, thumbUrl: img.thumbUrl,
+      role: img.role, sortOrder: img.sortOrder, caption: img.caption,
+    });
+  } catch (e) { next(e); }
+});
+
 // 1) presigned URL 발급
 router.post('/products/:id/images/upload-url', async (req, res, next) => {
   try {
@@ -190,6 +244,8 @@ router.post('/products/:id/images/confirm', async (req, res, next) => {
       where: { productId },
       _max: { sortOrder: true },
     });
+    const sortOrder = (maxOrder._max.sortOrder ?? -1) + 1;
+    const safeRole = ['main', 'detail', 'installation'].includes(role) ? role : 'detail';
 
     const img = await prisma.productImage.create({
       data: {
@@ -197,8 +253,8 @@ router.post('/products/:id/images/confirm', async (req, res, next) => {
         url: mainUrl,
         thumbUrl: thumbUrl,
         caption: caption || null,
-        role: ['main', 'detail', 'installation'].includes(role) ? role : 'detail',
-        sortOrder: (maxOrder._max.sortOrder ?? -1) + 1,
+        role: sortOrder === 0 && safeRole === 'detail' ? 'main' : safeRole,
+        sortOrder,
       },
     });
 

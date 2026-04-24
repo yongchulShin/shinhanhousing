@@ -9,11 +9,10 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 
-<!-- Preload first few hero frames so the canvas paints instantly -->
-<link rel="preload" as="image" href="frames/hero/000.webp" fetchpriority="high" />
-<link rel="preload" as="image" href="frames/hero/001.webp" />
-<link rel="preload" as="image" href="frames/hero/003.webp" />
-<link rel="preload" as="image" href="frames/hero/005.webp" />
+<!-- Preload first hero product images so the canvas paints instantly -->
+<link rel="preload" as="image" href="images/landing/hero-gate.webp" fetchpriority="high" />
+<link rel="preload" as="image" href="images/landing/hero-fence.webp" />
+<link rel="preload" as="image" href="images/landing/hero-aluminum-gate.webp" />
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
@@ -263,7 +262,7 @@
     <ul class="hidden md:flex items-center gap-7 text-sm text-zinc-300">
       <li><a class="nav-link" href="#about">회사소개</a></li>
       <li><a class="nav-link" href="products.html">제품소개</a></li>
-      <li><a class="nav-link" href="#gallery">갤러리</a></li>
+      <li><a class="nav-link" href="gallery.html">갤러리</a></li>
       <li><a class="nav-link" href="#process">시공안내</a></li>
       <li><a class="nav-link" href="#visit">찾아오시는 길</a></li>
     </ul>
@@ -323,7 +322,7 @@
                 <iconify-icon icon="solar:arrow-right-up-linear" width="14"></iconify-icon>
               </span>
             </a>
-            <a href="#gallery" class="btn-ghost inline-flex items-center gap-2.5 rounded-full border border-white/25 bg-ink-950/30 backdrop-blur-sm text-zinc-100 px-6 py-3.5 text-[15px] sm:text-base font-medium">
+            <a href="gallery.html" class="btn-ghost inline-flex items-center gap-2.5 rounded-full border border-white/25 bg-ink-950/30 backdrop-blur-sm text-zinc-100 px-6 py-3.5 text-[15px] sm:text-base font-medium">
               <iconify-icon icon="solar:gallery-wide-linear" width="18" class="text-bronze-400"></iconify-icon>
               시공 갤러리
             </a>
@@ -559,7 +558,7 @@
         <!-- flagship -->
         <a href="products.html?type=forged&category=gates" class="prod-card bezel md:col-span-3 md:row-span-2 group block">
           <div class="bezel-core relative overflow-hidden h-full min-h-[360px]">
-            <img src="images/gate-wrought-iron-luxury-lg.webp" alt="유럽풍 단조 대문 — 정교한 스크롤 장식의 클래식 디자인" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <img src="images/landing/forged-gate.webp" alt="유럽풍 단조 대문 — 정교한 스크롤 장식의 클래식 디자인" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
             <div class="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/40 to-transparent"></div>
             <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-ink-950/70 border border-white/10 px-3 py-1.5 text-[11px] text-zinc-200">
               <iconify-icon icon="solar:star-bold" width="12" class="text-bronze-400"></iconify-icon> BEST SELLER
@@ -582,7 +581,7 @@
         <!-- small cards -->
         <a href="products.html?type=forged&category=fences" class="prod-card bezel md:col-span-3 group block">
           <div class="bezel-core relative overflow-hidden h-full min-h-[170px]">
-            <img src="frames/secondary/004.webp" alt="단조 휀스" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <img src="images/landing/forged-fence.webp" alt="단조 휀스" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
             <div class="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/50 to-transparent"></div>
             <div class="absolute bottom-4 left-5 right-5 flex items-center justify-between">
               <div>
@@ -596,7 +595,7 @@
 
         <a href="products.html?type=forged&category=auto-gates" class="prod-card bezel md:col-span-3 group block">
           <div class="bezel-core relative overflow-hidden h-full min-h-[170px]">
-            <img src="frames/secondary/012.webp" alt="자동문 모터" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <img src="images/landing/forged-auto-gate.webp" alt="자동문 모터" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
             <div class="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/50 to-transparent"></div>
             <div class="absolute top-3 right-4">
               <span class="inline-flex items-center gap-1 rounded-full bg-bronze-400/95 text-ink-950 px-2 py-0.5 text-[10px] font-semibold">AUTO</span>
@@ -647,7 +646,7 @@
       <div class="mt-8 grid grid-cols-1 md:grid-cols-6 gap-4">
         <a href="products.html?type=aluminum&category=gates" class="prod-card bezel md:col-span-2 group block">
           <div class="bezel-core relative overflow-hidden h-full min-h-[220px]">
-            <img src="images/gate-garden-entrance-elegant-md.webp" alt="알루미늄 주물 대문 — 우아한 곡선" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <img src="images/landing/aluminum-gate.webp" alt="알루미늄 주물 대문 — 우아한 곡선" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
             <div class="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/40 to-transparent"></div>
             <div class="absolute bottom-4 left-5 right-5">
               <div class="text-[10px] tracking-widest text-bronze-400 uppercase">A-01</div>
@@ -658,7 +657,7 @@
 
         <a href="products.html?type=aluminum&category=fences" class="prod-card bezel md:col-span-2 group block">
           <div class="bezel-core relative overflow-hidden h-full min-h-[220px]">
-            <img src="images/iron-scroll-detail-md.webp" alt="알루미늄 주물 휀스 — 일반·가드·목재·시스템 형태" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <img src="images/landing/aluminum-fence.webp" alt="알루미늄 주물 휀스 — 일반·가드·목재·시스템 형태" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
             <div class="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/40 to-transparent"></div>
             <div class="absolute bottom-4 left-5 right-5">
               <div class="text-[10px] tracking-widest text-bronze-400 uppercase">A-02 / 03 / 04 / 05</div>
@@ -669,7 +668,7 @@
 
         <a href="products.html?type=aluminum&category=entrance-doors" class="prod-card bezel md:col-span-2 group block">
           <div class="bezel-core relative overflow-hidden h-full min-h-[220px]">
-            <img src="frames/secondary/018.webp" alt="알루미늄 주물 현관문" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <img src="images/landing/aluminum-entrance.webp" alt="알루미늄 주물 현관문" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
             <div class="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/40 to-transparent"></div>
             <div class="absolute bottom-4 left-5 right-5">
               <div class="text-[10px] tracking-widest text-bronze-400 uppercase">A-06</div>
@@ -680,7 +679,7 @@
 
         <a href="products.html?type=aluminum&category=deshi-moladon" class="prod-card bezel md:col-span-3 group block">
           <div class="bezel-core relative overflow-hidden h-full min-h-[220px]">
-            <img src="images/forged-detail-classic-md.webp" alt="데스리·모라돈 — 계단·발코니용 장식 난간" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <img src="images/landing/aluminum-deshi.webp" alt="데스리·모라돈 — 계단·발코니용 장식 난간" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
             <div class="absolute inset-0 bg-gradient-to-tr from-ink-950 via-ink-950/40 to-transparent"></div>
             <div class="absolute bottom-4 left-5 right-5">
               <div class="text-[10px] tracking-widest text-bronze-400 uppercase">A-07 / 08</div>
@@ -692,7 +691,7 @@
 
         <a href="products.html?type=aluminum&category=public-facilities" class="prod-card bezel md:col-span-3 group block">
           <div class="bezel-core relative overflow-hidden h-full min-h-[220px]">
-            <img src="frames/secondary/022.webp" alt="공공 시설물 — 벤치·가로등 커버·수목 보호덮개·자전거 보관대" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+            <img src="images/landing/aluminum-public.webp" alt="공공 시설물 — 벤치·가로등 커버·수목 보호덮개·자전거 보관대" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
             <div class="absolute inset-0 bg-gradient-to-tl from-ink-950 via-ink-950/40 to-transparent"></div>
             <div class="absolute bottom-4 left-5 right-5">
               <div class="text-[10px] tracking-widest text-bronze-400 uppercase">A-09 ~ 13</div>
@@ -730,7 +729,7 @@
     <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
       <figure class="relative overflow-hidden rounded-xl aspect-[3/4] row-span-2 bezel !p-1.5 reveal">
         <div class="bezel-core relative h-full overflow-hidden">
-          <img src="images/gate-wrought-iron-luxury-md.webp" alt="전원 주택 대문 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <img src="images/landing/aluminum-gate.webp" alt="전원 주택 대문 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
           <div class="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-transparent to-transparent"></div>
           <figcaption class="absolute bottom-4 left-4 right-4 text-xs text-zinc-200 kr">
             <div class="text-[10px] text-bronze-400 tracking-widest uppercase">CASE 01</div>
@@ -741,7 +740,7 @@
 
       <figure class="relative overflow-hidden rounded-xl aspect-square bezel !p-1.5 reveal">
         <div class="bezel-core relative h-full overflow-hidden">
-          <img src="frames/hero/020.webp" alt="카페 휀스 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <img src="images/landing/forged-fence.webp" alt="카페 휀스 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
           <div class="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent"></div>
           <figcaption class="absolute bottom-3 left-3 right-3 text-xs text-zinc-200 kr">
             <div class="text-[10px] text-bronze-400 tracking-widest uppercase">CASE 02</div>
@@ -752,7 +751,7 @@
 
       <figure class="relative overflow-hidden rounded-xl aspect-square bezel !p-1.5 reveal">
         <div class="bezel-core relative h-full overflow-hidden">
-          <img src="images/iron-scroll-detail-md.webp" alt="계단 난간 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <img src="images/landing/gallery-stair.webp" alt="계단 난간 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
           <div class="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent"></div>
           <figcaption class="absolute bottom-3 left-3 right-3 text-xs text-zinc-200 kr">
             <div class="text-[10px] text-bronze-400 tracking-widest uppercase">CASE 03</div>
@@ -763,7 +762,7 @@
 
       <figure class="relative overflow-hidden rounded-xl aspect-[3/4] row-span-2 bezel !p-1.5 reveal">
         <div class="bezel-core relative h-full overflow-hidden">
-          <img src="images/gate-garden-entrance-elegant-md.webp" alt="정원 아치 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <img src="images/landing/gallery-arch.webp" alt="정원 아치 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
           <div class="absolute inset-0 bg-gradient-to-t from-ink-950/90 via-transparent to-transparent"></div>
           <figcaption class="absolute bottom-4 left-4 right-4 text-xs text-zinc-200 kr">
             <div class="text-[10px] text-bronze-400 tracking-widest uppercase">CASE 04</div>
@@ -774,7 +773,7 @@
 
       <figure class="relative overflow-hidden rounded-xl aspect-square bezel !p-1.5 reveal">
         <div class="bezel-core relative h-full overflow-hidden">
-          <img src="frames/secondary/008.webp" alt="우체통 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <img src="images/landing/gallery-mailbox.webp" alt="우체통 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
           <div class="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent"></div>
           <figcaption class="absolute bottom-3 left-3 right-3 text-xs text-zinc-200 kr">
             <div class="text-[10px] text-bronze-400 tracking-widest uppercase">CASE 05</div>
@@ -785,7 +784,7 @@
 
       <figure class="relative overflow-hidden rounded-xl aspect-square bezel !p-1.5 reveal">
         <div class="bezel-core relative h-full overflow-hidden">
-          <img src="images/forged-detail-classic-md.webp" alt="공원 벤치 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <img src="images/landing/gallery-bench.webp" alt="공원 벤치 시공" class="prod-img absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
           <div class="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent"></div>
           <figcaption class="absolute bottom-3 left-3 right-3 text-xs text-zinc-200 kr">
             <div class="text-[10px] text-bronze-400 tracking-widest uppercase">CASE 06</div>
@@ -796,7 +795,7 @@
     </div>
 
     <div class="mt-10 text-center">
-      <a href="#contact" class="btn-ghost inline-flex items-center gap-2 rounded-full border border-white/15 text-zinc-200 px-6 py-3 text-sm font-medium">
+      <a href="gallery.html" class="btn-ghost inline-flex items-center gap-2 rounded-full border border-white/15 text-zinc-200 px-6 py-3 text-sm font-medium">
         갤러리 더 보기
         <iconify-icon icon="solar:arrow-right-linear" width="14" class="text-bronze-400"></iconify-icon>
       </a>
@@ -1168,7 +1167,7 @@
             <div id="daumRoughmapContainer1655797459115" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100%;"></div>
             <!-- Fallback image if map script fails -->
             <noscript>
-              <img src="images/gate-garden-entrance-elegant-md.webp" alt="신한하우징 위치 지도" class="w-full h-[320px] sm:h-[420px] object-cover" />
+              <img src="images/landing/hero-aluminum-gate.webp" alt="신한하우징 위치 지도" class="w-full h-[320px] sm:h-[420px] object-cover" />
             </noscript>
           </div>
         </div>
@@ -1204,7 +1203,7 @@
         <ul class="mt-4 space-y-2.5 text-sm text-zinc-300">
           <li><a class="hover:text-bronze-400 transition" href="#about">회사소개</a></li>
           <li><a class="hover:text-bronze-400 transition" href="products.html">제품소개</a></li>
-          <li><a class="hover:text-bronze-400 transition" href="#gallery">갤러리</a></li>
+          <li><a class="hover:text-bronze-400 transition" href="gallery.html">갤러리</a></li>
           <li><a class="hover:text-bronze-400 transition" href="#process">시공안내</a></li>
           <li><a class="hover:text-bronze-400 transition" href="#visit">찾아오시는 길</a></li>
         </ul>
@@ -1274,19 +1273,25 @@
 
 <script>
   /* ========================================================================
-     HERO — Scroll-driven WebP frame sequence (Apple-style)
+     HERO — Scroll-driven product image sequence
      ------------------------------------------------------------------------
-     - 90 sequential WebP frames extracted from the hero MP4
-     - Preloaded in parallel; progress shown in loading bar
-     - Scroll progress (0..1) within .hero-scroll maps to frame index
-     - Target frame index is lerped toward by current index at 0.15/frame
-       for buttery-smooth motion that doesn't stutter with wheel ticks
+     - Real product images are preloaded in parallel
+     - Scroll progress (0..1) within .hero-scroll maps to each image
+     - Target image index is lerped toward by current index for smooth scroll response
      - devicePixelRatio-aware canvas for crisp rendering
-     - object-cover style drawing to preserve portrait video's aspect
+     - letterbox drawing preserves each product photo's original aspect
      ======================================================================== */
   (() => {
-    const TOTAL = 90;
-    const FRAME_URL = (i) => `frames/hero/${String(i).padStart(3, '0')}.webp`;
+    const HERO_IMAGES = [
+      'images/landing/hero-gate.webp',
+      'images/landing/hero-fence.webp',
+      'images/landing/hero-aluminum-gate.webp',
+      'images/landing/forged-gate.webp',
+      'images/landing/forged-auto-gate.webp',
+      'images/landing/aluminum-public.webp',
+    ];
+    const TOTAL = HERO_IMAGES.length;
+    const FRAME_URL = (i) => HERO_IMAGES[i];
 
     const section = document.getElementById('hero');
     const canvas  = document.getElementById('heroCanvas');
