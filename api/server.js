@@ -1,15 +1,15 @@
-import 'dotenv/config';
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import pinoHttp from 'pino-http';
 import pino from 'pino';
+import { isProduction, serverConfig } from './config/env.js';
 
 import publicRoutes from './routes/public.js';
 import inquiryRoutes from './routes/inquiries.js';
 import adminRoutes from './routes/admin.js';
 
-const logger = pino({ level: process.env.LOG_LEVEL || 'info' });
+const logger = pino({ level: serverConfig.logLevel });
 const app = express();
 
 app.set('trust proxy', 1);
@@ -18,10 +18,9 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' },
 }));
 
-const origins = (process.env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
 app.use(cors({
   origin(origin, cb) {
-    if (!origin || origins.length === 0 || origins.includes(origin)) return cb(null, true);
+    if (!origin || serverConfig.allowedOrigins.length === 0 || serverConfig.allowedOrigins.includes(origin)) return cb(null, true);
     cb(new Error('CORS: origin not allowed: ' + origin));
   },
   credentials: true,
@@ -53,9 +52,8 @@ app.use((err, req, res, _next) => {
   const status = err.status || 500;
   res.status(status).json({
     error: err.code || 'internal_error',
-    message: process.env.NODE_ENV === 'production' && status === 500 ? 'Internal Server Error' : err.message,
+    message: isProduction && status === 500 ? 'Internal Server Error' : err.message,
   });
 });
 
-const PORT = parseInt(process.env.PORT || '3000', 10);
-app.listen(PORT, () => logger.info(`Shinhan Housing API listening on :${PORT}`));
+app.listen(serverConfig.port, () => logger.info(`Shinhan Housing API listening on :${serverConfig.port}`));

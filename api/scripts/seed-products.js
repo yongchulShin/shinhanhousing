@@ -13,7 +13,6 @@
  *
  * 재실행 시 이미 DB에 있는 제품 코드는 건너뛰고 신규만 추가합니다.
  */
-import 'dotenv/config';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import XLSX from 'xlsx';
@@ -21,11 +20,12 @@ import { PrismaClient } from '@prisma/client';
 import { processToWebP } from '../services/imageProcessor.js';
 import { putWebP, buildProductKey } from '../services/uploader.js';
 import { CATEGORY_NAME_MAP } from './seed-categories.js';
+import { seedConfig } from '../config/env.js';
 
 const prisma = new PrismaClient();
 
-const SEED_SOURCE_XLSX = process.env.SEED_SOURCE_XLSX || '../신한하우징 제품/신한하우징_제품목록.xlsx';
-const SEED_IMAGE_ROOT = process.env.SEED_IMAGE_ROOT || '../신한하우징 제품/신한하우징_제품이미지';
+const SEED_SOURCE_XLSX = seedConfig.sourceXlsx;
+const SEED_IMAGE_ROOT = seedConfig.imageRoot;
 const SHEET_TYPES = [
   { sheetName: '단조제품', type: 'forged' },
   { sheetName: '알루미늄제품', type: 'aluminum' },
@@ -56,6 +56,11 @@ function keyVariants(value) {
   for (const match of modelMatches) variants.add(match);
 
   return [...variants].map(normalizeKey).filter(Boolean);
+}
+
+function buildProductCode(productName, productNo, nameCount) {
+  const baseCode = nameCount > 1 ? `${productName}-${productNo}` : productName;
+  return baseCode.length <= 64 ? baseCode : productNo;
 }
 
 // 엑셀 시트에서 제품 목록 파싱
@@ -101,7 +106,7 @@ function parseProductsFromExcel() {
   const nameCounts = rawProducts.reduce((acc, p) => acc.set(p.codeBase, (acc.get(p.codeBase) || 0) + 1), new Map());
   return rawProducts.map(p => ({
     ...p,
-    code: nameCounts.get(p.codeBase) > 1 ? `${p.codeBase}-${p.productNo}` : p.codeBase,
+    code: buildProductCode(p.codeBase, p.productNo, nameCounts.get(p.codeBase)),
   }));
 }
 

@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
 import { inquiryLimiter, inquiryHourlyLimiter } from '../middleware/rateLimit.js';
 import { sendInquiryNotification } from '../services/mailer.js';
+import { recaptchaConfig } from '../config/env.js';
 
 const prisma = new PrismaClient();
 const router = express.Router();
@@ -18,7 +19,7 @@ const inquirySchema = z.object({
 });
 
 async function verifyRecaptcha(token) {
-  const secret = process.env.RECAPTCHA_SECRET;
+  const secret = recaptchaConfig.secret;
   if (!secret || !token) return { ok: true, skipped: true };
   try {
     const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {

@@ -369,9 +369,7 @@
 <!-- ================= Scripts ================= -->
 <script>
   window.SH_API_MOCK__ = false; // admin은 실제 백엔드 필요
-  // 정적 서버만으로 사이트를 연 경우(예: python -m http.server) POST가 그 서버로 가서 501이 납니다.
-  // api 폴더에서 API를 띄운 뒤, 아래 한 줄 주석을 해제하고 포트를 맞추세요(기본 3000).
-  window.SH_API_BASE__ = 'http://localhost:3000/api';
+  // 기본 API 경로는 같은 도메인의 /api 입니다. 로컬 테스트에서만 window.SH_API_BASE__를 덮어쓰세요.
 </script>
 <script src="assets/js/api.js"></script>
 <script>

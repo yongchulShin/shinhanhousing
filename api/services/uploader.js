@@ -1,11 +1,12 @@
 import { S3Client, PutObjectCommand, DeleteObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import { v4 as uuid } from 'uuid';
+import { awsConfig, s3Config } from '../config/env.js';
 
-export const s3 = new S3Client({ region: process.env.AWS_REGION || 'ap-northeast-2' });
-export const BUCKET = process.env.S3_BUCKET;
-export const PUBLIC_BASE = (process.env.S3_PUBLIC_BASE || '').replace(/\/$/, '');
-export const PRODUCTS_PREFIX = (process.env.S3_PRODUCTS_PREFIX || 'assets/products').replace(/^\/+|\/+$/g, '');
+export const s3 = new S3Client({ region: awsConfig.region });
+export const BUCKET = s3Config.bucket;
+export const PUBLIC_BASE = s3Config.publicBase;
+export const PRODUCTS_PREFIX = s3Config.productsPrefix;
 
 const ALLOWED_MIME = ['image/jpeg', 'image/png', 'image/webp'];
 const MAX_SIZE = 10 * 1024 * 1024;

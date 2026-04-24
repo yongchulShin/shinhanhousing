@@ -1,13 +1,14 @@
 import jwt from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
+import { authConfig } from '../config/env.js';
 
 const prisma = new PrismaClient();
 
 export function signAccess(payload) {
-  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.JWT_ACCESS_EXPIRES || '1h' });
+  return jwt.sign(payload, authConfig.jwtSecret, { expiresIn: authConfig.accessExpires });
 }
 export function signRefresh(payload) {
-  return jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: process.env.JWT_REFRESH_EXPIRES || '7d' });
+  return jwt.sign(payload, authConfig.jwtRefreshSecret, { expiresIn: authConfig.refreshExpires });
 }
 
 export async function requireAdmin(req, res, next) {
@@ -15,7 +16,7 @@ export async function requireAdmin(req, res, next) {
     const auth = req.headers.authorization || '';
     if (!auth.startsWith('Bearer ')) return res.status(401).json({ error: 'missing_token' });
     const token = auth.slice(7);
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, authConfig.jwtSecret);
     if (!decoded?.adminId) return res.status(401).json({ error: 'invalid_token' });
 
     const admin = await prisma.admin.findUnique({ where: { id: decoded.adminId } });

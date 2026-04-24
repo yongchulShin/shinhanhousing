@@ -9,6 +9,7 @@ import { loginLimiter } from '../middleware/rateLimit.js';
 import { validateUploadMeta, createUploadUrl, downloadRaw, putWebP, deleteKey, buildProductKey, PUBLIC_BASE, PRODUCTS_PREFIX, s3 } from '../services/uploader.js';
 import { processToWebP } from '../services/imageProcessor.js';
 import { DeleteObjectCommand } from '@aws-sdk/client-s3';
+import { authConfig, s3Config } from '../config/env.js';
 
 const prisma = new PrismaClient();
 const router = express.Router();
@@ -53,7 +54,7 @@ router.post('/refresh', async (req, res, next) => {
   try {
     const { refreshToken } = req.body;
     if (!refreshToken) return res.status(400).json({ error: 'missing_refresh_token' });
-    const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
+    const decoded = jwt.verify(refreshToken, authConfig.jwtRefreshSecret);
     const admin = await prisma.admin.findUnique({ where: { id: decoded.adminId } });
     if (!admin) return res.status(401).json({ error: 'admin_not_found' });
     res.json({
@@ -238,7 +239,7 @@ router.post('/products/:id/images/confirm', async (req, res, next) => {
     ]);
 
     // 원본 raw 삭제 (best-effort)
-    s3.send(new DeleteObjectCommand({ Bucket: process.env.S3_BUCKET, Key: rawKey })).catch(() => {});
+    s3.send(new DeleteObjectCommand({ Bucket: s3Config.bucket, Key: rawKey })).catch(() => {});
 
     const maxOrder = await prisma.productImage.aggregate({
       where: { productId },

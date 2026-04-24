@@ -1,10 +1,11 @@
 import { SESv2Client, SendEmailCommand } from '@aws-sdk/client-sesv2';
+import { awsConfig, mailConfig } from '../config/env.js';
 
-const client = new SESv2Client({ region: process.env.AWS_REGION || 'ap-northeast-2' });
+const client = new SESv2Client({ region: awsConfig.region });
 
 export async function sendInquiryNotification(inquiry) {
-  const to = process.env.ADMIN_NOTIFY_EMAIL;
-  const from = process.env.SES_FROM;
+  const to = mailConfig.adminNotifyEmail;
+  const from = mailConfig.sesFrom;
   if (!to || !from) {
     console.warn('[mailer] SES_FROM 또는 ADMIN_NOTIFY_EMAIL 미설정 — 이메일 전송을 건너뜁니다.');
     return { skipped: true };
