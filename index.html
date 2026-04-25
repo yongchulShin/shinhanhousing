@@ -156,6 +156,23 @@
 
   iconify-icon { display: inline-block; vertical-align: -0.125em; }
   a, button { -webkit-tap-highlight-color: transparent; }
+  select {
+    background-color: #18181b;
+    color: #f4f4f5;
+    color-scheme: dark;
+    -webkit-text-fill-color: #f4f4f5;
+  }
+  select:focus {
+    background-color: #18181b;
+  }
+  select option {
+    background: #18181b;
+    color: #f4f4f5;
+  }
+  select option:checked {
+    background: #D4A056;
+    color: #0a0a0a;
+  }
   ::selection { background: #D4A056; color: #0a0a0a; }
 
   /* ===== Scroll-driven hero ===== */
@@ -1029,7 +1046,7 @@
                 </span>
                 <div>
                   <div class="text-[11px] text-zinc-500 tracking-widest uppercase">대표 전화</div>
-                  <div class="block text-lg font-semibold text-zinc-50">031-000-0000</div>
+                  <div class="block text-lg font-semibold text-zinc-50">031-877-9336</div>
                   <div class="text-[11px] text-zinc-600 kr">평일 09:00 – 18:00 · 주말 예약 상담</div>
                 </div>
               </a>
@@ -1039,7 +1056,7 @@
                 </span>
                 <div>
                   <div class="text-[11px] text-zinc-500 tracking-widest uppercase">이메일</div>
-                  <div class="block text-lg font-semibold text-zinc-50">shinhan@shinhanhousing.co.kr</div>
+                  <div class="block text-lg font-semibold text-zinc-50">shmh0425@kakao.com</div>
                 </div>
               </a>
               <a href="http://www.shinhanhousing.co.kr/bbs/zboard.php?id=order" target="_blank" rel="noopener" class="flex items-center gap-4 group">

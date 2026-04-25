@@ -21,6 +21,12 @@ function int(name, fallback) {
   return Number.isFinite(value) ? value : fallback;
 }
 
+function bool(name, fallback = false) {
+  const value = (process.env[name] || '').trim().toLowerCase();
+  if (!value) return fallback;
+  return ['1', 'true', 'yes', 'on'].includes(value);
+}
+
 export const isProduction = appEnv === 'production' || process.env.NODE_ENV === 'production';
 
 export const serverConfig = {
@@ -49,8 +55,16 @@ export const s3Config = {
 };
 
 export const mailConfig = {
-  sesFrom: process.env.SES_FROM,
+  provider: process.env.MAIL_PROVIDER || 'smtp',
+  from: process.env.MAIL_FROM || process.env.SMTP_USER || process.env.SES_FROM,
   adminNotifyEmail: process.env.ADMIN_NOTIFY_EMAIL,
+  smtp: {
+    host: process.env.SMTP_HOST,
+    port: int('SMTP_PORT', 587),
+    secure: bool('SMTP_SECURE', false),
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
 };
 
 export const recaptchaConfig = {

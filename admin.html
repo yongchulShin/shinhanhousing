@@ -43,7 +43,9 @@
   .btn-sm { padding: 5px 10px; font-size: 11px; border-radius: 7px; }
 
   .input, .select, .textarea { width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 14px; font-size: 13px; color: #e4e4e7; transition: all 200ms; }
+  .select { background-color: #18181b; color: #f4f4f5; color-scheme: dark; -webkit-text-fill-color: #f4f4f5; }
   .input:focus, .select:focus, .textarea:focus { outline: none; border-color: rgba(212,160,86,0.6); background: rgba(255,255,255,0.05); box-shadow: 0 0 0 3px rgba(212,160,86,0.15); }
+  .select:focus { background-color: #18181b; }
   .textarea { resize: vertical; min-height: 80px; }
   .label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #71717a; margin-bottom: 6px; display: block; }
 
@@ -78,6 +80,14 @@
   @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
   iconify-icon { display: inline-block; vertical-align: -0.125em; }
+  .select option {
+    background: #18181b;
+    color: #f4f4f5;
+  }
+  .select option:checked {
+    background: #D4A056;
+    color: #0a0a0a;
+  }
   ::selection { background: #D4A056; color: #0a0a0a; }
 </style>
 </head>

@@ -7,7 +7,19 @@
 (function () {
   'use strict';
 
-  const DEFAULT_BASE = (window.SH_API_BASE__ || '/api').replace(/\/$/, '');
+  function getDefaultBase() {
+    if (window.SH_API_BASE__) return window.SH_API_BASE__;
+
+    const isLocalPage =
+      location.protocol === 'file:' ||
+      ['localhost', '127.0.0.1', ''].includes(location.hostname);
+
+    return isLocalPage && location.port !== '3000'
+      ? 'http://localhost:3000/api'
+      : '/api';
+  }
+
+  const DEFAULT_BASE = getDefaultBase().replace(/\/$/, '');
   const MOCK = !!window.SH_API_MOCK__;
 
   const TOKEN_KEY = 'sh_admin_token';

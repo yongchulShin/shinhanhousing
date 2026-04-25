@@ -1,13 +1,29 @@
-import { SESv2Client, SendEmailCommand } from '@aws-sdk/client-sesv2';
-import { awsConfig, mailConfig } from '../config/env.js';
+import nodemailer from 'nodemailer';
+import { mailConfig } from '../config/env.js';
 
-const client = new SESv2Client({ region: awsConfig.region });
+let transporter;
+
+function getTransporter() {
+  if (transporter) return transporter;
+
+  transporter = nodemailer.createTransport({
+    host: mailConfig.smtp.host,
+    port: mailConfig.smtp.port,
+    secure: mailConfig.smtp.secure,
+    auth: {
+      user: mailConfig.smtp.user,
+      pass: mailConfig.smtp.pass,
+    },
+  });
+
+  return transporter;
+}
 
 export async function sendInquiryNotification(inquiry) {
   const to = mailConfig.adminNotifyEmail;
-  const from = mailConfig.sesFrom;
-  if (!to || !from) {
-    console.warn('[mailer] SES_FROM 또는 ADMIN_NOTIFY_EMAIL 미설정 — 이메일 전송을 건너뜁니다.');
+  const from = mailConfig.from;
+  if (!to || !from || !mailConfig.smtp.host || !mailConfig.smtp.user || !mailConfig.smtp.pass) {
+    console.warn('[mailer] SMTP 설정 또는 ADMIN_NOTIFY_EMAIL 미설정 — 이메일 전송을 건너뜁니다.');
     return { skipped: true };
   }
 
@@ -50,24 +66,16 @@ export async function sendInquiryNotification(inquiry) {
     </p>
   </div>`;
 
-  const cmd = new SendEmailCommand({
-    FromEmailAddress: from,
-    Destination: { ToAddresses: [to] },
-    ReplyToAddresses: inquiry.email ? [inquiry.email] : undefined,
-    Content: {
-      Simple: {
-        Subject: { Data: `[신한하우징 문의] ${inquiry.name} · ${inquiry.productCode || inquiry.productType || '신규'}`, Charset: 'UTF-8' },
-        Body: {
-          Text: { Data: text, Charset: 'UTF-8' },
-          Html: { Data: html, Charset: 'UTF-8' },
-        },
-      },
-    },
-  });
-
   try {
-    const res = await client.send(cmd);
-    return { messageId: res.MessageId };
+    const res = await getTransporter().sendMail({
+      from,
+      to,
+      replyTo: inquiry.email || undefined,
+      subject: `[신한하우징 문의] ${inquiry.name} · ${inquiry.productCode || inquiry.productType || '신규'}`,
+      text,
+      html,
+    });
+    return { messageId: res.messageId };
   } catch (e) {
     console.error('[mailer] 이메일 전송 실패:', e);
     return { error: e.message };
